@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dewu-price-check.example/schemas/contract-v1.schema.json",
+  "title": "Dewu Price Check Contract v1",
+  "type": "object",
+  "required": ["contractVersion", "kind", "payload"],
+  "properties": {
+    "contractVersion": { "const": "v1" },
+    "kind": { "enum": ["cli-command", "agent-rpc", "run-result", "export-row"] },
+    "payload": { "type": "object" }
+  },
+  "additionalProperties": false
+}
