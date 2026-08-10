@@ -7,7 +7,7 @@
 | 项目 | 状态 |
 | --- | --- |
 | 学习模式 | `LEARNING_MODE` |
-| 当前步骤 | `G00.1` |
+| 当前步骤 | `G00.12` |
 | 活跃生产 Developer | 0 |
 | 活跃 QA | 0 |
 | 活跃 Reviewer | 0 |
@@ -19,7 +19,7 @@
 
 | 阶段 | Issue | 当前状态 | 用户是否体验 Developer→QA→Reviewer→Merge |
 | --- | ---: | --- | --- |
-| 治理基线 | 无 | 待 Coordinator 审计 | 不适用 |
+| 治理基线 | 无 | `G00.10` Governance QA failed；等待 `G00.12` 治理文档修复 | 不适用 |
 | W0 / MOD-00 Foundation | #1 | GitHub ready；尚未启动 | 否 |
 | W1 / MOD-01 Environment | #2 | blocked by #1 | 否 |
 | W1 / MOD-04 Jobs | #3 | blocked by #1 | 否 |

@@ -9,20 +9,20 @@
 - [x] `G00.3` Coordinator 只读展示这些文件的 diff 摘要、拟提交路径和治理分支名；停止。
 - [x] `G00.4` 你单独授权从当前基线创建治理分支（建议 `docs/governance-learning-mode`）；创建后停止，不 stage。
 - [x] `G00.5` 你明确授权仅 stage 列出的路径；Coordinator stage 后展示 `git diff --cached`；停止。
-- [ ] `G00.6` 你确认 staged diff，并单独授权创建治理基线 commit；commit 后停止，不 push。
-- [ ] `G00.7` Coordinator 报告 commit SHA、未提交文件和远程差异；停止。
-- [ ] `G00.8` 你单独授权 push 当前治理分支；push 后停止，不创建 PR。
-- [ ] `G00.9` 你单独授权创建 draft PR；返回链接后停止。
-- [ ] `G00.10` 新建一个治理 QA 任务，只检查公开仓库敏感数据、Markdown 链接和指令一致性；停止。
+- [x] `G00.6` 你确认 staged diff，并单独授权创建治理基线 commit；commit 后停止，不 push。
+- [x] `G00.7` Coordinator 报告 commit SHA、未提交文件和远程差异；停止。
+- [x] `G00.8` 你单独授权 push 当前治理分支；push 后停止，不创建 PR。
+- [x] `G00.9` 你单独授权创建 draft PR；返回链接后停止。
+- [x] `G00.10` 治理 QA 已执行且失败：公开文档含真实库存/样本细节，且缺少本地敏感资产忽略规则；停止。
 - [ ] `G00.11` 新建一个治理 Reviewer 任务，只读检查计划、AGENTS 和进度门是否矛盾；停止。
-- [ ] `G00.12` 若有问题，返回本次文档任务修复，并重新执行 G00.10、G00.11；不得跳过。
+- [ ] `G00.12` 修复 G00.10 的治理文档失败项；本次经用户明确授权可修改 `05-w1-jobs.md` 与 GitHub Issue #3/#10 以删除公开业务数量；完成后重新执行新的 G00.10 和 G00.11，不得跳过。
 - [ ] `G00.13` 返回 Coordinator，只做合并/基线就绪判断；停止。
 - [ ] `G00.14` Coordinator 给出 READY 后，由你单独授权 squash merge；停止。
 - [ ] `G00.15` Coordinator 验证远程基线、更新进度到 `F00.1`，但只有你明确授权后才修改进度文件。
 
 ## 排除项
 
-- 真实库存表和 50 条真实样本；
+- 真实库存表和任何真实业务样本；
 - APK、App 私有数据、原始响应；
 - Token、Cookie、签名、设备标识；
 - 你尚未确认归属的删除或修改。
