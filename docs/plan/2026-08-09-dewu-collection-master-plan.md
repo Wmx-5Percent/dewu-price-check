@@ -299,9 +299,11 @@ Android 伴生 APK、普通非 Root 真机运行、公开应用商店分发、�
 
 ### 10.3 开发 Waves 与依赖门
 
+`G00` 是 `W0 / MOD-00 Foundation` 开始前的治理前置步骤：它只建立和审查治理基线，不启动任何生产模块，也不满足 `MOD-00` 的进入条件。
+
 | Wave | 可并行模块 | 进入条件 | 退出条件 |
 | --- | --- | --- | --- |
-| `W0 Governance` | `MOD-00` | master plan 已确认 | 仓库骨架、contract v1、Issue/PR 模板、CI 基线和依赖 lock 合并 |
+| `W0 / MOD-00 Foundation` | `MOD-00` | `G00` 治理基线完成且 master plan 已确认 | 仓库骨架、contract v1、Issue/PR 模板、CI 基线和依赖 lock 合并 |
 | `W1 Parallel Foundations` | `MOD-01`、`MOD-04`、`MOD-05`、`MOD-06` | `MOD-00` 合并 | 四个模块分别通过离线单元/契约测试；不得等待协议逆向后才开始 |
 | `W2 Protocol` | `MOD-02` | `MOD-01` Root/Frida smoke test 通过 | `5.95.1-1101` Profile、脱敏 fixture、三类别响应映射完成 |
 | `W3 Agent RPC` | `MOD-03` | `MOD-02` Profile 合并 | 四个 RPC、分页、登录态和 Schema 守卫通过 fixture 与受控设备测试 |
