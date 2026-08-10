@@ -1,0 +1,23 @@
+{
+  "name": "dewu-price-check",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22 <23"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "test:contracts": "node --test test/contract-v1.test.mjs",
+    "test:unit": "node --test test/unit.test.mjs",
+    "test:redaction": "node --test test/redaction-contract.test.mjs",
+    "test:export-contract": "node --test test/export-contract.test.mjs",
+    "test:integration-fixtures": "node --test test/integration-fixtures-contract.test.mjs",
+    "audit:dependencies": "node scripts/dependency-audit.mjs"
+  },
+  "dependencies": {
+    "ajv": "8.17.1",
+    "exceljs": "4.4.0",
+    "frida": "17.16.4"
+  }
+}

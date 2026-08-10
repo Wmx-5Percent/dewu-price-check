@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dewu-price-check.example/schemas/run-result.schema.json",
+  "title": "Sanitized internal run result v1",
+  "type": "object",
+  "required": ["sku", "status"],
+  "properties": {
+    "sku": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["pending", "collected", "failed", "blocked"] },
+    "productId": { "type": "string" },
+    "productName": { "type": "string" },
+    "salesText": { "type": "string" },
+    "correlationId": { "type": "string" },
+    "evidenceHash": { "type": "string" },
+    "errorCode": { "type": "string" },
+    "note": { "type": "string" }
+  },
+  "additionalProperties": false
+}

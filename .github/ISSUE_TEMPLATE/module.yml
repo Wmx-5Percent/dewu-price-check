@@ -1,0 +1,29 @@
+name: Module work
+description: Create a dependency-gated module issue.
+title: "[MOD-XX][Wn] "
+labels: []
+body:
+  - type: input
+    id: owner
+    attributes:
+      label: Single agent owner
+    validations:
+      required: true
+  - type: textarea
+    id: allowed-paths
+    attributes:
+      label: Allowed paths
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Blocked by / Unblocks
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Contract version, acceptance commands, evidence, and security notes
+    validations:
+      required: true

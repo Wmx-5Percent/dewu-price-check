@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dewu-price-check.example/schemas/export-row.schema.json",
+  "title": "Six-column delivery row v1",
+  "type": "object",
+  "required": ["货号", "得物商品名", "得物显示尺码", "得物卖价（元）", "总销量", "异常或人工复核说明"],
+  "properties": {
+    "货号": { "type": "string", "minLength": 1 },
+    "得物商品名": { "type": "string" },
+    "得物显示尺码": { "type": "string" },
+    "得物卖价（元）": {
+      "anyOf": [
+        { "type": "string" },
+        { "type": "number" },
+        { "type": "null" }
+      ]
+    },
+    "总销量": { "type": "string" },
+    "异常或人工复核说明": { "type": "string" }
+  },
+  "additionalProperties": false
+}

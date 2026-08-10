@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dewu-price-check.example/schemas/cli-command.schema.json",
+  "title": "CLI command v1",
+  "type": "object",
+  "required": ["command"],
+  "properties": {
+    "command": { "enum": ["bootstrap", "doctor", "discover", "collect", "export"] },
+    "device": { "type": "string", "minLength": 1 },
+    "sku": { "type": "string", "minLength": 1 },
+    "input": { "type": "string", "minLength": 1 },
+    "runId": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}
