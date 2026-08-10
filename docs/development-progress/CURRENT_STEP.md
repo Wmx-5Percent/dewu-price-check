@@ -5,30 +5,30 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `LEARNING_MODE` |
-| 当前步骤 | `G00.11` |
-| 状态 | `INDEPENDENT_GOVERNANCE_REVIEW_IN_PROGRESS` |
+| 当前步骤 | `G00.13` |
+| 状态 | `WAITING_FOR_COORDINATOR_READINESS_CHECK` |
 | 当前 Wave | 治理基线准备，尚未进入 W0 开发 |
 | 当前模块 | 无生产模块 |
-| 当前角色 | Governance Reviewer |
-| 当前打开任务 | 独立治理复审任务；仅复核初轮失败项并等待结论 |
-| 下一个任务 | 无；`G00.11` 通过前不得进入 `G00.13` |
+| 当前角色 | Coordinator |
+| 当前打开任务 | 长期 Coordinator 任务；只重新执行 G00.13 基线就绪判断 |
+| 下一个任务 | 无；G00.13 给出明确结论前不得进入 `G00.14` |
 | 允许写代码 | 否 |
 | 允许 commit/push/PR/merge | 否 |
 
 ## 你现在只做这一件事
 
-独立复核初轮 G00.10/G00.11 的失败项。修复后的新一轮 G00.10 已通过；本轮只判断 PR 正文、治理进度状态与 W0 前置边界是否一致，不得将复审视为通过或自动进入下一步骤。
+重新执行 G00.13 合并/基线就绪判断。修复后的新一轮独立 G00.10 与 G00.11 已通过；Coordinator 只读核对 PR、门禁、CI 与依赖状态，不得把此检查视为 READY 或自动进入下一步骤。
 
-本任务只读；不得修改文件、stage、commit、push、PR、Issue、merge-readiness 或启动 `MOD-00`。
+本任务只读；不得修改文件、stage、commit、push、PR、Issue、merge、`MOD-00` 或任何其他模块。
 
 ## 这一小步完成的证据
 
-- 仅报告复审的通过或失败证据；
-- 不得声称 `G00.11`、`G00.13`、merge-readiness 或 `MOD-00` 已通过或已启动；
-- 最后一行明确写“等待 G00.11 独立复审结论”。
+- 仅报告 G00.13 的 READY 或 NOT READY 证据；
+- 不得在没有明确用户授权的情况下进入 `G00.14`、merge 或启动 `MOD-00`；
+- 最后一行明确写“等待用户确认 G00.13 判断”。
 
 ## 完成后怎么办
 
-Reviewer 给出结论后停止；只有用户明确授权后，Coordinator 才能决定后续步骤。
+Coordinator 给出判断后停止；只有用户明确授权后，才可进入任何后续步骤。
 
 实时快照日期：2026-08-09。GitHub 状态会变化，Coordinator 每次必须重新读取，不能只相信这份快照。
