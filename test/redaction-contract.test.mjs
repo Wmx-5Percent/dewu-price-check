@@ -13,4 +13,7 @@ test('persistable run results reject session and device secrets', () => {
   assert.equal(validate({ sku: 'SYNTHETIC-1', status: 'blocked', cookie: 'secret' }), false);
   assert.equal(validate({ sku: 'SYNTHETIC-1', status: 'blocked', authorization: 'secret' }), false);
   assert.equal(validateRpc({ operation: 'health', correlationId: 'corr-1', payload: {}, token: 'secret' }), false);
+  assert.equal(validateRpc({ operation: 'searchBySku', correlationId: 'corr-1', payload: { sku: 'SYNTHETIC-1', token: 'secret' } }), false);
+  assert.equal(validateRpc({ operation: 'searchBySku', correlationId: 'corr-1', payload: { sku: 'SYNTHETIC-1', headers: { authorization: 'secret' } } }), false);
+  assert.equal(validateRpc({ operation: 'getProduct', correlationId: 'corr-1', payload: { productId: 'product-1', metadata: { cookie: 'secret' } } }), false);
 });

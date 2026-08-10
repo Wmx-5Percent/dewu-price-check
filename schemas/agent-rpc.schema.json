@@ -9,5 +9,57 @@
     "correlationId": { "type": "string", "minLength": 1 },
     "payload": { "type": "object" }
   },
+  "oneOf": [
+    {
+      "properties": {
+        "operation": { "const": "health" },
+        "payload": {
+          "type": "object",
+          "maxProperties": 0,
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "properties": {
+        "operation": { "const": "searchBySku" },
+        "payload": {
+          "type": "object",
+          "required": ["sku"],
+          "properties": {
+            "sku": { "type": "string", "minLength": 1 },
+            "sort": { "const": "sales_desc" }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "properties": {
+        "operation": { "const": "getProduct" },
+        "payload": {
+          "type": "object",
+          "required": ["productId"],
+          "properties": {
+            "productId": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "properties": {
+        "operation": { "const": "getQuotes" },
+        "payload": {
+          "type": "object",
+          "required": ["productId"],
+          "properties": {
+            "productId": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  ],
   "additionalProperties": false
 }

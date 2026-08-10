@@ -17,8 +17,13 @@ test('CLI contract exposes only approved command names', async () => {
   assert.equal(validate({ command: 'ui-click' }), false);
 });
 
-test('Agent RPC contract requires a correlation identifier', async () => {
+test('Agent RPC contract permits only the minimum payload for each operation', async () => {
   const validate = new Ajv().compile(await loadSchema('agent-rpc.schema.json'));
   assert.equal(validate({ operation: 'health', correlationId: 'corr-1', payload: {} }), true);
+  assert.equal(validate({ operation: 'searchBySku', correlationId: 'corr-1', payload: { sku: 'SYNTHETIC-1', sort: 'sales_desc' } }), true);
+  assert.equal(validate({ operation: 'getProduct', correlationId: 'corr-1', payload: { productId: 'product-1' } }), true);
+  assert.equal(validate({ operation: 'getQuotes', correlationId: 'corr-1', payload: { productId: 'product-1' } }), true);
   assert.equal(validate({ operation: 'health', payload: {} }), false);
+  assert.equal(validate({ operation: 'searchBySku', correlationId: 'corr-1', payload: { sku: 'SYNTHETIC-1', sort: 'price_asc' } }), false);
+  assert.equal(validate({ operation: 'getProduct', correlationId: 'corr-1', payload: {} }), false);
 });
