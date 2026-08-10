@@ -7,11 +7,11 @@
 | 项目 | 状态 |
 | --- | --- |
 | 学习模式 | `LEARNING_MODE` |
-| 当前步骤 | `G00.13` |
+| 当前步骤 | `F00.1` |
 | 活跃生产 Developer | 0 |
 | 活跃 QA | 0 |
 | 活跃 Reviewer | 0 |
-| 长期 Coordinator | 返回既有 Coordinator，重新执行 G00.13 判断 |
+| 长期 Coordinator | 执行 F00.1 基线与 Issue #1 就绪审计 |
 | 已合并模块 | 0 / 9 |
 | 当前可启动 GitHub Issue | #1，但必须先完成治理基线 |
 
@@ -19,8 +19,8 @@
 
 | 阶段 | Issue | 当前状态 | 用户是否体验 Developer→QA→Reviewer→Merge |
 | --- | ---: | --- | --- |
-| 治理基线 | 无 | 初轮 G00.10/G00.11 failed；G00.12 已完成，新的独立 G00.10/G00.11 均已通过；等待新的 G00.13 判断，未进入 G00.14 | 不适用 |
-| W0 / MOD-00 Foundation | #1 | GitHub ready；尚未启动 | 否 |
+| 治理基线 | 无 | G00.1–G00.15 已完成并已合并到远端 main | 不适用 |
+| W0 / MOD-00 Foundation | #1 | GitHub ready；当前 F00.1 只读审计，尚未启动 Developer | 否 |
 | W1 / MOD-01 Environment | #2 | blocked by #1 | 否 |
 | W1 / MOD-04 Jobs | #3 | blocked by #1 | 否 |
 | W1 / MOD-05 Evidence | #4 | blocked by #1 | 否 |
