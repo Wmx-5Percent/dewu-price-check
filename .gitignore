@@ -1,0 +1,23 @@
+# Local business inputs and runtime artifacts
+/data/*
+!/data/fixtures/
+!/data/fixtures/**
+inventory/
+local-data/
+outputs/
+logs/
+state/
+runs/
+raw-responses/
+captures/raw/
+
+# Local application packages and secrets
+*.apk
+*.apks
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.keystore
