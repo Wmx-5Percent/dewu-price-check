@@ -7,10 +7,10 @@
 | 项目 | 状态 |
 | --- | --- |
 | 学习模式 | `LEARNING_MODE` |
-| 当前步骤 | `G00.12` |
+| 当前步骤 | `G00.11` |
 | 活跃生产 Developer | 0 |
 | 活跃 QA | 0 |
-| 活跃 Reviewer | 0 |
+| 活跃 Reviewer | 1（独立 G00.11 复审中） |
 | 长期 Coordinator | 尚未创建 |
 | 已合并模块 | 0 / 9 |
 | 当前可启动 GitHub Issue | #1，但必须先完成治理基线 |
@@ -19,7 +19,7 @@
 
 | 阶段 | Issue | 当前状态 | 用户是否体验 Developer→QA→Reviewer→Merge |
 | --- | ---: | --- | --- |
-| 治理基线 | 无 | 本轮 `G00.10` QA 与 `G00.11` Reviewer 均 failed；`G00.12` 修复后须重新执行新的独立 QA 与 Reviewer | 不适用 |
+| 治理基线 | 无 | 初轮 G00.10/G00.11 failed；G00.12 已完成，新的独立 G00.10 已通过；新的 G00.11 复审中，未进入 G00.13 | 不适用 |
 | W0 / MOD-00 Foundation | #1 | GitHub ready；尚未启动 | 否 |
 | W1 / MOD-01 Environment | #2 | blocked by #1 | 否 |
 | W1 / MOD-04 Jobs | #3 | blocked by #1 | 否 |
