@@ -7,15 +7,15 @@
 | 项目 | 状态 |
 | --- | --- |
 | 学习模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `A03.11`（MOD-03 Frida Agent P1 修复后独立 QA） |
+| 当前步骤 | `A03.13`（MOD-03 Frida Agent P1 修复后独立 Reviewer） |
 | 活跃生产 Developer | 0（PR #29 已更新为 `93992a8`） |
-| 活跃 QA | 1（全新 MOD-03 QA，将直接回传 Coordinator） |
+| 活跃 QA | 0（P1 修复后的 MOD-03 QA 已 PASS） |
 | 受管 QA 任务 | `/root/mod02_single_sku_qa`（终态 PASS；Issue #6 已发布） |
 | 活跃 Reviewer | 0 |
 | 受管 QA 任务 | `/root/mod05_p1_retest_qa`（终态 PASS；Issue #4 已发布）；`/root/mod05_second_symlink_qa`（终态 PASS；Issue #4 已发布） |
 | 活跃 Reviewer | 0 |
 | 受管 Reviewer 任务 | `/root/mod05_final_reviewer`（终态 REQUEST_CHANGES；Issue #4 已发布）；`/root/mod05_second_symlink_reviewer`（终态 APPROVE；Issue #4 已发布） |
-| 长期 Coordinator | MOD-03 Developer 已修复无界 distinct-cursor 分页 P1；新独立 QA 正在复验 Draft PR #29 / `93992a8` |
+| 长期 Coordinator | MOD-03 P1 修复后的独立 QA 已 PASS；新独立 Reviewer 审查 Draft PR #29 / `93992a8` |
 | 已合并模块 | 6 / 9（MOD-00 / #1；MOD-01 / #2；MOD-04 / #3；MOD-05 / #4；MOD-06 / #5；MOD-02 / #6） |
 | 当前可启动 GitHub Issue | #7（仅 fail-closed Agent/contract 切片）；真实库存 pilot 仅本机，待 Agent 与下游编排可用后执行 |
 
@@ -30,7 +30,7 @@
 | W1 / MOD-05 Evidence | #4 | PR #23 已 squash merge；Issue closed | 是 |
 | W1 / MOD-06 Export | #5 | PR #27 已 squash merge；Issue closed | 是 |
 | W2 / MOD-02 Protocol | #6 | PR #28 已 squash merge；Issue closed；live Profile 仍 fail-closed | 是 |
-| W3 / MOD-03 Frida Agent | #7 | PR #29 P1 修复后的 fresh QA active；synthetic Profile 仍 fail-closed | 进行中 |
+| W3 / MOD-03 Frida Agent | #7 | PR #29 P1 修复后的 fresh Reviewer active；synthetic Profile 仍 fail-closed | 进行中 |
 | W4 / MOD-07 Integration | #8 | blocked by #3, #4, #5, #7 | 否 |
 | W5 / MOD-08 QA & Portability | #9 | blocked by #2–#8 | 否 |
 | W6 / Full Run | #10 | blocked by #9 | 否 |
