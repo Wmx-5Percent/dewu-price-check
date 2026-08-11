@@ -7,13 +7,13 @@
 | 项目 | 状态 |
 | --- | --- |
 | 学习模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `X06.11`（MOD-06 fresh QA） |
-| 活跃生产 Developer | 0 |
-| 活跃 QA | 1（`MOD-06` / `/root/mod06_export_qa`） |
+| 当前步骤 | `X06.12`（MOD-06 finite-price P1 repair） |
+| 活跃生产 Developer | 1（`MOD-06` / original Developer repair） |
+| 活跃 QA | 0 |
 | 受管 QA 任务 | `/root/mod05_p1_retest_qa`（终态 PASS；Issue #4 已发布）；`/root/mod05_second_symlink_qa`（终态 PASS；Issue #4 已发布） |
 | 活跃 Reviewer | 0 |
 | 受管 Reviewer 任务 | `/root/mod05_final_reviewer`（终态 REQUEST_CHANGES；Issue #4 已发布）；`/root/mod05_second_symlink_reviewer`（终态 APPROVE；Issue #4 已发布） |
-| 长期 Coordinator | MOD-05 已合并、#4 closed；MOD-06 Draft PR #27 已交付，正在启动 fresh QA |
+| 长期 Coordinator | MOD-06 QA 发现非有限价格 P1；原 Developer 仅修复该校验并补回归，随后 fresh QA |
 | 已合并模块 | 4 / 9（MOD-00 / #1；MOD-01 / #2；MOD-04 / #3；MOD-05 / #4） |
 | 当前可启动 GitHub Issue | #5、#6 为 ready；当前按依赖顺序处理 #5 |
 
@@ -26,7 +26,7 @@
 | W1 / MOD-01 Environment | #2 | PR #19 已 squash merge；Issue closed；Root/Frida smoke 已通过 | 是 |
 | W1 / MOD-04 Jobs | #3 | PR #20 已 squash merge 至 `main`；Issue closed | 是 |
 | W1 / MOD-05 Evidence | #4 | PR #23 已 squash merge；Issue closed | 是 |
-| W1 / MOD-06 Export | #5 | Draft PR #27 已交付；fresh QA 进行中 | 否 |
+| W1 / MOD-06 Export | #5 | QA P1：非有限价格接受；原 Developer 返工中 | 否 |
 | W2 / MOD-02 Protocol | #6 | ready；#1、#2 已合并，Root/Frida smoke 已通过；学习模式暂不启动 | 否 |
 | W3 / MOD-03 Frida Agent | #7 | blocked by #1, #2, #6 | 否 |
 | W4 / MOD-07 Integration | #8 | blocked by #3, #4, #5, #7 | 否 |
