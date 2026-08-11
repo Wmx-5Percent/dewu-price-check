@@ -30,6 +30,7 @@
 - [x] `P02.13` 新建 Protocol Reviewer：REQUEST_CHANGES；synthetic fixture 误标 verified 可解锁下游，pagination 字段语义与 QA 证据不一致。
 - [x] `P02.14` Review 分流回原 Developer：synthetic Profile 保持 fail-closed，未知字段三层拒绝；已推送 `2ab2026`。
 - [ ] `P02.11` 新建 P1/P2 修复后的 fresh Protocol QA；进行中。
+- [x] `P02.11` 新建 P1/P2 修复后的 fresh Protocol QA；PASS，`2ab2026`，synthetic Profile 仍 fail-closed。
 - [ ] `P02.15` Coordinator 核对 live evidence 和 merge readiness；停止。
 - [ ] `P02.16` 用户授权 merge；停止。
 - [ ] `P02.17` Coordinator 验证 #6 done、Profile 版本固定；用户批准后进入 `A03.1`。
