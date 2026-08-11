@@ -1,0 +1,24 @@
+{
+  "profileVersion": "5.95.1-1101",
+  "app": {
+    "packageName": "com.shizhuang.duapp",
+    "versionName": "5.95.1",
+    "versionCode": 1101
+  },
+  "evidenceStatus": "pending-live-discovery",
+  "searchSort": "sales_desc",
+  "requiredCategories": ["shoe", "apparel", "accessory"],
+  "requiredOperations": ["searchBySku", "getProduct", "getQuotes"],
+  "requiredEvidence": [
+    "same-time-manual-ui-comparison",
+    "redacted-request-correlation",
+    "redacted-response-field-paths",
+    "pagination-and-schema-drift-assertions"
+  ],
+  "safety": {
+    "persistRawResponses": false,
+    "persistCredentials": false,
+    "requireSalesDesc": true,
+    "blockOnSchemaDrift": true
+  }
+}

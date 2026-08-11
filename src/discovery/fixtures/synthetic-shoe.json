@@ -1,0 +1,9 @@
+{
+  "fixtureKind": "synthetic-protocol-evidence",
+  "synthetic": true,
+  "correlationId": "synthetic-shoe-search-1",
+  "category": "shoe",
+  "operation": "searchBySku",
+  "request": { "method": "GET", "pathTemplate": "/synthetic/search", "sort": "sales_desc" },
+  "responseSchema": { "pathMap": { "productId": "$.synthetic.productId", "productName": "$.synthetic.productName" } }
+}

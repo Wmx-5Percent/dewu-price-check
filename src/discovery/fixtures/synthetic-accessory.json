@@ -1,0 +1,9 @@
+{
+  "fixtureKind": "synthetic-protocol-evidence",
+  "synthetic": true,
+  "correlationId": "synthetic-accessory-quotes-1",
+  "category": "accessory",
+  "operation": "getQuotes",
+  "request": { "method": "GET", "pathTemplate": "/synthetic/quotes" },
+  "responseSchema": { "pathMap": { "sizeText": "$.synthetic.sizeText", "salePrice": "$.synthetic.salePrice", "pagination": "$.synthetic.pagination" } }
+}

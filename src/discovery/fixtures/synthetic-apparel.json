@@ -1,0 +1,9 @@
+{
+  "fixtureKind": "synthetic-protocol-evidence",
+  "synthetic": true,
+  "correlationId": "synthetic-apparel-product-1",
+  "category": "apparel",
+  "operation": "getProduct",
+  "request": { "method": "GET", "pathTemplate": "/synthetic/product" },
+  "responseSchema": { "pathMap": { "salesCount": "$.synthetic.salesCount", "productName": "$.synthetic.productName" } }
+}
