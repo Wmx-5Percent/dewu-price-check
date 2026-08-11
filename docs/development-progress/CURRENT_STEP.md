@@ -5,27 +5,27 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `V05.11` |
-| 状态 | `AUTONOMOUS_SECOND_REPAIR_FRESH_QA` |
+| 当前步骤 | `V05.13` |
+| 状态 | `AUTONOMOUS_SECOND_REPAIR_FRESH_REVIEW` |
 | 当前 Wave | W1 / MOD-05 Evidence |
 | 当前模块 | `MOD-05 Evidence`（Issue #4） |
-| 当前角色 | 独立 MOD-05 QA |
-| 当前打开任务 | 对 PR #23 `584ff07e812e178d359f992fca3e75cff9acaf22` 进行第二轮返修后的隔离复验 |
-| 受管任务 ID | `/root/mod05_second_symlink_qa`（QA 完成后必须直接回传 Coordinator，并在 Issue #4 发布结构化报告） |
-| 下一个任务 | QA PASS 自动 fresh Reviewer；同一 file-level symlink 边界再失败即暂停报告用户 |
-| 允许写代码 | 否；仅隔离测试、GitHub Issue #4 QA 证据发布 |
+| 当前角色 | 独立 MOD-05 Reviewer |
+| 当前打开任务 | 审查 PR #23 `584ff07e812e178d359f992fca3e75cff9acaf22`，并核对第二轮返修 QA 证据 |
+| 受管任务 ID | 待 Coordinator 创建并记录；Reviewer 完成后必须直接回传 Coordinator，并在 Issue #4 发布结构化报告 |
+| 下一个任务 | Reviewer APPROVE 且 CI 仍通过时自动进行 merge readiness 与非作者 squash merge；同一 symlink 边界再失败即暂停报告用户 |
+| 允许写代码 | 否；仅只读审查、GitHub Issue #4 Reviewer 证据发布 |
 | 允许 commit/push/PR/merge | 否 |
 
 ## 你现在只做这一件事
 
-原 Developer 已将第二轮 file-level symlink 修复推送为 `584ff07`：拒绝非普通 JSONL/record 文件并用 `O_NOFOLLOW` 读取。QA 必须在 detached 隔离检出中，以纯合成外部文件验证绝对/相对 JSONL symlink 与 record symlink 都被拒绝、不会发生外部读写或 store 污染；同时复验 records 目录 symlink、20 路 JSONL append、测试套件、审计、diff 与 CI。
+第二轮 QA 已 PASS `584ff07` 并在 Issue #4 留存精确 head 证据。fresh Reviewer 必须在 detached 隔离检出中复审全部 diff、修复的 file-level 与目录 symlink containment、并发 append、合同/范围、QA 证据和实时 CI；不得修改代码。
 
 不得改 contracts/dependencies、设备/系统、真实 APK/账号/数据、Android/Frida、Jobs、Export 或 Integration；不得用追随/解析符号链接、删除外部目标或仅过滤返回值代替安全拒绝。任何合同变化、真实秘密、破坏性操作或此第二轮后仍未解的同一 symlink 边界必须停止报告 Coordinator。
 
 ## 这一小步完成的证据
 
-- 精确 head 的 fresh 独立 QA 结构化报告已发布到 Issue #4，并直接回传 Coordinator；
-- 若 PASS，自动启动 fresh Reviewer；若同一 symlink 边界再失败，停止并报告用户。
+- 精确 head 的 fresh 独立 Reviewer 结构化报告已发布到 Issue #4，并直接回传 Coordinator；
+- 若 APPROVE 且 CI 仍通过，自动执行 merge readiness 和非作者 squash merge；若同一 symlink 边界再失败，停止并报告用户。
 
 ## 完成后怎么办
 
