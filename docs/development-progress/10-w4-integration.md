@@ -14,6 +14,10 @@
 - [x] `I07.1` Coordinator 核对上游：#3/#4/#5/#7 已 closed，main 为 `7abbc2a`，CI/Secret Guard 成功；公共 contract 版本未变。
 - [x] `I07.2` AUTONOMOUS_DELIVERY_MODE 与用户继续开发授权覆盖启动 MOD-07。
 - [x] `I07.3` 新建受管 Integration Developer：仅画/实现数据流与适配器，直接回传 Coordinator。
+- [x] `I07.4` AUTONOMOUS_DELIVERY_MODE 覆盖最小统一 CLI fixture 端到端切片；不得开展 live collection。
+- [x] `I07.5` Developer 仅装配模块并实现 CLI/Integration；Draft PR #30 head `0e663fee`。
+- [x] `I07.6` Developer 自检无上游逻辑复制、隐式合同或逐 SKU UI；Profile 继续 fail-closed。
+- [x] `I07.7`–`I07.10` Developer 在允许路径内 stage、commit、push 并创建 Draft PR #30。
 - [ ] `I07.4` 用户批准最小统一 CLI 端到端切片；停止。
 - [ ] `I07.5` Developer 只装配模块并实现 CLI；停止。
 - [ ] `I07.6` 用户检查是否复制上游逻辑、增加隐式合同或逐 SKU UI；停止。
