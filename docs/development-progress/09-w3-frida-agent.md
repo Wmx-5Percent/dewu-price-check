@@ -23,7 +23,7 @@
 - [x] `A03.10` Developer 创建 Draft PR #29。
 - [x] `A03.11` 新建受管 Frida QA：先 fixture/隔离验证断连、版本、Profile、schema 和 redaction；live RPC 仍等待已验证 Profile 与下游编排。
 - [ ] `A03.12` QA 分流。
-- [ ] `A03.13` 新建 Frida Reviewer，只读审查进程内边界、分页和安全；停止。
+- [x] `A03.13` QA PASS 后新建受管独立 Frida Reviewer；只读审查进程内边界、分页和安全。
 - [ ] `A03.14` Review 分流。
 - [ ] `A03.15` Coordinator 判断 merge readiness；停止。
 - [ ] `A03.16` 用户授权 merge；停止。

@@ -5,14 +5,14 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `A03.11` |
-| 状态 | `MOD-03_INDEPENDENT_QA_ACTIVE` |
+| 当前步骤 | `A03.13` |
+| 状态 | `MOD-03_INDEPENDENT_REVIEW_ACTIVE` |
 | 当前 Wave | W3 / MOD-03 Frida Agent |
 | 当前模块 | `MOD-03 Frida Agent`（Issue #7） |
-| 当前角色 | 独立 MOD-03 QA（受 Coordinator 管理） |
-| 当前打开任务 | 对 PR #29 的 `2fb6f300` 进行隔离、只读、fail-closed RPC QA；不得启动 live collection |
-| 受管任务 ID | `/root/mod03_frida_qa` |
-| 下一个任务 | QA PASS 后自动 fresh Reviewer；QA FAIL 回原 Developer |
+| 当前角色 | 独立 MOD-03 Reviewer（受 Coordinator 管理） |
+| 当前打开任务 | 对 PR #29 的 `2fb6f300` 进行只读最终审查；不得启动 live collection |
+| 受管任务 ID | `/root/mod03_frida_reviewer` |
+| 下一个任务 | Reviewer APPROVE 且 CI 不变后，Coordinator 自动 merge readiness 和非作者 squash merge |
 | 允许写代码 | 否（可在临时隔离目录运行测试） |
 | 允许 commit/push/PR/merge | 否 |
 
@@ -31,6 +31,6 @@ MOD-02 已由 PR #28 在 `11f8a9b800a26d680d0c95ad0ff7dc4500cbaaa8` squash merge
 
 ## 完成后怎么办
 
-Developer 已 READY_FOR_QA；现在自动 fresh QA → fresh Reviewer → CI → 非作者 squash merge，除非触发自治暂停条件。任何真实数据 live pilot 必须在 Agent 与下游编排/导出路径可用后执行，且只输出本机文件。
+独立 QA 已在 exact head `2fb6f300` PASS 并在 Issue #7 留存证据；现在自动 fresh Reviewer → CI → 非作者 squash merge，除非触发自治暂停条件。任何真实数据 live pilot 必须在 Agent 与下游编排/导出路径可用后执行，且只输出本机文件。
 
 实时快照日期：2026-08-09。GitHub 状态会变化，Coordinator 每次必须重新读取，不能只相信这份快照。
