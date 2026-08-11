@@ -1,0 +1,15 @@
+{
+  "fixtureKind": "synthetic-sku-search-evidence",
+  "synthetic": true,
+  "correlationId": "synthetic-sku-search-1",
+  "operation": "searchBySku",
+  "request": {
+    "method": "GET",
+    "pathTemplate": "/synthetic/search",
+    "sort": "sales_desc"
+  },
+  "responseSchema": {
+    "itemsPath": "$.synthetic.items",
+    "responseItemIndex": 1
+  }
+}

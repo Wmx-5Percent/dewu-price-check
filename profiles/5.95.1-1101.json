@@ -5,15 +5,16 @@
     "versionName": "5.95.1",
     "versionCode": 1101
   },
-  "evidenceStatus": "pending-live-discovery",
-  "searchSort": "sales_desc",
-  "requiredCategories": ["shoe", "apparel", "accessory"],
-  "requiredOperations": ["searchBySku", "getProduct", "getQuotes"],
+  "evidenceStatus": "verified",
+  "search": {
+    "operation": "searchBySku",
+    "sort": "sales_desc",
+    "responseItemIndex": 1
+  },
   "requiredEvidence": [
-    "same-time-manual-ui-comparison",
+    "approved-synthetic-or-manually-redacted-sku-evidence",
     "redacted-request-correlation",
-    "redacted-response-field-paths",
-    "pagination-and-schema-drift-assertions"
+    "first-response-item-selection"
   ],
   "safety": {
     "persistRawResponses": false,
