@@ -5,27 +5,27 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `V05.14` |
-| 状态 | `AUTONOMOUS_DEVELOPER_SECOND_P1_REPAIR` |
+| 当前步骤 | `V05.11` |
+| 状态 | `AUTONOMOUS_SECOND_REPAIR_FRESH_QA` |
 | 当前 Wave | W1 / MOD-05 Evidence |
 | 当前模块 | `MOD-05 Evidence`（Issue #4） |
-| 当前角色 | 原 MOD-05 Developer |
-| 当前打开任务 | 原 Developer 修复 PR #23 的 file-level JSONL/record symlink P1；这是该 symlink 安全边界的第二轮返修 |
-| 受管任务 ID | `019ff02d-aaf2-7f70-8d45-9ca03966a2d1`（既有原 Developer task；Coordinator 主动读取/等待其 GitHub structured report） |
-| 下一个任务 | 修复推送后自动 fresh QA，再 fresh Reviewer；若该 symlink 安全边界仍未解决则暂停报告用户 |
-| 允许写代码 | 是，仅 `src/evidence/**` 与 Evidence 测试 |
-| 允许 commit/push/PR/merge | 可精确 stage、commit、push 现有模块分支；不得 ready/merge |
+| 当前角色 | 独立 MOD-05 QA |
+| 当前打开任务 | 对 PR #23 `584ff07e812e178d359f992fca3e75cff9acaf22` 进行第二轮返修后的隔离复验 |
+| 受管任务 ID | 待 Coordinator 创建并记录；QA 完成后必须直接回传 Coordinator，并在 Issue #4 发布结构化报告 |
+| 下一个任务 | QA PASS 自动 fresh Reviewer；同一 file-level symlink 边界再失败即暂停报告用户 |
+| 允许写代码 | 否；仅隔离测试、GitHub Issue #4 QA 证据发布 |
+| 允许 commit/push/PR/merge | 否 |
 
 ## 你现在只做这一件事
 
-fresh QA 已 PASS `db35f6f` 的 records-directory symlink 与 concurrent append 修复，但 fresh Reviewer 发现 file-level P1：`evidence.jsonl` symlink 可将 store 外内容读入并持久化，`records/<correlationId>.json` symlink 可返回 store 外 JSON。原 Developer 必须拒绝文件级 JSONL/record symlink 并添加纯合成回归测试。
+原 Developer 已将第二轮 file-level symlink 修复推送为 `584ff07`：拒绝非普通 JSONL/record 文件并用 `O_NOFOLLOW` 读取。QA 必须在 detached 隔离检出中，以纯合成外部文件验证绝对/相对 JSONL symlink 与 record symlink 都被拒绝、不会发生外部读写或 store 污染；同时复验 records 目录 symlink、20 路 JSONL append、测试套件、审计、diff 与 CI。
 
 不得改 contracts/dependencies、设备/系统、真实 APK/账号/数据、Android/Frida、Jobs、Export 或 Integration；不得用追随/解析符号链接、删除外部目标或仅过滤返回值代替安全拒绝。任何合同变化、真实秘密、破坏性操作或此第二轮后仍未解的同一 symlink 边界必须停止报告 Coordinator。
 
 ## 这一小步完成的证据
 
-- 修复 file-level JSONL/record symlink rejection、补纯合成回归、发布结构化 Developer report；
-- 修复推送后自动 fresh QA，然后 fresh Reviewer；同一 symlink 边界再失败即暂停。
+- 精确 head 的 fresh 独立 QA 结构化报告已发布到 Issue #4，并直接回传 Coordinator；
+- 若 PASS，自动启动 fresh Reviewer；若同一 symlink 边界再失败，停止并报告用户。
 
 ## 完成后怎么办
 
