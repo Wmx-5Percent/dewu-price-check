@@ -13,7 +13,7 @@
 
 - [x] `X06.1` Coordinator 确认 #5 ready：#1/#4 closed、#5 OPEN + `status:ready`、无 MOD-06 PR、main CI/Secret Guard 成功。
 - [x] `X06.2` `AUTONOMOUS_DELIVERY_MODE` 批准启动 MOD-06。
-- [ ] `X06.3` 新建 Export Developer，审计六列合同/ExcelJS 后在允许路径内完成最小交付；进行中。
+- [x] `X06.3` 新建 Export Developer，审计六列合同/ExcelJS 后在允许路径内完成最小交付；Draft PR #27，`e55a384`。
 - [ ] `X06.4` 用户批准最小合成输入→Excel 切片；停止。
 - [ ] `X06.5` Developer 实现并自检列名、特殊尺码、空报价、异常行；停止。
 - [ ] `X06.6` 用户打开说明，确认没有库存尺码映射或内部字段；停止。
@@ -21,7 +21,7 @@
 - [ ] `X06.8` 用户授权 commit；停止。
 - [ ] `X06.9` 用户授权 push；停止。
 - [ ] `X06.10` 用户授权 draft PR；停止。
-- [ ] `X06.11` 新建 Export QA，独立检查 6 列、行粒度、公式错误和跨平台打开；停止。
+- [ ] `X06.11` 新建 Export QA，独立检查 6 列、行粒度、公式错误和跨平台打开；进行中。
 - [ ] `X06.12` QA 分流。
 - [ ] `X06.13` 新建 Export Reviewer，只读审查合同污染和格式推断；停止。
 - [ ] `X06.14` Review 分流。
