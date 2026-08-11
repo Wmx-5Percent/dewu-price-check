@@ -21,8 +21,8 @@
 - [ ] `X06.8` 用户授权 commit；停止。
 - [ ] `X06.9` 用户授权 push；停止。
 - [ ] `X06.10` 用户授权 draft PR；停止。
-- [ ] `X06.11` 新建 Export QA，独立检查 6 列、行粒度、公式错误和跨平台打开；进行中。
-- [ ] `X06.12` QA 分流。
+- [x] `X06.11` 新建 Export QA：FAIL；发现 `NaN`/`Infinity`/`-Infinity` 价格未被 writer/verifier 拒绝。
+- [ ] `X06.12` QA 分流回原 Developer：仅修复非有限价格拒绝并补回归测试；进行中。
 - [ ] `X06.13` 新建 Export Reviewer，只读审查合同污染和格式推断；停止。
 - [ ] `X06.14` Review 分流。
 - [ ] `X06.15` Coordinator 判断 merge readiness；停止。
