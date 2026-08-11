@@ -25,6 +25,6 @@
 - [ ] `A03.12` QA 分流。
 - [ ] `A03.13` 新建 Frida Reviewer，只读审查进程内边界、分页和安全；停止。
 - [ ] `A03.14` Review 分流。
-- [ ] `A03.15` Coordinator 判断 merge readiness；停止。
-- [ ] `A03.16` 用户授权 merge；停止。
-- [ ] `A03.17` Coordinator 验证 #7 done 及 W4 全部上游；用户批准后进入 `I07.1`。
+- [x] `A03.15` Coordinator merge readiness：P1 修复后的 fresh QA、fresh Reviewer、范围和 CI/Secret Guard 均通过。
+- [x] `A03.16` AUTONOMOUS_DELIVERY_MODE 覆盖非作者 squash merge；PR #29 已合并为 `7abbc2a`。
+- [x] `A03.17` Coordinator 验证 #7 closed、main CI/Secret Guard 成功，#3/#4/#5/#7 均为 done；进入 `I07.1`。
