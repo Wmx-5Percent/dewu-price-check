@@ -7,11 +7,11 @@
 | 项目 | 状态 |
 | --- | --- |
 | 学习模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `V05.3–V05.10`（MOD-05 autonomous Developer delivery） |
-| 活跃生产 Developer | 1（`MOD-05` / Evidence） |
-| 活跃 QA | 0 |
+| 当前步骤 | `V05.11`（MOD-05 independent QA） |
+| 活跃生产 Developer | 0 |
+| 活跃 QA | 1（`MOD-05` / Evidence security persistence） |
 | 活跃 Reviewer | 0 |
-| 长期 Coordinator | V05.1 审计通过；已派发 MOD-05 Developer，随后自动执行 QA/Review/merge gates |
+| 长期 Coordinator | MOD-05 Draft PR #23 已交付；已派发独立 QA，随后自动执行 Review/merge gates |
 | 已合并模块 | 3 / 9（MOD-00 / #1；MOD-01 / #2；MOD-04 / #3） |
 | 当前可启动 GitHub Issue | #4、#5、#6 为 ready；当前按依赖顺序处理 #4 |
 
@@ -23,7 +23,7 @@
 | W0 / MOD-00 Foundation | #1 | 已由 PR #13 squash merge；Issue closed | 是 |
 | W1 / MOD-01 Environment | #2 | PR #19 已 squash merge；Issue closed；Root/Frida smoke 已通过 | 是 |
 | W1 / MOD-04 Jobs | #3 | PR #20 已 squash merge 至 `main`；Issue closed | 是 |
-| W1 / MOD-05 Evidence | #4 | Developer 正在自主交付允许范围内的 Evidence 最小切片 | 否 |
+| W1 / MOD-05 Evidence | #4 | Draft PR #23 已创建；独立 QA 正在验证 security persistence | 否 |
 | W1 / MOD-06 Export | #5 | ready candidate；学习模式等待 MOD-01 完整流程 | 否 |
 | W2 / MOD-02 Protocol | #6 | ready；#1、#2 已合并，Root/Frida smoke 已通过；学习模式暂不启动 | 否 |
 | W3 / MOD-03 Frida Agent | #7 | blocked by #1, #2, #6 | 否 |
