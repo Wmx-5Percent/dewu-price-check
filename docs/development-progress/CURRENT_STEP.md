@@ -5,16 +5,16 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `X06.12` |
-| 状态 | `AUTONOMOUS_EXPORT_SCOPE_REPAIR` |
+| 当前步骤 | `X06.11` |
+| 状态 | `AUTONOMOUS_EXPORT_SCOPE_RETEST_QA` |
 | 当前 Wave | W1 / MOD-06 Export |
 | 当前模块 | `MOD-06 Export`（Issue #5） |
-| 当前角色 | 原 MOD-06 Developer |
-| 当前打开任务 | 从 PR #27 `44442549ca91780bba39cb367723edf1defa52c3` 移除四个 Issue #5 未授权的 `docs/development-progress/**` 路径，保留 Export P1 修复 |
-| 受管任务 ID | `/root/mod06_export_developer`（原 Developer 返工；必须发布 Issue #5 structured report 并直接回传 Coordinator） |
-| 下一个任务 | 修复推送后自动 fresh QA；QA PASS 才启动 fresh Reviewer |
-| 允许写代码 | 是，仅通过恢复 base 状态移除 PR 中的未授权文档；生产改动仍仅 `src/export/**` 与 export tests |
-| 允许 commit/push/PR/merge | 可精确 stage、commit、push 现有模块分支；不得自行 QA、Review 或 merge |
+| 当前角色 | 独立 MOD-06 QA |
+| 当前打开任务 | 对 PR #27 `1464ac80f56111589435c59cf007ddfad1777dc6` 的范围修复与 Export 行为进行 fresh QA |
+| 受管任务 ID | 待 Coordinator 创建并记录 |
+| 下一个任务 | QA PASS 后自动 fresh Reviewer；QA FAIL 回原 Developer |
+| 允许写代码 | 否；仅隔离测试与 Issue #5 QA 证据 |
+| 允许 commit/push/PR/merge | 否 |
 
 ## 你现在只做这一件事
 
