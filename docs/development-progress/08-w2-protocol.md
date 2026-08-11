@@ -25,9 +25,9 @@
 - [ ] `P02.8` 用户授权 commit；停止。
 - [ ] `P02.9` 用户授权 push；停止。
 - [ ] `P02.10` 用户授权 draft PR；停止。
-- [ ] `P02.11` 新建 Protocol QA，独立验证 SKU 搜索、`sales_desc`、响应项目 1、schema drift 和秘密扫描；进行中。
+- [x] `P02.11` 新建 Protocol QA，独立验证 SKU 搜索、`sales_desc`、响应项目 1、schema drift 和秘密扫描；PASS，`62f0315`，Issue #6 已留存证据。
 - [ ] `P02.12` QA 分流。
-- [ ] `P02.13` 新建 Protocol Reviewer，只读审查 hook/profile/脱敏边界；停止。
+- [ ] `P02.13` 新建 Protocol Reviewer，只读审查 Profile/脱敏与单 SKU契约边界；进行中。
 - [ ] `P02.14` Review 分流。
 - [ ] `P02.15` Coordinator 核对 live evidence 和 merge readiness；停止。
 - [ ] `P02.16` 用户授权 merge；停止。
