@@ -6,19 +6,19 @@
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
 | 当前步骤 | `P02.5` |
-| 状态 | `AUTONOMOUS_PROTOCOL_PRELIVE_GATE_REPAIR` |
+| 状态 | `BLOCKED_LEGAL_APK_REQUIRED` |
 | 当前 Wave | W2 / MOD-02 Protocol Discovery |
 | 当前模块 | `MOD-02 Protocol Discovery`（Issue #6） |
 | 当前角色 | 独立 MOD-02 Developer |
-| 当前打开任务 | 修复 Java 17 门禁、准备/选择专用 Root AVD 与显式 serial，然后重跑 pre-live gate |
-| 受管任务 ID | `/root/mod02_protocol_developer`（原 Developer 返工） |
-| 下一个任务 | 门禁通过后继续最小受控发现、Profile/脱敏 fixture、Draft PR → fresh QA → fresh Reviewer |
-| 允许写代码 | 是；并获用户持续授权进行仅限专用 Root AVD 的 Java/AVD/Frida 受控准备 |
+| 当前打开任务 | 等待用户提供合法得物 `5.95.1 (versionCode 1101)` APK 并明确授权安装到专用 AVD |
+| 受管任务 ID | `/root/mod02_protocol_developer`（终态 BLOCKED；Issue #6 已发布证据） |
+| 下一个任务 | 提供 APK 后回原 Developer 做版本门禁和受控发现 |
+| 允许写代码 | 否，直到合法 APK 提供并授权安装 |
 | 允许 commit/push/PR/merge | 可精确 stage、commit、push `agent/mod-02/6-protocol-discovery` 并创建 Draft PR |
 
 ## 你现在只做这一件事
 
-Developer pre-live gate 发现 SDK/Android tools 与 Node 22 可用，但 Java 17 未通过，且无在线专用 serial。用户已授权完成 W2；原 Developer 仅可恢复 Java 17 门禁并启动/选择专用 Root AVD，明确 serial 后才进行发现。不得触碰 Medium_Phone 或未知设备。
+专用 `emulator-5556` 的 Java 17、Root/arm64 与 Frida Server `17.16.4` 门禁已通过；未触碰 `Medium_Phone`/`emulator-5554`，测试 AVD 已停止。唯一 blocker：不存在得物 `5.95.1 (versionCode 1101)` APK。Developer 未自行获取、安装、替换或检查 APK；必须由用户合法提供并明确授权安装。
 
 不得改 contracts/dependencies、Jobs、Evidence、Export 或 Integration；不得把 APK、Cookie、Token、签名资料、原始响应或真实业务数据提交到 Git。发现风险/登录异常、未知版本、hook/schema 不匹配或秘密泄露立即记录并停止。
 
