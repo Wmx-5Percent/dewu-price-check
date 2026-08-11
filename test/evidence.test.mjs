@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { mkdir, mkdtemp, readFile, readdir, rm } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, readdir, rm, symlink } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
@@ -77,6 +77,31 @@ test('JSONL persistence appends only redacted records atomically', async () => {
     assert.deepEqual(lines.map(({ correlationId }) => correlationId), ['corr-synthetic-1', 'corr-synthetic-2']);
     assert.equal(JSON.stringify(lines).includes('rawPayload'), false);
     assert.equal(JSON.stringify(lines).includes('discarded-before-persistence'), false);
+  });
+});
+
+test('records directory symlinks are rejected without an out-of-store write', async () => {
+  await withStore(async (store, directory) => {
+    const outsideDirectory = await mkdtemp(join(tmpdir(), 'dewu-evidence-outside-'));
+    try {
+      await symlink(outsideDirectory, join(directory, 'records'));
+      await assert.rejects(persistEvidence(store, syntheticInput('corr-symlink')), /EVIDENCE_RECORDS_DIRECTORY_UNSAFE/);
+      assert.deepEqual(await readdir(outsideDirectory), []);
+    } finally {
+      await rm(outsideDirectory, { recursive: true, force: true });
+    }
+  });
+});
+
+test('twenty concurrent JSONL appends preserve every synthetic record', async () => {
+  await withStore(async (store, directory) => {
+    await Promise.all(Array.from(
+      { length: 20 },
+      (_, index) => appendEvidenceLog(store, syntheticInput(`corr-concurrent-${index + 1}`))
+    ));
+    const lines = (await readFile(join(directory, 'evidence.jsonl'), 'utf8')).trim().split('\n').map(JSON.parse);
+    assert.equal(lines.length, 20);
+    assert.deepEqual(new Set(lines.map(({ correlationId }) => correlationId)).size, 20);
   });
 });
 

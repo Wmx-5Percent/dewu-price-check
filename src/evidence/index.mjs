@@ -1,5 +1,5 @@
 import { createHash, randomUUID } from 'node:crypto';
-import { mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
+import { lstat, mkdir, readFile, realpath, rename, unlink, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve, sep } from 'node:path';
 
 const SAFE_RECORD_FIELDS = new Set(['correlationId', 'event', 'result', 'errorCode']);
@@ -9,6 +9,7 @@ const SAFE_RESULT_FIELDS = new Set([
 const SECRET_KEY = /(?:authorization|cookie|token|signature|device(?:id|secret)?|secret|password|credential)/i;
 const SECRET_VALUE = /(?:bearer\s+[a-z0-9._~+\-/]+=*|(?:cookie|authorization|token|signature|device(?:[_-]?(?:id|secret))?)\s*[:=])/i;
 const CORRELATION_ID = /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/;
+const appendQueues = new Map();
 
 const stableJson = (value) => {
   if (Array.isArray(value)) return `[${value.map(stableJson).join(',')}]`;
@@ -53,6 +54,29 @@ const safeTarget = (rootPath, relativePath) => {
   return targetPath;
 };
 
+const resolvedStoreRoot = async (store) => {
+  if (!store?.rootPath) throw new Error('EVIDENCE_STORE_INVALID');
+  await mkdir(store.rootPath, { recursive: true });
+  return realpath(store.rootPath);
+};
+
+const recordsDirectory = async (rootPath) => {
+  const recordsPath = safeTarget(rootPath, 'records');
+  await mkdir(recordsPath, { recursive: true });
+  const recordsStat = await lstat(recordsPath);
+  if (!recordsStat.isDirectory() || recordsStat.isSymbolicLink()) throw new Error('EVIDENCE_RECORDS_DIRECTORY_UNSAFE');
+  return recordsPath;
+};
+
+const enqueueAppend = (targetPath, operation) => {
+  const previous = appendQueues.get(targetPath) ?? Promise.resolve();
+  const next = previous.catch(() => {}).then(operation);
+  appendQueues.set(targetPath, next);
+  return next.finally(() => {
+    if (appendQueues.get(targetPath) === next) appendQueues.delete(targetPath);
+  });
+};
+
 export const scanForSecrets = (value) => {
   assertSafeValue(value);
   return false;
@@ -86,30 +110,36 @@ export const createEvidenceStore = (rootDirectory) => {
 };
 
 export const persistEvidence = async (store, input) => {
-  if (!store?.rootPath) throw new Error('EVIDENCE_STORE_INVALID');
   const record = redactEvidence(input);
   const persisted = { ...record, evidenceHash: evidenceHash(record) };
-  const targetPath = safeTarget(store.rootPath, join('records', `${record.correlationId}.json`));
+  const rootPath = await resolvedStoreRoot(store);
+  const recordsPath = await recordsDirectory(rootPath);
+  const targetPath = safeTarget(recordsPath, `${record.correlationId}.json`);
   await atomicWrite(targetPath, `${JSON.stringify(persisted)}\n`);
   return persisted;
 };
 
 export const readEvidence = async (store, correlationId) => {
   if (!CORRELATION_ID.test(correlationId)) throw new Error('EVIDENCE_CORRELATION_ID_UNSAFE');
-  const targetPath = safeTarget(store.rootPath, join('records', `${correlationId}.json`));
+  const rootPath = await resolvedStoreRoot(store);
+  const recordsPath = await recordsDirectory(rootPath);
+  const targetPath = safeTarget(recordsPath, `${correlationId}.json`);
   return JSON.parse(await readFile(targetPath, 'utf8'));
 };
 
 export const appendEvidenceLog = async (store, input) => {
   const record = redactEvidence(input);
   const persisted = { ...record, evidenceHash: evidenceHash(record) };
-  const targetPath = safeTarget(store.rootPath, 'evidence.jsonl');
-  let existing = '';
-  try {
-    existing = await readFile(targetPath, 'utf8');
-  } catch (error) {
-    if (error.code !== 'ENOENT') throw error;
-  }
-  await atomicWrite(targetPath, `${existing}${JSON.stringify(persisted)}\n`);
+  const rootPath = await resolvedStoreRoot(store);
+  const targetPath = safeTarget(rootPath, 'evidence.jsonl');
+  await enqueueAppend(targetPath, async () => {
+    let existing = '';
+    try {
+      existing = await readFile(targetPath, 'utf8');
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
+    await atomicWrite(targetPath, `${existing}${JSON.stringify(persisted)}\n`);
+  });
   return persisted;
 };
