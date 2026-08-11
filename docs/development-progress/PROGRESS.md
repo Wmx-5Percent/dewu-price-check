@@ -7,15 +7,15 @@
 | 项目 | 状态 |
 | --- | --- |
 | 学习模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `P02.1`（MOD-02 Protocol Discovery readiness audit） |
-| 活跃生产 Developer | 0 |
+| 当前步骤 | `P02.3`（MOD-02 Protocol Discovery Developer） |
+| 活跃生产 Developer | 1（待创建：`MOD-02`） |
 | 活跃 QA | 0 |
 | 受管 QA 任务 | `/root/mod05_p1_retest_qa`（终态 PASS；Issue #4 已发布）；`/root/mod05_second_symlink_qa`（终态 PASS；Issue #4 已发布） |
 | 活跃 Reviewer | 0 |
 | 受管 Reviewer 任务 | `/root/mod05_final_reviewer`（终态 REQUEST_CHANGES；Issue #4 已发布）；`/root/mod05_second_symlink_reviewer`（终态 APPROVE；Issue #4 已发布） |
-| 长期 Coordinator | MOD-06 已合并、#5 closed；开始 MOD-02 只读就绪审计，live discovery 等待明确授权 |
+| 长期 Coordinator | #6 就绪审计通过，启动 MOD-02；先进行可移植 SDK/serial 门禁发现 |
 | 已合并模块 | 5 / 9（MOD-00 / #1；MOD-01 / #2；MOD-04 / #3；MOD-05 / #4；MOD-06 / #5） |
-| 当前可启动 GitHub Issue | #6 为 ready；当前仅执行其只读门禁审计 |
+| 当前可启动 GitHub Issue | #6 为 ready；MOD-02 Developer 启动中 |
 
 ## 阶段进度
 
