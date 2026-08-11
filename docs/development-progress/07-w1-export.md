@@ -11,9 +11,9 @@
 
 ## 逐步清单
 
-- [ ] `X06.1` Coordinator 确认 #5 ready；停止。
-- [ ] `X06.2` 用户批准启动 MOD-06；停止。
-- [ ] `X06.3` 新建 Export Developer，只做 6 列合同和 Excel 库审计；停止。
+- [x] `X06.1` Coordinator 确认 #5 ready：#1/#4 closed、#5 OPEN + `status:ready`、无 MOD-06 PR、main CI/Secret Guard 成功。
+- [x] `X06.2` `AUTONOMOUS_DELIVERY_MODE` 批准启动 MOD-06。
+- [ ] `X06.3` 新建 Export Developer，审计六列合同/ExcelJS 后在允许路径内完成最小交付；进行中。
 - [ ] `X06.4` 用户批准最小合成输入→Excel 切片；停止。
 - [ ] `X06.5` Developer 实现并自检列名、特殊尺码、空报价、异常行；停止。
 - [ ] `X06.6` 用户打开说明，确认没有库存尺码映射或内部字段；停止。
