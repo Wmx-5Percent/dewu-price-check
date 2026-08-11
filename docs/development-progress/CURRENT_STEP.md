@@ -6,19 +6,19 @@
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
 | 当前步骤 | `P02.5` |
-| 状态 | `BLOCKED_LEGAL_APK_REQUIRED` |
+| 状态 | `AUTONOMOUS_APK_TRANSFER_AND_PROTOCOL_DISCOVERY` |
 | 当前 Wave | W2 / MOD-02 Protocol Discovery |
 | 当前模块 | `MOD-02 Protocol Discovery`（Issue #6） |
 | 当前角色 | 独立 MOD-02 Developer |
-| 当前打开任务 | 等待用户提供合法得物 `5.95.1 (versionCode 1101)` APK 并明确授权安装到专用 AVD |
-| 受管任务 ID | `/root/mod02_protocol_developer`（终态 BLOCKED；Issue #6 已发布证据） |
-| 下一个任务 | 提供 APK 后回原 Developer 做版本门禁和受控发现 |
-| 允许写代码 | 否，直到合法 APK 提供并授权安装 |
+| 当前打开任务 | 从用户指定 `emulator-5554` 只读提取已安装得物 APK，安装到专用 `emulator-5556`，然后回原 Developer 做版本门禁和受控发现 |
+| 受管任务 ID | `/root/mod02_protocol_developer`（原 Developer 恢复） |
+| 下一个任务 | 版本门禁通过后继续最小受控发现、Profile/脱敏 fixture、Draft PR → fresh QA → fresh Reviewer |
+| 允许写代码 | 是，仅 `src/discovery/**`、`profiles/**` 与人工复核的脱敏 fixtures；用户已授权 APK transfer/专用 AVD 安装 |
 | 允许 commit/push/PR/merge | 可精确 stage、commit、push `agent/mod-02/6-protocol-discovery` 并创建 Draft PR |
 
 ## 你现在只做这一件事
 
-专用 `emulator-5556` 的 Java 17、Root/arm64 与 Frida Server `17.16.4` 门禁已通过；未触碰 `Medium_Phone`/`emulator-5554`，测试 AVD 已停止。唯一 blocker：不存在得物 `5.95.1 (versionCode 1101)` APK。Developer 未自行获取、安装、替换或检查 APK；必须由用户合法提供并明确授权安装。
+用户已授权：优先从 `emulator-5554` 已安装得物 App 只读提取 APK，再仅安装到专用 Root AVD `emulator-5556`。严禁在 5554 修改、登录、Hook、搜索或采集；5556 是唯一允许安装、版本门禁、Frida 和受控发现的设备。若导出/安装/版本门禁失败，再可调查公开 APK 来源；不得提交 APK 或真实数据。
 
 不得改 contracts/dependencies、Jobs、Evidence、Export 或 Integration；不得把 APK、Cookie、Token、签名资料、原始响应或真实业务数据提交到 Git。发现风险/登录异常、未知版本、hook/schema 不匹配或秘密泄露立即记录并停止。
 
