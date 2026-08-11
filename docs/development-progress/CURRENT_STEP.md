@@ -11,7 +11,7 @@
 | 当前模块 | `MOD-06 Export`（Issue #5） |
 | 当前角色 | 独立 MOD-06 QA |
 | 当前打开任务 | 对 PR #27 `44442549ca91780bba39cb367723edf1defa52c3` 进行 P1 修复后的隔离复验 |
-| 受管任务 ID | 待 Coordinator 创建并记录；QA 必须发布 Issue #5 structured report 并直接回传 Coordinator |
+| 受管任务 ID | `/root/mod06_export_finite_price_qa`（QA 必须发布 Issue #5 structured report 并直接回传 Coordinator） |
 | 下一个任务 | QA PASS 后自动 fresh Reviewer；QA FAIL 回原 Developer |
 | 允许写代码 | 否；仅隔离测试、GitHub Issue #5 QA 证据发布 |
 | 允许 commit/push/PR/merge | 否 |
