@@ -7,11 +7,11 @@
 | 项目 | 状态 |
 | --- | --- |
 | 学习模式 | `LEARNING_MODE` |
-| 当前步骤 | `J04.11` |
+| 当前步骤 | `J04.13` |
 | 活跃生产 Developer | 0 |
-| 活跃 QA | 1（`MOD-04` / P1 retest） |
-| 活跃 Reviewer | 0 |
-| 长期 Coordinator | 等待新独立 QA 复验 PR #20 的两项 Reviewer P1 |
+| 活跃 QA | 0 |
+| 活跃 Reviewer | 1（`MOD-04` / fresh review） |
+| 长期 Coordinator | 等待新独立 Reviewer 复审 PR #20 head `be716e1` |
 | 已合并模块 | 2 / 9（MOD-00 / #1；MOD-01 / #2） |
 | 当前可启动 GitHub Issue | #3 为学习模式的当前候选；#4、#5、#6 均为 ready，但暂不并行 |
 
@@ -22,7 +22,7 @@
 | 治理基线 | 无 | G00.1–G00.15 已完成并已合并到远端 main | 不适用 |
 | W0 / MOD-00 Foundation | #1 | 已由 PR #13 squash merge；Issue closed | 是 |
 | W1 / MOD-01 Environment | #2 | PR #19 已 squash merge；Issue closed；Root/Frida smoke 已通过 | 是 |
-| W1 / MOD-04 Jobs | #3 | Developer 已推送两项 P1 修复；当前为新独立 QA 复验 | 否 |
+| W1 / MOD-04 Jobs | #3 | 两项 Reviewer P1 已由 fresh QA 复验 PASS；当前为新独立 Reviewer | 否 |
 | W1 / MOD-05 Evidence | #4 | ready candidate；学习模式等待 MOD-01 完整流程 | 否 |
 | W1 / MOD-06 Export | #5 | ready candidate；学习模式等待 MOD-01 完整流程 | 否 |
 | W2 / MOD-02 Protocol | #6 | ready；#1、#2 已合并，Root/Frida smoke 已通过；学习模式暂不启动 | 否 |

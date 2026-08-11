@@ -21,10 +21,10 @@
 - [x] `J04.8` 用户预授权 commit：`63890c8`；停止。
 - [x] `J04.9` 用户预授权 push：`agent/mod-04/3-jobs`；停止。
 - [x] `J04.10` 用户预授权 draft PR：[#20](https://github.com/Wmx-5Percent/dewu-price-check/pull/20)；停止。
-- [x] `J04.11` 首次独立 QA 发现 P1 后，新独立 QA 在 `bc1aa33` 复验 PASS；同窗口 global blocker 修复已关闭。
-- [x] `J04.12` QA 分流回原 Developer；修复已推送至 PR #20 head `bc1aa33`，等待新的独立 QA 复验。
-- [x] `J04.13` 独立 Reviewer：REQUEST_CHANGES；发现 batch 内 global blocker 与大小写去重两项 P1。
-- [x] `J04.14` Review 分流回原 Developer；两项 P1 已修复并推送至 `be716e1`，等待新独立 QA。
+- [x] `J04.11` 首次独立 QA 发现 P1 后，新独立 QA 在 `bc1aa33` 复验 PASS；随后 Reviewer 发现 batch 内 global blocker 与大小写去重两项 P1；原 Developer 修复至 `be716e1`，新独立 QA 已 PASS。
+- [x] `J04.12` QA/Review 分流回原 Developer；两项 P1 修复、回归测试与 fresh QA 证据均已完成。
+- [ ] `J04.13` 新建独立 Reviewer，只读复审 `be716e1`、Issue #3 的 fresh QA 证据与安全串行化取舍；停止。
+- [x] `J04.14` Review 分流回原 Developer；两项 P1 已修复并推送至 `be716e1`，fresh QA 已 PASS。
 - [ ] `J04.15` Coordinator 判断 merge readiness；停止。
 - [ ] `J04.16` 用户授权 merge；停止。
 - [ ] `J04.17` Coordinator 验证 #3 done；用户批准后进入 `V05.1`。
