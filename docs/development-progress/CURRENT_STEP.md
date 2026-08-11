@@ -11,7 +11,7 @@
 | 当前模块 | `MOD-02 Protocol Discovery`（Issue #6） |
 | 当前角色 | 独立 MOD-02 Developer |
 | 当前打开任务 | 协议发现方案、数据最小化设计与受控发现工具/Profile 草案 |
-| 受管任务 ID | 待 Coordinator 创建并记录 |
+| 受管任务 ID | `/root/mod02_protocol_developer`（Developer 必须发布 Issue #6 structured report 并直接回传 Coordinator） |
 | 下一个任务 | Developer READY_FOR_QA 后自动 fresh QA → fresh Reviewer → CI → squash merge |
 | 允许写代码 | 是，仅 `src/discovery/**`、`profiles/**` 与人工复核的脱敏 fixtures |
 | 允许 commit/push/PR/merge | 可精确 stage、commit、push `agent/mod-02/6-protocol-discovery` 并创建 Draft PR |
