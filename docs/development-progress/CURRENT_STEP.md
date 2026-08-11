@@ -6,19 +6,19 @@
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
 | 当前步骤 | `P02.5` |
-| 状态 | `AUTONOMOUS_PROTOCOL_CONTROLLED_DISCOVERY` |
+| 状态 | `BLOCKED_LIVE_MAPPING_EVIDENCE_REQUIRED` |
 | 当前 Wave | W2 / MOD-02 Protocol Discovery |
 | 当前模块 | `MOD-02 Protocol Discovery`（Issue #6） |
 | 当前角色 | 独立 MOD-02 Developer |
-| 当前打开任务 | 专用 `Dewu_Root_API35_arm64` 运行在动态 serial `emulator-5554`；回原 Developer 用该已验证 serial 进行 redaction-first 受控发现 |
-| 受管任务 ID | `/root/mod02_protocol_developer`（原 Developer 恢复） |
-| 下一个任务 | 完成 Profile/脱敏 fixtures/PR 后自动 fresh QA → fresh Reviewer → CI → non-author squash merge |
-| 允许写代码 | 是，仅 `src/discovery/**`、`profiles/**` 与人工复核的脱敏 fixtures |
+| 当前打开任务 | 等待可验证、redaction-first 的鞋/服装/配件 live 映射、分页与同刻 UI 对照证据 |
+| 受管任务 ID | `/root/mod02_protocol_developer`（终态 BLOCKED；Draft PR #28 与 Issue #6 已留存证据） |
+| 下一个任务 | 获得 live mapping evidence 后回原 Developer 补 Profile，再 fresh QA → fresh Reviewer → CI → merge |
+| 允许写代码 | 否，直到 live mapping evidence 可安全获得 |
 | 允许 commit/push/PR/merge | 可精确 stage、commit、push `agent/mod-02/6-protocol-discovery` 并创建 Draft PR |
 
 ## 你现在只做这一件事
 
-只读 QEMU 进程与 AVD config 已确认：当前 `emulator-5554` 是专用 `Dewu_Root_API35_arm64`（Android 35/google_apis/arm64-v8a），不是 `Medium_Phone`（google_apis_playstore）。serial 动态分配，现正式将本次唯一目标设为 `emulator-5554`；所有持久化内容必须先脱敏，禁止提交真实账号、Cookie、Token、签名资料、原始响应或设备标识。
+Draft PR #28 `b1a98c2` 仅包含允许的 `src/discovery/**` 与 `profiles/**`：合成 fixtures、秘密/原始字段拒绝、`sales_desc` 强制及 fail-closed `PROFILE_INCOMPATIBLE`。但 Issue #6 必须由鞋/服装/配件的真实受控映射、分页及同刻 UI 对照证明精确路径/字段；当前执行环境不能安全完成此运行时证据，且不得猜测或伪造 Profile。
 
 不得改 contracts/dependencies、Jobs、Evidence、Export 或 Integration；不得把 APK、Cookie、Token、签名资料、原始响应或真实业务数据提交到 Git。发现风险/登录异常、未知版本、hook/schema 不匹配或秘密泄露立即记录并停止。
 
