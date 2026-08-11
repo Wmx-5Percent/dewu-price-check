@@ -8,7 +8,7 @@
 | --- | --- |
 | 学习模式 | `AUTONOMOUS_DELIVERY_MODE` |
 | 当前步骤 | `P02.3`（MOD-02 Protocol Discovery Developer） |
-| 活跃生产 Developer | 1（待创建：`MOD-02`） |
+| 活跃生产 Developer | 1（`MOD-02` / `/root/mod02_protocol_developer`） |
 | 活跃 QA | 0 |
 | 受管 QA 任务 | `/root/mod05_p1_retest_qa`（终态 PASS；Issue #4 已发布）；`/root/mod05_second_symlink_qa`（终态 PASS；Issue #4 已发布） |
 | 活跃 Reviewer | 0 |
