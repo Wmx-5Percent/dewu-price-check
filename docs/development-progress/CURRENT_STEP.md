@@ -18,7 +18,7 @@
 
 ## 你现在只做这一件事
 
-用户已授权：优先从 `emulator-5554` 已安装得物 App 只读提取 APK，再仅安装到专用 Root AVD `emulator-5556`。严禁在 5554 修改、登录、Hook、搜索或采集；5556 是唯一允许安装、版本门禁、Frida 和受控发现的设备。若导出/安装/版本门禁失败，再可调查公开 APK 来源；不得提交 APK 或真实数据。
+用户已授权：优先从 `emulator-5554` 已安装得物 App 只读提取 APK，再仅安装到专用 Root AVD `emulator-5556`。5554 当前离线，现额外授权仅启动并等待它在线、执行 `pm path`/`adb pull`、随后停止；严禁在其上安装、登录、Hook、搜索或采集。5556 是唯一允许安装、版本门禁、Frida 和受控发现的设备。不得提交 APK 或真实数据。
 
 不得改 contracts/dependencies、Jobs、Evidence、Export 或 Integration；不得把 APK、Cookie、Token、签名资料、原始响应或真实业务数据提交到 Git。发现风险/登录异常、未知版本、hook/schema 不匹配或秘密泄露立即记录并停止。
 
