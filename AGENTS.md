@@ -51,6 +51,8 @@ The files under `docs/development-progress/` are the user-operation source of tr
 - Pause for explicit user authorization before device/system modification, real APK/account/data use, risk or login anomaly handling, contract changes, destructive operations, costs, or external publication. Also pause for a material GitHub/progress conflict.
 - Prefer Coordinator-managed subagents whose completion automatically returns to the Coordinator. Do not create a role task that depends on the user copying a chat report back.
 - If an independent task/chat is necessary, it must publish its final structured report to the module Issue or PR before stopping. The Coordinator discovers completion from GitHub Issue/PR/CI state and continues automatically.
+- **Task completion return protocol.** The Coordinator must use a waitable/readable managed subtask for every Developer, QA, and Reviewer dispatch and record its task ID in the Coordinator handoff/progress state. The Coordinator waits for that task's terminal report, parses `STATUS`, `PR`, `HEAD`, `TESTS`, `BLOCKERS`, and `NEXT_ACTION`, then advances automatically. If an older external task lacks a saved ID, recover from the exact GitHub PR, commit, CI, and Issue comments; never ask the user to forward a report.
+- Every handoff must state: “任务完成后必须直接回传 Coordinator，不得仅在本聊天输出 Report 后结束。” Managed tasks must also publish the same structured report to the module Issue/PR when that GitHub state is available.
 - Every role report, whether returned by a subagent or published to GitHub, uses this exact form:
 
   ```text
