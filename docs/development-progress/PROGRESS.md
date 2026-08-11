@@ -10,6 +10,7 @@
 | 当前步骤 | `V05.11`（MOD-05 fresh independent QA） |
 | 活跃生产 Developer | 0 |
 | 活跃 QA | 1（`MOD-05` / symlink and JSONL concurrency P1 retest） |
+| 受管 QA 任务 | `/root/mod05_p1_retest_qa`（等待终态自动回传） |
 | 活跃 Reviewer | 0 |
 | 长期 Coordinator | MOD-05 P1 修复已推送；fresh independent QA 正在复验，随后自动 Reviewer |
 | 已合并模块 | 3 / 9（MOD-00 / #1；MOD-01 / #2；MOD-04 / #3） |

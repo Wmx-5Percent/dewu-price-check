@@ -11,6 +11,7 @@
 | 当前模块 | `MOD-05 Evidence`（Issue #4） |
 | 当前角色 | 新独立 MOD-05 QA |
 | 当前打开任务 | 新独立 QA 复验 PR #23 head `db35f6f` 的 symlink containment 与 20-way JSONL append 两项 P1 修复 |
+| 受管任务 ID | `/root/mod05_p1_retest_qa`（Coordinator 必须等待终态并解析结构化报告） |
 | 下一个任务 | QA PASS 后自动新建 fresh independent Reviewer |
 | 允许写代码 | 否 |
 | 允许 commit/push/PR/merge | 否 |

@@ -6,6 +6,16 @@
 
 优先使用 Coordinator-managed subagent，完成时自动把结果回传 Coordinator。独立 task/chat 只是必要时的回退：它必须在结束前把以下报告发布到模块 Issue 或 PR，Coordinator 通过 GitHub 自动发现并继续，绝不依赖用户复制聊天内容。
 
+## 任务完成回传协议
+
+Coordinator 每次派发 Developer、QA、Reviewer 都必须使用可等待、可读取最终结果的受管子任务，并在 Coordinator handoff/progress 中保存任务 ID。Coordinator 必须等待终态，解析 `STATUS / PR / HEAD / TESTS / BLOCKERS / NEXT_ACTION` 并自动推进。已有独立 task/chat 若没有保存 ID，则由对应 GitHub PR、commit、CI 和 Issue 评论恢复；不得要求用户转发。
+
+每个 handoff 都须原样包含：
+
+```text
+任务完成后必须直接回传 Coordinator，不得仅在本聊天输出 Report 后结束。
+```
+
 ```text
 ROLE: Developer | QA | Reviewer
 STATUS: READY_FOR_QA | PASS | FAIL | APPROVE | REQUEST_CHANGES | BLOCKED
@@ -29,9 +39,10 @@ Coordinator handoff snapshot（本任务的远端操作事实）：
 - 允许路径：<ALLOWED_PATHS>
 - 已批准动作：<ALLOWED_ACTIONS>
 - 暂停条件：设备/系统、真实 APK/账号/数据、风险/登录异常、合同、破坏性操作、费用、外部发布、两轮未解返工
+- 受管任务 ID：<MANAGED_TASK_ID>
 - Coordinator 远端交接：<COORDINATOR_BRANCH> @ <COORDINATOR_SHA>
 
-先读取本 worktree 的 AGENTS.md、相关进度文件、master plan 与 Issue；再 fetch Coordinator 交接分支，并只读 git show 指定 SHA 的交接文件。Coordinator progress 文件不应合并进模块 PR。若本地快照旧，以此 handoff 和 GitHub 当前事实为准。
+先读取本 worktree 的 AGENTS.md、相关进度文件、master plan 与 Issue；再 fetch Coordinator 交接分支，并只读 git show 指定 SHA 的交接文件。Coordinator progress 文件不应合并进模块 PR。若本地快照旧，以此 handoff 和 GitHub 当前事实为准。任务完成后必须直接回传 Coordinator，不得仅在本聊天输出 Report 后结束。
 ```
 
 ## Coordinator：就绪检查与派发
