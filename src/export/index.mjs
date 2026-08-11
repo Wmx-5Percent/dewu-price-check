@@ -13,6 +13,8 @@ const requiredString = (value, column) => {
   return value;
 };
 
+const validPrice = (value) => typeof value === 'string' || (typeof value === 'number' && Number.isFinite(value));
+
 export const createExportRow = (record) => {
   if (!isPlainObject(record)) {
     throw new TypeError('export record must be an object');
@@ -30,8 +32,8 @@ export const createExportRow = (record) => {
   if (row['货号'].trim() === '') {
     throw new TypeError('货号 must not be empty');
   }
-  if (typeof row['得物卖价（元）'] !== 'string' && typeof row['得物卖价（元）'] !== 'number') {
-    throw new TypeError('得物卖价（元） must be a string, number, or null');
+  if (!validPrice(row['得物卖价（元）'])) {
+    throw new TypeError('得物卖价（元） must be a finite number, string, or null');
   }
 
   return row;
@@ -83,6 +85,9 @@ export const verifyExportWorkbook = async (outputPath) => {
     if (rowNumber === 1) return;
     if (row.cellCount !== EXPORT_COLUMNS.length) {
       throw new Error(`export workbook row ${rowNumber} must contain exactly six cells`);
+    }
+    if (!validPrice(row.getCell(4).value)) {
+      throw new Error(`export workbook row ${rowNumber} has an invalid price`);
     }
   });
 

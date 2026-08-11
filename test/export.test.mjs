@@ -56,6 +56,12 @@ test('empty quote is blank while exception rows retain only SKU and explanation'
 test('writer rejects invalid rows and silently excludes internal fields', () => {
   assert.throws(() => createExportRow({ '货号': '' }), /货号/);
   assert.throws(() => createExportRow({ '货号': 'SYNTHETIC-3', '得物卖价（元）': {} }), /得物卖价/);
+  for (const invalidPrice of [NaN, Infinity, -Infinity]) {
+    assert.throws(
+      () => createExportRow({ '货号': 'SYNTHETIC-PRICE', '得物卖价（元）': invalidPrice }),
+      /finite number/
+    );
+  }
   assert.deepEqual(Object.keys(createExportRow({ '货号': 'SYNTHETIC-4', evidenceHash: 'forbidden' })), EXPORT_COLUMNS);
 });
 
@@ -76,5 +82,19 @@ test('verifier rejects formula and error cells', async () => {
     errorWorksheet.addRow(['SYNTHETIC-6', '', '', { error: '#DIV/0!' }, '', '']);
     await errorWorkbook.xlsx.writeFile(errorPath);
     await assert.rejects(verifyExportWorkbook(errorPath), /formula or error cells/);
+  });
+});
+
+test('verifier rejects workbooks with non-finite numeric prices', async () => {
+  await withTemporaryDirectory(async (directory) => {
+    for (const invalidPrice of [NaN, Infinity, -Infinity]) {
+      const outputPath = join(directory, `${String(invalidPrice)}.xlsx`);
+      const workbook = new ExcelJS.Workbook();
+      const worksheet = workbook.addWorksheet('得物结果');
+      worksheet.addRow(EXPORT_COLUMNS);
+      worksheet.addRow(['SYNTHETIC-PRICE', '', '', invalidPrice, '', '']);
+      await workbook.xlsx.writeFile(outputPath);
+      await assert.rejects(verifyExportWorkbook(outputPath), /invalid price/);
+    }
   });
 });
