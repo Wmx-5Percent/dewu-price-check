@@ -6,18 +6,18 @@
 | --- | --- |
 | 模式 | `LEARNING_MODE` |
 | 当前步骤 | `J04.11` |
-| 状态 | `WAITING_FOR_INDEPENDENT_JOBS_QA` |
+| 状态 | `WAITING_FOR_INDEPENDENT_JOBS_QA_RETEST` |
 | 当前 Wave | W1 / MOD-04 Jobs |
 | 当前模块 | `MOD-04 Jobs`（Issue #3） |
 | 当前角色 | 新建独立 MOD-04 QA |
-| 当前打开任务 | 独立 QA；只读复验 PR #20 head `63890c8` 的 Jobs 状态机、失败路径和 CI |
+| 当前打开任务 | 新的独立 QA；只读复验 PR #20 head `bc1aa33` 的 Jobs 状态机、P1 修复、失败路径和 CI |
 | 下一个任务 | 无；QA 报告和用户验收前不得启动 Reviewer |
 | 允许写代码 | 否 |
 | 允许 commit/push/PR/merge | 否 |
 
 ## 你现在只做这一件事
 
-在隔离 worktree 的 PR #20 head `63890c8a5a190745cd842df3fd43003cd5075359` 上独立测试去重、失败、重试、崩溃恢复、全局阻塞、原子 checkpoint、恢复与并发状态；核对 CI 和允许路径。
+在隔离 worktree 的 PR #20 head `bc1aa33b88a42aaf8a824975be83b4f99d92d4f0` 上独立测试去重、失败、重试、崩溃恢复、全局阻塞、原子 checkpoint、恢复与并发状态；重点验证同一调度窗口的 global blocker 不会启动后续任务，并核对 CI 和允许路径。
 
 不得修改生产代码、测试、Git 或 GitHub；不得 stage、commit、push、PR、ready、merge 或删除分支；不得进行 Android/AVD/ADB/Frida 或真实业务数据操作。
 
