@@ -5,20 +5,20 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `P02.13` |
-| 状态 | `AUTONOMOUS_PROTOCOL_FRESH_REVIEW` |
+| 当前步骤 | `P02.14` |
+| 状态 | `AUTONOMOUS_PROTOCOL_FAIL_CLOSED_REPAIR` |
 | 当前 Wave | W2 / MOD-02 Protocol Discovery |
 | 当前模块 | `MOD-02 Protocol Discovery`（Issue #6） |
-| 当前角色 | 独立 MOD-02 Reviewer |
-| 当前打开任务 | 对 PR #28 `62f03155d63db64938bbce7b436bdfc9e2056f15` 按更新后单 SKU契约进行最终只读审查 |
-| 受管任务 ID | `/root/mod02_single_sku_reviewer`（Reviewer 必须发布 Issue #6 structured report 并直接回传 Coordinator） |
-| 下一个任务 | Reviewer APPROVE 且 CI 通过后自动 merge readiness 和 non-author squash merge |
-| 允许写代码 | 否；仅隔离测试与 Issue #6 QA 证据 |
+| 当前角色 | 原 MOD-02 Developer |
+| 当前打开任务 | 修复 PR #28 synthetic evidence 被误标 verified 的 P1 与 pagination 静默丢弃的 P2 |
+| 受管任务 ID | `/root/mod02_protocol_developer`（原 Developer 返工） |
+| 下一个任务 | 修复推送后 fresh QA → fresh Reviewer；真实 redacted metadata 缺失时 Profile 必须继续 global-blocked |
+| 允许写代码 | 是，仅 `src/discovery/**`、`profiles/**` 与人工复核的脱敏 fixtures |
 | 允许 commit/push/PR/merge | 可精确 stage、commit、push `agent/mod-02/6-protocol-discovery` 并创建 Draft PR |
 
 ## 你现在只做这一件事
 
-Fresh QA 已 PASS `62f0315` 并在 Issue #6 留存证据。Reviewer 必须独立复审单 SKU search、`sales_desc`、项目 1、fail-closed、秘密边界、范围、Issue/PR 证据与 CI；不得重新引入三类别条件或修改生产代码。
+Reviewer REQUEST_CHANGES：synthetic-only fixture 不得标成 `verified` 或解锁下游；未知 pagination 字段不得与 QA 证据矛盾地静默丢弃。原 Developer 必须使 synthetic evidence 继续 fail-closed，补闭世界 rejection（或一致的明确拒绝语义）测试；没有人工复核的 redacted real request metadata 与 item-1 schema 时不得解除 blocker。
 
 不得改 contracts/dependencies、Jobs、Evidence、Export 或 Integration；不得把 APK、Cookie、Token、签名资料、原始响应或真实业务数据提交到 Git。发现风险/登录异常、未知版本、hook/schema 不匹配或秘密泄露立即记录并停止。
 
