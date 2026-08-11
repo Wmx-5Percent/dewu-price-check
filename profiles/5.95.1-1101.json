@@ -1,0 +1,29 @@
+{
+  "profileVersion": "5.95.1-1101",
+  "app": {
+    "packageName": "com.shizhuang.duapp",
+    "versionName": "5.95.1",
+    "versionCode": 1101
+  },
+  "evidenceStatus": "pending-manual-redacted-evidence",
+  "evidence": {
+    "source": "not-yet-verified",
+    "requestMetadataReviewed": false,
+    "responseItemSchemaReviewed": false
+  },
+  "search": {
+    "operation": "searchBySku",
+    "sort": "sales_desc",
+    "responseItemIndex": 1
+  },
+  "requiredEvidence": [
+    "manually-reviewed-redacted-server-side-sales-desc-metadata",
+    "manually-reviewed-redacted-response-item-one-schema"
+  ],
+  "safety": {
+    "persistRawResponses": false,
+    "persistCredentials": false,
+    "requireSalesDesc": true,
+    "blockOnSchemaDrift": true
+  }
+}
