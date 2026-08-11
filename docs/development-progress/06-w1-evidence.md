@@ -11,9 +11,9 @@
 
 ## 逐步清单
 
-- [ ] `V05.1` Coordinator 确认 #4 ready；停止。
-- [ ] `V05.2` 用户批准启动 MOD-05；停止。
-- [ ] `V05.3` 新建 Evidence Developer，只做威胁/数据流审计；停止。
+- [x] `V05.1` Coordinator 确认 #4 ready：#1 closed、#4 OPEN/ready、无 MOD-05 PR、main CI/Secret Guard 成功。
+- [x] `V05.2` `AUTONOMOUS_DELIVERY_MODE` 授权启动 MOD-05。
+- [ ] `V05.3` 新建 Evidence Developer，只做威胁/数据流审计与允许范围内最小实现；进行中。
 - [ ] `V05.4` 用户批准 allowlist、redaction、hash、atomic-write 最小切片；停止。
 - [ ] `V05.5` Developer 实现并用合成数据自检；停止。
 - [ ] `V05.6` 用户检查任何 raw response、Token、设备标识是否可能落盘；停止。
