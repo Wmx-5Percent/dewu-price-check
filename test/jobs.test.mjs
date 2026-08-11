@@ -23,10 +23,11 @@ const withCheckpoint = async (run) => {
 
 test('dynamic baseline deduplicates input and advances only through configured concurrency', () => {
   const state = createJobState(
-    [{ sku: 'SYNTHETIC-A' }, { sku: 'SYNTHETIC-A' }, { sku: ' SYNTHETIC-B ' }],
+    [{ sku: 'synthetic-a' }, { sku: 'SYNTHETIC-A' }, { sku: ' SYNTHETIC-B ' }],
     { maxConcurrency: 4, maxAttempts: 2 }
   );
   assert.equal(state.baseline, 2);
+  assert.deepEqual(state.tasks.map(({ sku }) => sku), ['SYNTHETIC-A', 'SYNTHETIC-B']);
   assert.equal(state.concurrency, 1);
   applyTaskResult(state, 'SYNTHETIC-A', { type: 'collected' });
   assert.equal(state.concurrency, 2);
@@ -94,10 +95,15 @@ test('resume skips collected work and stops remaining tasks after a global block
   });
 });
 
-test('a global blocker in a scheduling-window probe prevents later tasks from starting', async () => {
+test('a global blocker prevents later queued tasks from starting', async () => {
   await withCheckpoint(async (checkpointPath) => {
     const state = createJobState(
-      [{ sku: 'SYNTHETIC-FIRST' }, { sku: 'SYNTHETIC-BLOCK' }, { sku: 'SYNTHETIC-LATER' }],
+      [
+        { sku: 'SYNTHETIC-FIRST' },
+        { sku: 'SYNTHETIC-BLOCK' },
+        { sku: 'SYNTHETIC-LATER' },
+        { sku: 'SYNTHETIC-NEVER-CALLED' }
+      ],
       { maxConcurrency: 4, maxAttempts: 1 }
     );
     const calls = [];
@@ -113,5 +119,6 @@ test('a global blocker in a scheduling-window probe prevents later tasks from st
     });
     assert.deepEqual(calls, ['SYNTHETIC-FIRST', 'SYNTHETIC-BLOCK']);
     assert.equal(state.tasks[2].status, 'pending');
+    assert.equal(state.tasks[3].status, 'pending');
   });
 });
