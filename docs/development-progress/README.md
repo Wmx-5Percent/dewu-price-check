@@ -9,16 +9,15 @@
 - “当前任务”指 `CURRENT_STEP.md` 指定的唯一下一步。
 - “完成”只表示当前原子步骤有证据，不表示整个模块完成。
 
-## 最重要的学习模式
+## 工作模式
 
-1. 一次只执行一个带编号的原子步骤。
-2. 默认同时最多只有一个生产 Developer 任务在工作。
-3. Coordinator 长期复用；每个模块的 Developer、QA、Reviewer 都分别新建任务。
-4. Developer 完成后先停止；之后依次经过独立 QA、独立 Reviewer、Coordinator 合并检查。
-5. `commit`、`push`、创建 PR、合并 PR 是四次独立授权，不能一句“继续”全部做完。
-6. Agent 只能报告下一步建议，不能替你自动跨到下一步。
-7. 只有你明确说“这个步骤验收通过，请把 CURRENT_STEP 前进到……”，Coordinator 才能更新进度文件。
-8. 如果你觉得太快，可以停在任何步骤。未合并分支不会影响 `main`。
+本仓库当前采用 `AUTONOMOUS_DELIVERY_MODE`。Coordinator 可在已批准 Issue、允许路径和既定合同内自动派发独立 Developer、QA、Reviewer，执行测试、返工、CI 复验、PR、squash merge 与进度更新。
+
+- 每个生产 PR 仍必须保持 Developer、独立 QA、独立 Reviewer、merge executor 的角色分离；失败后回原 Developer，并使用新的 QA/Reviewer 复验。
+- 同一问题连续两轮返工未解决时暂停并报告用户。
+- 设备/系统修改、真实 APK/账号/数据、风险或登录异常、合同变更、破坏性操作、费用和外部发布仍须暂停，获得单独授权。
+- 进度卡现在是证据清单而非每个 checkbox 的人工停点；Coordinator 必须在每个里程碑更新它。
+- 用户可随时要求暂停或切回 `LEARNING_MODE`。
 
 ## 你需要保留哪些任务
 
@@ -84,7 +83,7 @@ flowchart LR
 
 ## 如何前进一步
 
-完成当前原子步骤后，不要直接执行下一项。回到 Coordinator，提供：
+在 `LEARNING_MODE`，完成当前原子步骤后不要直接执行下一项。回到 Coordinator，提供：
 
 - 当前步骤 ID；
 - 实际完成了什么；
@@ -92,22 +91,22 @@ flowchart LR
 - 是否存在失败和未解决问题；
 - 你是否同意进入下一步。
 
-Coordinator 只能做以下其中一件事：
+在 `LEARNING_MODE`，Coordinator 只能做以下其中一件事：
 
 1. 证明当前步骤未完成，并让你停留；
 2. 建议进入一个明确的下一步骤；
 3. 发现 GitHub 与本地记录冲突并暂停；
 4. 在你明确批准后更新 `CURRENT_STEP.md` 和 `PROGRESS.md`。
 
-任何 Agent 如果试图一次完成多个步骤，你应回复：“停止，只完成 CURRENT_STEP 指定的一个原子步骤，不要继续。”
+在 `AUTONOMOUS_DELIVERY_MODE`，Coordinator 按已批准 Issue 自动完成这些里程碑，但仍会在 QA/Review 失败、敏感操作或连续两轮返工时暂停。
 
 ## 当前节奏
 
-默认是 **Learning Mode / 串行学习模式**：
+`LEARNING_MODE` 下默认是串行学习模式：
 
 - 一次只运行一个 Developer；
 - QA 和 Reviewer 在 Developer 停止后依次进行；
 - W1 虽然技术上允许四个模块并行，但学习模式按 `MOD-01 → MOD-04 → MOD-05 → MOD-06` 顺序体验完整流程；
-- 只有你明确修改 `CURRENT_STEP.md` 中的模式为 `TEAM_MODE`，Coordinator 才能建议并行，但依赖门仍然有效。
+- 只有你明确修改 `CURRENT_STEP.md` 中的模式，Coordinator 才能改变并行策略；无论哪种模式都不绕过依赖门。
 
 Codex 会在新任务启动时读取根目录 `AGENTS.md`。因此新任务必须在本项目目录/Project 中创建；如果任务早于 `AGENTS.md` 创建，建议关闭后新建，避免使用旧上下文。

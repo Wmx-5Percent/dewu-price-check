@@ -32,18 +32,30 @@ Before editing anything, the agent must:
 
 If no module Issue or role has been assigned, do not begin production implementation. Planning, diagnosis, or read-only review may proceed within the user's request.
 
-## Beginner Learning-Mode Progress Gate
+## Delivery Modes and Progress Gate
 
-This repository is being developed by a beginner who must experience the software-engineering workflow one controlled action at a time. The files under `docs/development-progress/` are the user-operation source of truth. They do not replace GitHub's code status or the master plan.
+The files under `docs/development-progress/` are the user-operation source of truth. They do not replace GitHub's code status or the master plan.
 
-- `CURRENT_STEP.md` names the only atomic step an agent may execute. At the start, state its step ID, role, allowed action, forbidden actions, required evidence, and stop condition.
-- Perform exactly one atomic step, report its evidence, and stop. Do not continue into the next checkbox because it appears obvious or safe.
-- Only the user can accept a step. A Coordinator may recommend the next step but must not edit `CURRENT_STEP.md` or `PROGRESS.md` unless the user explicitly approves that exact advancement.
-- Default mode is `LEARNING_MODE`: at most one production Developer is active. QA begins after that Developer stops; Reviewer begins after QA reports. W1 modules remain serial in the documented learning order unless the user explicitly selects `TEAM_MODE`.
-- Keep one long-lived Coordinator task. Create a new task/chat for each module Developer, each independent QA pass, and each independent Reviewer pass. A same-PR fix returns to its original Developer, then uses fresh QA and Reviewer tasks.
-- Never combine modification, stage, commit, push, draft PR creation, ready-for-review, merge, branch deletion, system installation, device mutation, or progress advancement into one implied authorization. Each requires the explicit permission defined by the current progress card.
-- A request to “continue” means only the current atomic step, not the rest of a module or Wave. Fast-forwarding or parallelism requires the user to name the target steps explicitly.
-- If GitHub live state conflicts with the progress files, stop and have the Coordinator explain the mismatch. Do not silently rewrite either source.
+### `LEARNING_MODE`
+
+- `CURRENT_STEP.md` names the only atomic step an agent may execute. Perform one step, report its evidence, and stop.
+- Only the user can accept a step or authorize the next one. Commit, push, PR creation, ready-for-review, merge, system/device modification, and progress advancement are separate permissions.
+- At most one production Developer is active. QA begins after the Developer stops; Reviewer begins after QA reports. W1 modules remain serial unless the user selects another mode.
+
+### `AUTONOMOUS_DELIVERY_MODE`
+
+- The Coordinator may automatically advance approved Issues through Developer → independent QA → independent Reviewer → CI → squash merge → progress update, and select the next dependency-ready module.
+- The current progress card remains an evidence checklist, not a per-checkbox stop gate. The Coordinator must publish milestone evidence and keep `CURRENT_STEP.md`/`PROGRESS.md` current.
+- Developer, QA, Reviewer, and merge executor remain separate roles for the same production change. A failed QA or Reviewer pass returns to the original Developer, then requires a fresh independent QA and Reviewer.
+- If the same issue remains unresolved after two consecutive repair rounds, stop and report to the user instead of continuing.
+- Pause for explicit user authorization before device/system modification, real APK/account/data use, risk or login anomaly handling, contract changes, destructive operations, costs, or external publication. Also pause for a material GitHub/progress conflict.
+
+### All modes
+
+- Keep one long-lived Coordinator task. Create a distinct task/chat for each module Developer, independent QA pass, and independent Reviewer pass. A same-PR fix returns to its original Developer.
+- Before creating or dispatching a new Developer, QA, or Reviewer task, publish the task-relevant Coordinator context to the shared repository and name its remote SHA in the handoff.
+- Do not push directly to `main` or force-push shared branches. A Coordinator may use the authorized coordination branch/PR workflow.
+- If GitHub live state conflicts with progress records, resolve and record the mismatch before normal delivery continues.
 - **Coordinator cross-task synchronization.** Before creating or dispatching any new Developer, QA, or Reviewer task, the Coordinator must first commit and push every task-relevant Coordinator change (progress records, governance decisions, approved contracts, and handoff documents) to the shared repository. Never assume another worktree can see the Coordinator's uncommitted files or chat history. Do not push directly to `main`: use an authorized coordination branch/PR or an already merged commit. The new task must start from the named remote SHA and receive a concise handoff containing role, Issue, allowed paths, dependencies, evidence, and stop condition. If the required Coordinator change is not yet authorized for publication, stop and ask for that publication authorization rather than opening a task against stale state.
 - Emergency read-only diagnosis and actions needed to prevent immediate data loss may interrupt the sequence, but normal development must not continue until the user and Coordinator establish a new current step.
 

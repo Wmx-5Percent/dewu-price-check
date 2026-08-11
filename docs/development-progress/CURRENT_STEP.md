@@ -4,30 +4,30 @@
 
 | 字段 | 当前值 |
 | --- | --- |
-| 模式 | `LEARNING_MODE` |
+| 模式 | `AUTONOMOUS_DELIVERY_MODE` |
 | 当前步骤 | `V05.1` |
-| 状态 | `WAITING_FOR_USER_AUTHORIZATION` |
+| 状态 | `EXECUTING_COORDINATOR_READINESS_AUDIT` |
 | 当前 Wave | W1 / MOD-05 Evidence |
 | 当前模块 | `MOD-05 Evidence`（Issue #4） |
 | 当前角色 | Coordinator |
-| 当前打开任务 | 无；等待用户授权 V05.1 的 #4 ready/环境门禁只读审计 |
-| 下一个任务 | V05.1，仅在用户授权后执行 |
+| 当前打开任务 | Coordinator 正在执行 V05.1 的 #4 ready/环境门禁只读审计 |
+| 下一个任务 | #4 通过审计后自动启动 MOD-05 Developer |
 | 允许写代码 | 否 |
 | 允许 commit/push/PR/merge | 否 |
 
 ## 你现在只做这一件事
 
-停在此处。J04 已由 PR #20 squash merge 至远端 `main` commit `9835b066f31287092a243be54a7e608349ce384e`，Issue #3 已关闭。不得在未获用户新授权时对 Issue #4 做审计、启动 Developer 或修改其状态。
+按 `AUTONOMOUS_DELIVERY_MODE` 对 Issue #4 做只读 readiness 审计：核验 #1 依赖、状态、开放 PR、失败 CI、允许路径、现有 contracts/imports/tests 与敏感操作门禁。通过后可自动启动 MOD-05 Developer；不得自行进行设备/系统或真实数据操作。
 
-不得修改文件、Git 或 GitHub；不得启动 MOD-05 Developer、QA 或 Reviewer；不得 stage、commit、push、PR、ready、merge 或删除分支。
+本步骤只读；不得改生产代码、设备/系统、真实 APK/账号/数据或合同。治理同步、Issue 状态记录与下一角色任务由新模式授权，但必须先推送协调上下文。
 
 ## 这一小步完成的证据
 
-- 用户明确授权 V05.1 后，再只读核验 Issue #4 状态、依赖、开放 PR、失败 CI、允许路径与环境门禁；
-- 在该审计报告后停止，等待用户批准 V05.2。
+- 报告 Issue #4 状态、依赖、开放 PR、失败 CI、允许路径、直接依赖和敏感操作门禁；
+- 审计通过后发布 Coordinator handoff 并自动启动独立 MOD-05 Developer。
 
 ## 完成后怎么办
 
-当前停止；不得自行推进到 V05.1。
+完成审计后按新模式推进到 Developer，不得跳过角色分离或敏感操作门禁。
 
 实时快照日期：2026-08-09。GitHub 状态会变化，Coordinator 每次必须重新读取，不能只相信这份快照。
