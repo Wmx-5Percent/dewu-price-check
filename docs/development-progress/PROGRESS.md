@@ -8,7 +8,7 @@
 | --- | --- |
 | 学习模式 | `AUTONOMOUS_DELIVERY_MODE` |
 | 当前步骤 | `X06.3`（MOD-06 Export Developer audit and delivery） |
-| 活跃生产 Developer | 1（待创建：`MOD-06`） |
+| 活跃生产 Developer | 1（`MOD-06` / `/root/mod06_export_developer`） |
 | 活跃 QA | 0 |
 | 受管 QA 任务 | `/root/mod05_p1_retest_qa`（终态 PASS；Issue #4 已发布）；`/root/mod05_second_symlink_qa`（终态 PASS；Issue #4 已发布） |
 | 活跃 Reviewer | 0 |
