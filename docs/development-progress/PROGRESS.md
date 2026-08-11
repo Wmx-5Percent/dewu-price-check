@@ -11,7 +11,7 @@
 | 活跃生产 Developer | 0 |
 | 活跃 QA | 0 |
 | 受管 QA 任务 | `/root/mod02_single_sku_qa`（终态 PASS；Issue #6 已发布） |
-| 活跃 Reviewer | 1（待创建：MOD-02 fresh Reviewer） |
+| 活跃 Reviewer | 1（`MOD-02` / `/root/mod02_single_sku_reviewer`） |
 | 受管 QA 任务 | `/root/mod05_p1_retest_qa`（终态 PASS；Issue #4 已发布）；`/root/mod05_second_symlink_qa`（终态 PASS；Issue #4 已发布） |
 | 活跃 Reviewer | 0 |
 | 受管 Reviewer 任务 | `/root/mod05_final_reviewer`（终态 REQUEST_CHANGES；Issue #4 已发布）；`/root/mod05_second_symlink_reviewer`（终态 APPROVE；Issue #4 已发布） |
