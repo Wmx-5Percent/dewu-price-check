@@ -24,7 +24,7 @@
 - [x] `A03.11` 新建受管 Frida QA：先 fixture/隔离验证断连、版本、Profile、schema 和 redaction；live RPC 仍等待已验证 Profile 与下游编排。
 - [ ] `A03.12` QA 分流。
 - [x] `A03.13` QA PASS 后新建受管独立 Frida Reviewer；只读审查进程内边界、分页和安全。
-- [ ] `A03.14` Review 分流。
+- [x] `A03.14` Reviewer REQUEST_CHANGES：distinct-cursor 无界分页 P1；原 Developer 仅修复有界终止与回归测试，随后 fresh QA/Reviewer。
 - [ ] `A03.15` Coordinator 判断 merge readiness；停止。
 - [ ] `A03.16` 用户授权 merge；停止。
 - [ ] `A03.17` Coordinator 验证 #7 done 及 W4 全部上游；用户批准后进入 `I07.1`。
