@@ -11,7 +11,7 @@
 | 当前模块 | `MOD-05 Evidence`（Issue #4） |
 | 当前角色 | 新独立 MOD-05 Reviewer |
 | 当前打开任务 | 新独立 Reviewer 审查 PR #23 head `db35f6f` 的 Evidence security persistence 与 fresh QA 证据 |
-| 受管任务 ID | 待派发；Coordinator 将等待终态并解析结构化报告 |
+| 受管任务 ID | `/root/mod05_final_reviewer`（Coordinator 必须等待终态并解析结构化报告） |
 | 下一个任务 | Reviewer APPROVE 且 CI 保持成功后自动进行 merge-readiness 与 squash merge |
 | 允许写代码 | 否 |
 | 允许 commit/push/PR/merge | 否 |

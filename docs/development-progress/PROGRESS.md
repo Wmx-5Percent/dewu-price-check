@@ -12,6 +12,7 @@
 | 活跃 QA | 0 |
 | 受管 QA 任务 | `/root/mod05_p1_retest_qa`（终态 PASS，Issue #4 已发布） |
 | 活跃 Reviewer | 1（`MOD-05` / Evidence security review） |
+| 受管 Reviewer 任务 | `/root/mod05_final_reviewer`（等待终态自动回传） |
 | 长期 Coordinator | MOD-05 fresh QA PASS；新独立 Reviewer 正在审查，随后自动 merge |
 | 已合并模块 | 3 / 9（MOD-00 / #1；MOD-01 / #2；MOD-04 / #3） |
 | 当前可启动 GitHub Issue | #4、#5、#6 为 ready；当前按依赖顺序处理 #4 |
