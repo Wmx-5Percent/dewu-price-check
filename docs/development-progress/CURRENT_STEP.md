@@ -11,7 +11,7 @@
 | 当前模块 | `MOD-02 Protocol Discovery`（Issue #6） |
 | 当前角色 | 独立 MOD-02 QA |
 | 当前打开任务 | 对 PR #28 `2ab20265e40de77d4dfbacf1560824139272d7ef` 复验 fail-closed P1/P2 修复与修订后单 SKU验收 |
-| 受管任务 ID | 待 Coordinator 创建并记录 |
+| 受管任务 ID | `/root/mod02_fail_closed_retest_qa`（QA 必须发布 Issue #6 structured report 并直接回传 Coordinator） |
 | 下一个任务 | QA PASS 后 fresh Reviewer；若 revised Issue 仍要求 unavailable real metadata，明确 BLOCKED 而不是伪造通过 |
 | 允许写代码 | 否；仅隔离测试与 Issue #6 QA 证据 |
 | 允许 commit/push/PR/merge | 可精确 stage、commit、push `agent/mod-02/6-protocol-discovery` 并创建 Draft PR |
