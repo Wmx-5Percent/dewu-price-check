@@ -26,7 +26,7 @@
 - [ ] `I07.9` 用户授权 push；停止。
 - [ ] `I07.10` 用户授权 draft PR；停止。
 - [ ] `I07.11` 新建 Integration QA：fixture 全链路；受控小批本机真实 SKU 仅在 Agent/Profile 守卫通过后运行，并输出本机六列 Excel 供用户事后人工检查。预先 Golden Sample/12 条同刻 UI 对照已由用户明确免除；不得把真实数据写入 GitHub。停止。
-- [ ] `I07.12` QA 分流，未满足 live 前提必须标 BLOCKED 而非 PASS。
+- [x] `I07.12` QA FAIL：默认 outputs 目录未创建、`--device` serial 静默未透传；原 Developer 仅修复两项 P1，随后 fresh QA/Reviewer。
 - [ ] `I07.13` 新建 Integration Reviewer，只读检查模块边界和端到端证据；停止。
 - [ ] `I07.14` Review 分流。
 - [ ] `I07.15` Coordinator 判断 merge readiness；停止。

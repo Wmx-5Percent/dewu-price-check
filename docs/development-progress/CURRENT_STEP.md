@@ -3,16 +3,16 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `I07.11` |
-| 状态 | `MOD-07_INDEPENDENT_QA_ACTIVE` |
+| 当前步骤 | `I07.12` |
+| 状态 | `MOD-07_DEVELOPER_REPAIR_ACTIVE` |
 | 当前 Wave | W4 / MOD-07 Integration |
 | 当前模块 | `MOD-07 Integration`（Issue #8） |
-| 当前角色 | 新独立 MOD-07 QA（受 Coordinator 管理） |
-| 当前打开任务 | 对 PR #30 / `0e663fee` 进行隔离 fixture 端到端、安全和 fail-closed QA；不得进行 live pilot |
-| 受管任务 ID | `/root/mod07_integration_qa` |
-| 下一个任务 | QA PASS 后自动 fresh Reviewer；QA FAIL 回原 Developer |
-| 允许写代码 | 否（可在临时隔离目录运行测试） |
-| 允许 commit/push/PR/merge | 否 |
+| 当前角色 | 原 MOD-07 Developer（受 Coordinator 管理） |
+| 当前打开任务 | 仅修复 outputs 目录创建和 `--device` serial 透传两项 P1，并补回归测试 |
+| 受管任务 ID | `/root/mod07_integration_developer`（返工第 1 轮） |
+| 下一个任务 | Developer READY_FOR_QA 后自动 fresh QA；不得复用此前 QA/Reviewer |
+| 允许写代码 | 是，仅 Issue #8 allowed paths |
+| 允许 commit/push/PR/merge | Developer 可 commit/push 更新 Draft PR；不可 QA/review/merge |
 
 ## 当前边界
 
@@ -26,4 +26,4 @@ MOD-03 已在 `7abbc2a391b650d2f7236c0c56de33bfe2e9582d` squash merge，Issue #7
 - 原 MOD-07 Developer 正确发现旧 Coordinator 分支 `c9811ab` 不含已合并的 MOD-03 文件；main-based handoff 已重建。Developer 已创建 Draft PR #30，head `0e663fee72a86a3754d2382f74cd1892de4abc03`。
 - 不得使用真实 SKU、设备或登录态来代替 fixture/contract 测试；任何 Profile/session/schema/risk/version 失败必须全局阻断并停止。
 
-Developer 已 READY_FOR_QA；现在自动 fresh QA → fresh Reviewer → CI → 非作者 squash merge。真实数据 pilot 必须在 Integration/Agent 守卫可用后执行，且只输出本机文件。
+独立 QA 在 PR #30 / `0e663fee` 发现 outputs 目录缺失与 `--device` serial 静默丢失两项 P1；原 Developer 第 1 轮受限返工。返工后必须 fresh QA → fresh Reviewer → CI → 非作者 squash merge。真实数据 pilot 必须在 Integration/Agent 守卫可用后执行，且只输出本机文件。
