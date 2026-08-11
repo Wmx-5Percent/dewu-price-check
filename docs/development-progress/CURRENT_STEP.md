@@ -5,20 +5,20 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `P02.13` |
-| 状态 | `AUTONOMOUS_PROTOCOL_FAIL_CLOSED_RETEST_REVIEW` |
-| 当前 Wave | W2 / MOD-02 Protocol Discovery |
-| 当前模块 | `MOD-02 Protocol Discovery`（Issue #6） |
-| 当前角色 | 独立 MOD-02 Reviewer |
-| 当前打开任务 | 对 PR #28 `2ab20265e40de77d4dfbacf1560824139272d7ef` 复审 P1/P2 修复与单 SKU契约 |
-| 受管任务 ID | `/root/mod02_fail_closed_retest_reviewer`（Reviewer 必须发布 Issue #6 structured report 并直接回传 Coordinator） |
-| 下一个任务 | Reviewer APPROVE 且 CI 通过后自动 merge readiness 和 non-author squash merge |
-| 允许写代码 | 否；仅隔离测试与 Issue #6 QA 证据 |
-| 允许 commit/push/PR/merge | 可精确 stage、commit、push `agent/mod-02/6-protocol-discovery` 并创建 Draft PR |
+| 当前步骤 | `A03.1` |
+| 状态 | `AUTONOMOUS_FRIDA_READINESS_AUDIT` |
+| 当前 Wave | W3 / MOD-03 Frida Agent |
+| 当前模块 | `MOD-03 Frida Agent`（Issue #7） |
+| 当前角色 | Coordinator |
+| 当前打开任务 | 只读核对 #7 依赖、fail-closed Protocol Profile 状态、Frida 版本、PR 与 CI；不得启动 MOD-03 |
+| 受管任务 ID | 不适用（Coordinator 审计） |
+| 下一个任务 | A03.1 证据后再决定是否可启动 MOD-03 |
+| 允许写代码 | 否 |
+| 允许 commit/push/PR/merge | 否 |
 
 ## 你现在只做这一件事
 
-Fresh QA 已 PASS `2ab2026`：synthetic Profile 保持 `PROFILE_INCOMPATIBLE`，未知字段在三层拒绝，单 SKU/sales_desc/项目 1边界通过。fresh Reviewer 必须复审代码、范围、Issue 证据、fail-closed 语义与实时 CI；不得把未来 metadata blocker 误标为当前可用 Profile。
+MOD-02 已由 PR #28 在 `11f8a9b800a26d680d0c95ad0ff7dc4500cbaaa8` squash merge，Issue #6 closed。该模块交付了单 SKU→`sales_desc`→项目 1的安全 fail-closed Profile guard；合成 Profile 必须继续 `PROFILE_INCOMPATIBLE`，直到未来有人工复核的脱敏 live metadata。A03.1 必须确认这个状态是否允许 #7 启动，不能静默将 guard 当作验证的 live Profile。
 
 不得改 contracts/dependencies、Jobs、Evidence、Export 或 Integration；不得把 APK、Cookie、Token、签名资料、原始响应或真实业务数据提交到 Git。发现风险/登录异常、未知版本、hook/schema 不匹配或秘密泄露立即记录并停止。
 
