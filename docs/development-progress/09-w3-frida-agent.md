@@ -25,6 +25,7 @@
 - [ ] `A03.12` QA 分流。
 - [x] `A03.13` QA PASS 后新建受管独立 Frida Reviewer；只读审查进程内边界、分页和安全。
 - [x] `A03.14` Reviewer REQUEST_CHANGES：distinct-cursor 无界分页 P1；原 Developer 仅修复有界终止与回归测试，随后 fresh QA/Reviewer。
+- [x] `A03.11` P1 修复后新建 fresh 独立 QA：核验 `93992a8` 的 16 页界限、全局 `SCHEMA_DRIFT` 与所有既有 fail-closed 边界。
 - [ ] `A03.15` Coordinator 判断 merge readiness；停止。
 - [ ] `A03.16` 用户授权 merge；停止。
 - [ ] `A03.17` Coordinator 验证 #7 done 及 W4 全部上游；用户批准后进入 `I07.1`。
