@@ -25,7 +25,8 @@
 - [x] `V05.12` QA 分流回原 Developer 修复两项 P1，并补合成 symlink/concurrency 回归测试；修复已推送至 `db35f6f`。
 - [x] `V05.13` 新建 Evidence Reviewer：REQUEST_CHANGES；发现 file-level JSONL/record symlink 仍可读/泄漏 store 外内容。
 - [x] `V05.14` Review 分流回原 Developer，执行 symlink 边界第二轮（最后一次自动）返修；已推送 `584ff07`。
-- [ ] `V05.11` 新建第二轮返修后的 fresh Evidence QA：验证 file-level/目录 symlink containment、并发 JSONL、既有证据合同与 CI；进行中。
+- [x] `V05.11` 新建第二轮返修后的 fresh Evidence QA：验证 file-level/目录 symlink containment、并发 JSONL、既有证据合同与 CI；PASS，`584ff07`，Issue #4 已留存证据。
+- [ ] `V05.13` 新建第二轮返修后的 fresh Evidence Reviewer：复审安全边界、范围、QA 证据与 CI；进行中。
 - [ ] `V05.15` Coordinator 判断 merge readiness；停止。
 - [ ] `V05.16` 用户授权 merge；停止。
 - [ ] `V05.17` Coordinator 验证 #4 done；用户批准后进入 `X06.1`。
