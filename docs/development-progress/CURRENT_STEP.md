@@ -5,15 +5,15 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `X06.11` |
-| 状态 | `AUTONOMOUS_EXPORT_SCOPE_RETEST_QA` |
+| 当前步骤 | `X06.13` |
+| 状态 | `AUTONOMOUS_EXPORT_FRESH_REVIEW` |
 | 当前 Wave | W1 / MOD-06 Export |
 | 当前模块 | `MOD-06 Export`（Issue #5） |
-| 当前角色 | 独立 MOD-06 QA |
-| 当前打开任务 | 对 PR #27 `1464ac80f56111589435c59cf007ddfad1777dc6` 的范围修复与 Export 行为进行 fresh QA |
+| 当前角色 | 独立 MOD-06 Reviewer |
+| 当前打开任务 | 对 PR #27 `1464ac80f56111589435c59cf007ddfad1777dc6` 做最终只读审查 |
 | 受管任务 ID | 待 Coordinator 创建并记录 |
-| 下一个任务 | QA PASS 后自动 fresh Reviewer；QA FAIL 回原 Developer |
-| 允许写代码 | 否；仅隔离测试与 Issue #5 QA 证据 |
+| 下一个任务 | Reviewer APPROVE 且 CI 通过后自动 merge readiness 和 non-author squash merge |
+| 允许写代码 | 否；仅只读审查与 Issue #5 Reviewer 证据 |
 | 允许 commit/push/PR/merge | 否 |
 
 ## 你现在只做这一件事
