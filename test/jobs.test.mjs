@@ -93,3 +93,25 @@ test('resume skips collected work and stops remaining tasks after a global block
     ]);
   });
 });
+
+test('a global blocker in a scheduling-window probe prevents later tasks from starting', async () => {
+  await withCheckpoint(async (checkpointPath) => {
+    const state = createJobState(
+      [{ sku: 'SYNTHETIC-FIRST' }, { sku: 'SYNTHETIC-BLOCK' }, { sku: 'SYNTHETIC-LATER' }],
+      { maxConcurrency: 4, maxAttempts: 1 }
+    );
+    const calls = [];
+    await runJobs({
+      state,
+      checkpointPath,
+      processTask: async (sku) => {
+        calls.push(sku);
+        return sku === 'SYNTHETIC-FIRST'
+          ? { type: 'collected' }
+          : { type: 'blocked', errorCode: 'PROFILE_INCOMPATIBLE' };
+      }
+    });
+    assert.deepEqual(calls, ['SYNTHETIC-FIRST', 'SYNTHETIC-BLOCK']);
+    assert.equal(state.tasks[2].status, 'pending');
+  });
+});

@@ -85,7 +85,14 @@ export const runJobs = async ({ state, checkpointPath, processTask }) => {
     const pending = state.tasks.filter((task) => task.status === 'pending');
     if (pending.length === 0) break;
 
-    const batch = pending.slice(0, state.concurrency);
+    const concurrency = state.concurrency;
+    const [probe, ...remaining] = pending;
+    const probeResult = await processTask(probe.sku, probe.attempts + 1);
+    applyTaskResult(state, probe.sku, probeResult);
+    await writeCheckpoint(checkpointPath, state);
+    if (state.blocked) break;
+
+    const batch = remaining.slice(0, concurrency);
     const results = await Promise.all(batch.map(async (task) => ({
       sku: task.sku,
       result: await processTask(task.sku, task.attempts + 1)
