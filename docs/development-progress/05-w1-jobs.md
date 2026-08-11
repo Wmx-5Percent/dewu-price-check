@@ -21,10 +21,10 @@
 - [x] `J04.8` 用户预授权 commit：`63890c8`；停止。
 - [x] `J04.9` 用户预授权 push：`agent/mod-04/3-jobs`；停止。
 - [x] `J04.10` 用户预授权 draft PR：[#20](https://github.com/Wmx-5Percent/dewu-price-check/pull/20)；停止。
-- [x] `J04.11` 首次独立 QA 发现 P1 后，新独立 QA 在 `bc1aa33` 复验 PASS；随后 Reviewer 发现 batch 内 global blocker 与大小写去重两项 P1；原 Developer 修复至 `be716e1`，新独立 QA 已 PASS。
+- [ ] `J04.11` 新建独立 QA，复验 `73d7d76` 的实际窗口化 `1 → 2 → 4` 并发、blocker 边界与状态持久化；停止。
 - [x] `J04.12` QA/Review 分流回原 Developer；两项 P1 修复、回归测试与 fresh QA 证据均已完成。
 - [x] `J04.13` 新建独立 Reviewer，只读复审 `be716e1`：REQUEST_CHANGES，确认实际峰值并发固定为 1，不满足实际自适应 `1 → 2 → 4` 验收。
-- [ ] `J04.14` 分流回原 Developer：实现可证明的窗口化实际 `1 → 2 → 4` 并发，同时保证 global blocker 后零后续 SKU 启动；补回归测试并推送，随后必须 fresh QA 与 fresh Reviewer。
+- [x] `J04.14` 分流回原 Developer：实现可证明的窗口化实际 `1 → 2 → 4` 并发，同时保证 global blocker 后零后续 SKU 启动；回归测试已补并推送至 `73d7d76`。
 - [ ] `J04.15` Coordinator 判断 merge readiness；停止。
 - [ ] `J04.16` 用户授权 merge；停止。
 - [ ] `J04.17` Coordinator 验证 #3 done；用户批准后进入 `V05.1`。
