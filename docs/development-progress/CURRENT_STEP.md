@@ -11,7 +11,7 @@
 | 当前模块 | `MOD-05 Evidence`（Issue #4） |
 | 当前角色 | 独立 MOD-05 Reviewer |
 | 当前打开任务 | 审查 PR #23 `584ff07e812e178d359f992fca3e75cff9acaf22`，并核对第二轮返修 QA 证据 |
-| 受管任务 ID | 待 Coordinator 创建并记录；Reviewer 完成后必须直接回传 Coordinator，并在 Issue #4 发布结构化报告 |
+| 受管任务 ID | `/root/mod05_second_symlink_reviewer`（Reviewer 完成后必须直接回传 Coordinator，并在 Issue #4 发布结构化报告） |
 | 下一个任务 | Reviewer APPROVE 且 CI 仍通过时自动进行 merge readiness 与非作者 squash merge；同一 symlink 边界再失败即暂停报告用户 |
 | 允许写代码 | 否；仅只读审查、GitHub Issue #4 Reviewer 证据发布 |
 | 允许 commit/push/PR/merge | 否 |
