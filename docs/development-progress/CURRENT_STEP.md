@@ -5,32 +5,32 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `A03.13` |
-| 状态 | `MOD-03_FRESH_REVIEW_AFTER_REPAIR` |
-| 当前 Wave | W3 / MOD-03 Frida Agent |
-| 当前模块 | `MOD-03 Frida Agent`（Issue #7） |
-| 当前角色 | 新独立 MOD-03 Reviewer（受 Coordinator 管理） |
-| 当前打开任务 | 对 PR #29 的 `93992a8aa226d4629f9f07c027cd30481f1b3e52` 审查 P1 修复、fail-closed RPC 和 CI |
-| 受管任务 ID | `/root/mod03_frida_repair_reviewer` |
-| 下一个任务 | Reviewer APPROVE 且 CI 不变后，Coordinator 自动 merge readiness 和非作者 squash merge |
-| 允许写代码 | 否（可在临时隔离目录运行测试） |
-| 允许 commit/push/PR/merge | 否 |
+| 当前步骤 | `I07.3` |
+| 状态 | `MOD-07_INTEGRATION_DEVELOPER_ACTIVE` |
+| 当前 Wave | W4 / MOD-07 Integration |
+| 当前模块 | `MOD-07 Integration`（Issue #8） |
+| 当前角色 | MOD-07 Developer（受 Coordinator 管理） |
+| 当前打开任务 | 只装配已合并的 Jobs/Evidence/Export/Frida 模块与 CLI；不得重写上游逻辑 |
+| 受管任务 ID | 启动后由 Coordinator 记录 |
+| 下一个任务 | Developer READY_FOR_QA 后自动 fresh QA |
+| 允许写代码 | 是，仅 Issue #8 allowed paths |
+| 允许 commit/push/PR/merge | Developer 可 commit/push/draft PR；仅非作者可在 QA/Reviewer/CI 后 squash merge |
 
 ## 你现在只做这一件事
 
-MOD-02 已由 PR #28 在 `11f8a9b800a26d680d0c95ad0ff7dc4500cbaaa8` squash merge，Issue #6 closed。该模块交付了单 SKU→`sales_desc`→项目 1的安全 fail-closed Profile guard；合成 Profile 必须继续 `PROFILE_INCOMPATIBLE`，直到未来有人工复核的脱敏 live metadata。Coordinator 已在 2026-08-11 核对 #1/#2/#6 closed、main CI/Secret Guard 成功、#7 无模块 PR；#7 因此可由 Developer 开始 fail-closed RPC/contract 切片，不能静默将 guard 当作验证的 live Profile。
+MOD-03 已在 `7abbc2a391b650d2f7236c0c56de33bfe2e9582d` squash merge，Issue #7 closed；main CI/Secret Guard 成功。#3/#4/#5/#7 均已 closed，MOD-07 可开始集成。不得在集成层补写上游内部逻辑、引入逐 SKU UI 或把合成 Profile 当作 live 验证。
 
-用户已授权将本机库存工作簿仅用于受控 live pilot：可从 12,318 条记录中抽取小批真实 SKU，在显式确认的登录 AVD 上采集，并输出仅本机的六列 Excel 供用户事后人工核对。真实 SKU、原始响应、登录态、设备标识和输出文件均不得进入 Git、GitHub、CI 或测试 fixture；不得因缺少预先 Golden Sample 而伪造 Profile 验证。
+用户已明确免除预先 Golden Sample/12 条同刻 UI 对照，改为受控小批本机真实 SKU 的事后人工 Excel 检查。实施顺序仍为：fixture 端到端安全切片 → 守卫通过的受控 live pilot → 仅本机六列 Excel。真实 SKU、原始响应、登录态、设备标识和结果文件不得进入 Git、GitHub、CI 或 fixture。
 
 不得改 contracts/dependencies、Jobs、Evidence、Export 或 Integration；不得把 APK、Cookie、Token、签名资料、原始响应或真实业务数据提交到 Git。发现风险/登录异常、未知版本、hook/schema 不匹配或秘密泄露立即记录并停止。
 
 ## 这一小步完成的证据
 
-- #1/#2/#6 已 closed；Issue #7 已由 `status:blocked` 更新为 `status:ready`；Developer 已创建 Draft PR #29，head `2fb6f3005d20b513a1aef963875245cadc1c0034`。
+- #3/#4/#5/#7 已 closed；MOD-03 main CI/Secret Guard 成功；Issue #8 已由 `status:blocked` 更新为 `status:ready`。
 - 库存工作簿仅作本地 pilot 输入，已确认 2,978 个去重 SKU；不向远端披露任何真实 SKU。
 
 ## 完成后怎么办
 
-原 Developer 第 1 轮返工已将 PR #29 更新为 `93992a8aa226d4629f9f07c027cd30481f1b3e52`：distinct-cursor 分页精确 16 页后 fail-closed `SCHEMA_DRIFT`。fresh QA 已 PASS；现在必须 fresh Reviewer → CI → 非作者 squash merge。任何真实数据 live pilot 必须在 Agent 与下游编排/导出路径可用后执行，且只输出本机文件。
+Developer READY_FOR_QA 后自动 fresh QA → fresh Reviewer → CI → 非作者 squash merge。任何真实数据 live pilot 必须在 Integration/Agent 守卫可用后执行，且只输出本机文件。
 
 实时快照日期：2026-08-09。GitHub 状态会变化，Coordinator 每次必须重新读取，不能只相信这份快照。

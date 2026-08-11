@@ -27,9 +27,9 @@
 - [x] `A03.14` Reviewer REQUEST_CHANGES：distinct-cursor 无界分页 P1；原 Developer 仅修复有界终止与回归测试，随后 fresh QA/Reviewer。
 - [x] `A03.11` P1 修复后新建 fresh 独立 QA：核验 `93992a8` 的 16 页界限、全局 `SCHEMA_DRIFT` 与所有既有 fail-closed 边界。
 - [x] `A03.13` P1 修复后新建 fresh 独立 Reviewer：审查 exact head `93992a8aa226d4629f9f07c027cd30481f1b3e52`。
-- [ ] `A03.15` Coordinator 判断 merge readiness；停止。
-- [ ] `A03.16` 用户授权 merge；停止。
-- [ ] `A03.17` Coordinator 验证 #7 done 及 W4 全部上游；用户批准后进入 `I07.1`。
+- [x] `A03.15` Coordinator merge readiness：P1 修复后的 fresh QA、fresh Reviewer、范围和 CI/Secret Guard 均通过。
+- [x] `A03.16` AUTONOMOUS_DELIVERY_MODE 覆盖非作者 squash merge；PR #29 已合并为 `7abbc2a`。
+- [x] `A03.17` Coordinator 验证 #7 closed、main CI/Secret Guard 成功，#3/#4/#5/#7 均为 done；进入 `I07.1`。
 
 ## 本机真实库存 pilot 边界（2026-08-11）
 
