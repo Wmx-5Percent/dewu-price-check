@@ -1,5 +1,6 @@
 import { createHash, randomUUID } from 'node:crypto';
-import { lstat, mkdir, readFile, realpath, rename, unlink, writeFile } from 'node:fs/promises';
+import { constants } from 'node:fs';
+import { lstat, mkdir, open, realpath, rename, unlink, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve, sep } from 'node:path';
 
 const SAFE_RECORD_FIELDS = new Set(['correlationId', 'event', 'result', 'errorCode']);
@@ -37,6 +38,7 @@ const requireString = (value, field) => {
 };
 
 const atomicWrite = async (targetPath, contents) => {
+  await assertRegularFileOrMissing(targetPath);
   await mkdir(dirname(targetPath), { recursive: true });
   const temporaryPath = `${targetPath}.${process.pid}.${randomUUID()}.tmp`;
   try {
@@ -45,6 +47,26 @@ const atomicWrite = async (targetPath, contents) => {
   } catch (error) {
     await unlink(temporaryPath).catch(() => {});
     throw error;
+  }
+};
+
+const assertRegularFileOrMissing = async (targetPath) => {
+  try {
+    const targetStat = await lstat(targetPath);
+    if (!targetStat.isFile() || targetStat.isSymbolicLink()) throw new Error('EVIDENCE_FILE_TARGET_UNSAFE');
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+};
+
+const readRegularFile = async (targetPath) => {
+  await assertRegularFileOrMissing(targetPath);
+  let handle;
+  try {
+    handle = await open(targetPath, constants.O_RDONLY | constants.O_NOFOLLOW);
+    return await handle.readFile({ encoding: 'utf8' });
+  } finally {
+    await handle?.close();
   }
 };
 
@@ -124,7 +146,7 @@ export const readEvidence = async (store, correlationId) => {
   const rootPath = await resolvedStoreRoot(store);
   const recordsPath = await recordsDirectory(rootPath);
   const targetPath = safeTarget(recordsPath, `${correlationId}.json`);
-  return JSON.parse(await readFile(targetPath, 'utf8'));
+  return JSON.parse(await readRegularFile(targetPath));
 };
 
 export const appendEvidenceLog = async (store, input) => {
@@ -135,7 +157,7 @@ export const appendEvidenceLog = async (store, input) => {
   await enqueueAppend(targetPath, async () => {
     let existing = '';
     try {
-      existing = await readFile(targetPath, 'utf8');
+      existing = await readRegularFile(targetPath);
     } catch (error) {
       if (error.code !== 'ENOENT') throw error;
     }

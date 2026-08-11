@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
-import { mkdir, mkdtemp, readFile, readdir, rm, symlink } from 'node:fs/promises';
+import { lstat, mkdir, mkdtemp, readFile, readdir, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, relative } from 'node:path';
 import test from 'node:test';
 import {
   appendEvidenceLog,
@@ -102,6 +102,35 @@ test('twenty concurrent JSONL appends preserve every synthetic record', async ()
     const lines = (await readFile(join(directory, 'evidence.jsonl'), 'utf8')).trim().split('\n').map(JSON.parse);
     assert.equal(lines.length, 20);
     assert.deepEqual(new Set(lines.map(({ correlationId }) => correlationId)).size, 20);
+  });
+});
+
+test('absolute JSONL and relative record-file symlinks are rejected without external access or store contamination', async () => {
+  await withStore(async (store, directory) => {
+    const outsideDirectory = await mkdtemp(join(tmpdir(), 'dewu-evidence-outside-file-'));
+    const outsideLogPath = join(outsideDirectory, 'outside.jsonl');
+    const outsideRecordPath = join(outsideDirectory, 'outside-record.json');
+    const jsonlLinkPath = join(directory, 'evidence.jsonl');
+    const recordsPath = join(directory, 'records');
+    const recordLinkPath = join(recordsPath, 'corr-file-link.json');
+    try {
+      await writeFile(outsideLogPath, 'outside-jsonl-only\n', 'utf8');
+      await writeFile(outsideRecordPath, '{"source":"outside"}\n', 'utf8');
+      await symlink(outsideLogPath, jsonlLinkPath);
+      await mkdir(recordsPath);
+      await symlink(relative(recordsPath, outsideRecordPath), recordLinkPath);
+
+      await assert.rejects(appendEvidenceLog(store, syntheticInput('corr-jsonl-link')), /EVIDENCE_FILE_TARGET_UNSAFE/);
+      await assert.rejects(persistEvidence(store, syntheticInput('corr-file-link')), /EVIDENCE_FILE_TARGET_UNSAFE/);
+      await assert.rejects(readEvidence(store, 'corr-file-link'), /EVIDENCE_FILE_TARGET_UNSAFE/);
+
+      assert.equal(await readFile(outsideLogPath, 'utf8'), 'outside-jsonl-only\n');
+      assert.equal(await readFile(outsideRecordPath, 'utf8'), '{"source":"outside"}\n');
+      assert.equal((await lstat(jsonlLinkPath)).isSymbolicLink(), true);
+      assert.equal((await lstat(recordLinkPath)).isSymbolicLink(), true);
+    } finally {
+      await rm(outsideDirectory, { recursive: true, force: true });
+    }
   });
 });
 
