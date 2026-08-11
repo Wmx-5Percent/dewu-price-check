@@ -7,13 +7,13 @@
 | 项目 | 状态 |
 | --- | --- |
 | 学习模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `P02.5`（MOD-02 pre-live gate repair） |
+| 当前步骤 | `P02.5`（MOD-02 single-SKU discovery alignment） |
 | 活跃生产 Developer | 1（`MOD-02` / `/root/mod02_protocol_developer`） |
 | 活跃 QA | 0 |
 | 受管 QA 任务 | `/root/mod05_p1_retest_qa`（终态 PASS；Issue #4 已发布）；`/root/mod05_second_symlink_qa`（终态 PASS；Issue #4 已发布） |
 | 活跃 Reviewer | 0 |
 | 受管 Reviewer 任务 | `/root/mod05_final_reviewer`（终态 REQUEST_CHANGES；Issue #4 已发布）；`/root/mod05_second_symlink_reviewer`（终态 APPROVE；Issue #4 已发布） |
-| 长期 Coordinator | MOD-02 Draft PR #28 已有合成安全骨架；等待真实三类别 live mapping/UI 对照证据，不能伪造验收 |
+| 长期 Coordinator | 用户将 MOD-02 验收改为单 SKU 搜索 + `sales_desc` + 响应项目 1；原 Developer 正对齐 Profile/fixtures/tests |
 | 已合并模块 | 5 / 9（MOD-00 / #1；MOD-01 / #2；MOD-04 / #3；MOD-05 / #4；MOD-06 / #5） |
 | 当前可启动 GitHub Issue | #6 为 ready；MOD-02 Developer 启动中 |
 
@@ -27,7 +27,7 @@
 | W1 / MOD-04 Jobs | #3 | PR #20 已 squash merge 至 `main`；Issue closed | 是 |
 | W1 / MOD-05 Evidence | #4 | PR #23 已 squash merge；Issue closed | 是 |
 | W1 / MOD-06 Export | #5 | PR #27 已 squash merge；Issue closed | 是 |
-| W2 / MOD-02 Protocol | #6 | BLOCKED：缺少真实鞋/服装/配件 live mapping、分页和 UI 对照证据 | 否 |
+| W2 / MOD-02 Protocol | #6 | 单 SKU/sales_desc/项目 1 范围已确认；原 Developer 恢复中 | 否 |
 | W3 / MOD-03 Frida Agent | #7 | blocked by #1, #2, #6 | 否 |
 | W4 / MOD-07 Integration | #8 | blocked by #3, #4, #5, #7 | 否 |
 | W5 / MOD-08 QA & Portability | #9 | blocked by #2–#8 | 否 |
