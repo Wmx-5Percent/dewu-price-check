@@ -21,8 +21,8 @@
 - [x] `V05.8` Developer commit：`af95daf`。
 - [x] `V05.9` Developer push：`agent/mod-05/4-evidence`。
 - [x] `V05.10` Developer 创建 Draft PR [#23](https://github.com/Wmx-5Percent/dewu-price-check/pull/23)。
-- [ ] `V05.11` 新建 Evidence QA，执行秘密模式、崩溃写入、hash 回溯和路径攻击测试；进行中。
-- [ ] `V05.12` QA 分流，任何真实秘密测试输入都视为错误。
+- [x] `V05.11` 新建 Evidence QA：FAIL；发现 records 中间目录 symlink 逃逸与 concurrent JSONL append 丢记录两项 P1。
+- [ ] `V05.12` QA 分流回原 Developer 修复两项 P1，并补合成 symlink/concurrency 回归测试；进行中。
 - [ ] `V05.13` 新建 Evidence Reviewer，只读安全审查；停止。
 - [ ] `V05.14` Review 分流。
 - [ ] `V05.15` Coordinator 判断 merge readiness；停止。
