@@ -5,20 +5,20 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `P02.3` |
-| 状态 | `AUTONOMOUS_PROTOCOL_DEVELOPER_DISCOVERY` |
+| 当前步骤 | `P02.5` |
+| 状态 | `AUTONOMOUS_PROTOCOL_PRELIVE_GATE_REPAIR` |
 | 当前 Wave | W2 / MOD-02 Protocol Discovery |
 | 当前模块 | `MOD-02 Protocol Discovery`（Issue #6） |
 | 当前角色 | 独立 MOD-02 Developer |
-| 当前打开任务 | 协议发现方案、数据最小化设计与受控发现工具/Profile 草案 |
-| 受管任务 ID | `/root/mod02_protocol_developer`（Developer 必须发布 Issue #6 structured report 并直接回传 Coordinator） |
-| 下一个任务 | Developer READY_FOR_QA 后自动 fresh QA → fresh Reviewer → CI → squash merge |
-| 允许写代码 | 是，仅 `src/discovery/**`、`profiles/**` 与人工复核的脱敏 fixtures |
+| 当前打开任务 | 修复 Java 17 门禁、准备/选择专用 Root AVD 与显式 serial，然后重跑 pre-live gate |
+| 受管任务 ID | `/root/mod02_protocol_developer`（原 Developer 返工） |
+| 下一个任务 | 门禁通过后继续最小受控发现、Profile/脱敏 fixture、Draft PR → fresh QA → fresh Reviewer |
+| 允许写代码 | 是；并获用户持续授权进行仅限专用 Root AVD 的 Java/AVD/Frida 受控准备 |
 | 允许 commit/push/PR/merge | 可精确 stage、commit、push `agent/mod-02/6-protocol-discovery` 并创建 Draft PR |
 
 ## 你现在只做这一件事
 
-P02.1 审计：#1/#2 已关闭，#6 OPEN + `status:ready`，无 MOD-02 PR，main CI/Secret Guard 成功。Coordinator shell 当前未在 `PATH` 发现 `adb`；Developer 必须先使用 MOD-01 可移植 SDK 发现逻辑定位工具，并在获得专用、显式 serial 前不得进行 live hook、登录或业务数据采集。
+Developer pre-live gate 发现 SDK/Android tools 与 Node 22 可用，但 Java 17 未通过，且无在线专用 serial。用户已授权完成 W2；原 Developer 仅可恢复 Java 17 门禁并启动/选择专用 Root AVD，明确 serial 后才进行发现。不得触碰 Medium_Phone 或未知设备。
 
 不得改 contracts/dependencies、Jobs、Evidence、Export 或 Integration；不得把 APK、Cookie、Token、签名资料、原始响应或真实业务数据提交到 Git。发现风险/登录异常、未知版本、hook/schema 不匹配或秘密泄露立即记录并停止。
 
