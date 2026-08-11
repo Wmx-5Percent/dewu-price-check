@@ -23,8 +23,8 @@
 - [x] `J04.10` 用户预授权 draft PR：[#20](https://github.com/Wmx-5Percent/dewu-price-check/pull/20)；停止。
 - [x] `J04.11` 新建独立 QA，复验 `73d7d76` 的实际窗口化 `1 → 2 → 4` 并发、blocker 边界与状态持久化：PASS。
 - [x] `J04.12` QA/Review 分流回原 Developer；两项 P1 修复、回归测试与 fresh QA 证据均已完成。
-- [ ] `J04.13` 新建独立 Reviewer，只读复审 `73d7d76` 的并发 P1 返修、fresh QA 与 CI；停止。（此前 `be716e1` 审查为 REQUEST_CHANGES 已返修。）
+- [x] `J04.13` 新建独立 Reviewer，只读复审 `73d7d76` 的并发 P1 返修、fresh QA 与 CI：APPROVE。（此前 `be716e1` 审查为 REQUEST_CHANGES 已返修。）
 - [x] `J04.14` 分流回原 Developer：实现可证明的窗口化实际 `1 → 2 → 4` 并发，同时保证 global blocker 后零后续 SKU 启动；回归测试已补并推送至 `73d7d76`。
-- [ ] `J04.15` Coordinator 判断 merge readiness；停止。
-- [ ] `J04.16` 用户授权 merge；停止。
-- [ ] `J04.17` Coordinator 验证 #3 done；用户批准后进入 `V05.1`。
+- [x] `J04.15` Coordinator 判断 merge readiness：通过；精确 head、两次独立 QA、最终 Reviewer、18 项 CI/Secret Guard、范围与 Issue 证据一致。
+- [x] `J04.16` 用户授权 merge；PR #20 Ready 后由 Coordinator squash merge 至远端 `main`：`9835b06`；停止。
+- [x] `J04.17` Coordinator 验证 #3 done：PR #20 merged、Issue #3 closed、`73d7d76` 可从远端 `main` 到达；等待用户单独授权 `V05.1`。
