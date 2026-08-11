@@ -14,7 +14,7 @@
 - [x] `P02.1` Coordinator 核对依赖和受控设备条件：#1/#2 closed、#6 OPEN/ready、无 PR、main CI/Secret Guard 成功；Coordinator shell 未在 PATH 找到 adb，Developer 先走可移植 SDK 发现。
 - [x] `P02.2` 用户授权继续 MOD-02 受控开发。
 - [x] `P02.3` 新建 Protocol Developer：pre-live audit BLOCKED，Java 17 未通过且无专用在线 serial；未触碰设备/APK/登录/真实数据。
-- [x] `P02.5` Java 17、专用 `emulator-5556`、Root/arm64 与 Frida 17.16.4 门禁通过；从 `emulator-5554` 只读提取并仅安装得物 `5.95.1 / versionCode 1101` 到专用 AVD；BLOCKED：等待用户在专用 AVD 手动登录。
+- [x] `P02.5` Java 17、专用 `emulator-5556`、Root/arm64 与 Frida 17.16.4 门禁通过；从 `emulator-5554` 只读提取并仅安装得物 `5.95.1 / versionCode 1101` 到专用 AVD；用户已在专用 AVD 手动登录，受控发现进行中。
 - [ ] `P02.4` 用户批准鞋/服装/配件三个样本的人工发现范围；停止。
 - [ ] `P02.5` Developer 在受控会话中建立最小发现工具和 Profile 草案；遇风险立即停止。
 - [ ] `P02.6` 用户检查脱敏前后字段、UI 同刻对照和字段证据；停止。

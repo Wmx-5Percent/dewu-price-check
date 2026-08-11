@@ -13,7 +13,7 @@
 | 受管 QA 任务 | `/root/mod05_p1_retest_qa`（终态 PASS；Issue #4 已发布）；`/root/mod05_second_symlink_qa`（终态 PASS；Issue #4 已发布） |
 | 活跃 Reviewer | 0 |
 | 受管 Reviewer 任务 | `/root/mod05_final_reviewer`（终态 REQUEST_CHANGES；Issue #4 已发布）；`/root/mod05_second_symlink_reviewer`（终态 APPROVE；Issue #4 已发布） |
-| 长期 Coordinator | 得物 5.95.1 已仅安装到专用 emulator-5556；等待用户手动登录后继续发现 |
+| 长期 Coordinator | 用户已在专用 emulator-5556 手动登录；原 MOD-02 Developer 恢复 redaction-first 受控发现 |
 | 已合并模块 | 5 / 9（MOD-00 / #1；MOD-01 / #2；MOD-04 / #3；MOD-05 / #4；MOD-06 / #5） |
 | 当前可启动 GitHub Issue | #6 为 ready；MOD-02 Developer 启动中 |
 
@@ -27,7 +27,7 @@
 | W1 / MOD-04 Jobs | #3 | PR #20 已 squash merge 至 `main`；Issue closed | 是 |
 | W1 / MOD-05 Evidence | #4 | PR #23 已 squash merge；Issue closed | 是 |
 | W1 / MOD-06 Export | #5 | PR #27 已 squash merge；Issue closed | 是 |
-| W2 / MOD-02 Protocol | #6 | BLOCKED：专用 AVD 等待用户手动登录；APK/版本/环境门禁已通过 | 否 |
+| W2 / MOD-02 Protocol | #6 | 专用 AVD 已手动登录；原 Developer 正进行受控发现 | 否 |
 | W3 / MOD-03 Frida Agent | #7 | blocked by #1, #2, #6 | 否 |
 | W4 / MOD-07 Integration | #8 | blocked by #3, #4, #5, #7 | 否 |
 | W5 / MOD-08 QA & Portability | #9 | blocked by #2–#8 | 否 |
