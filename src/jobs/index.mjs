@@ -49,15 +49,15 @@ export const nextConcurrency = ({ concurrency, maxConcurrency }) => {
   return next ?? concurrency;
 };
 
-export const applyTaskResult = (state, sku, result) => {
+export const applyTaskResult = (state, sku, result, { advanceConcurrency = true, ignoreBlocked = false } = {}) => {
   const task = state.tasks.find((candidate) => candidate.sku === sku);
   if (!task) throw new Error('TASK_NOT_FOUND');
-  if (state.blocked || task.status === 'collected' || task.status === 'blocked') return state;
+  if ((state.blocked && !ignoreBlocked) || task.status === 'collected' || task.status === 'blocked') return state;
 
   task.attempts += 1;
   if (result.type === 'collected') {
     task.status = 'collected';
-    state.concurrency = nextConcurrency(state);
+    if (advanceConcurrency) state.concurrency = nextConcurrency(state);
   } else if (result.type === 'blocked') {
     task.status = 'blocked';
     task.errorCode = result.errorCode;
@@ -85,11 +85,19 @@ export const runJobs = async ({ state, checkpointPath, processTask }) => {
     const pending = state.tasks.filter((task) => task.status === 'pending');
     if (pending.length === 0) break;
 
-    const [task] = pending;
-    const result = await processTask(task.sku, task.attempts + 1);
-    applyTaskResult(state, task.sku, result);
-    await writeCheckpoint(checkpointPath, state);
-    if (state.blocked) break;
+    const window = pending.slice(0, state.concurrency);
+    const results = await Promise.all(window.map(async (task) => ({
+      sku: task.sku,
+      result: await processTask(task.sku, task.attempts + 1)
+    })));
+    for (const { sku, result } of results) {
+      applyTaskResult(state, sku, result, { advanceConcurrency: false, ignoreBlocked: true });
+      await writeCheckpoint(checkpointPath, state);
+    }
+    if (!state.blocked && results.every(({ result }) => result.type === 'collected')) {
+      state.concurrency = nextConcurrency(state);
+      await writeCheckpoint(checkpointPath, state);
+    }
   }
   return state;
 };

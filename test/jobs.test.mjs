@@ -95,14 +95,14 @@ test('resume skips collected work and stops remaining tasks after a global block
   });
 });
 
-test('a global blocker prevents later queued tasks from starting', async () => {
+test('a global blocker prevents the next window from starting', async () => {
   await withCheckpoint(async (checkpointPath) => {
     const state = createJobState(
       [
         { sku: 'SYNTHETIC-FIRST' },
         { sku: 'SYNTHETIC-BLOCK' },
         { sku: 'SYNTHETIC-LATER' },
-        { sku: 'SYNTHETIC-NEVER-CALLED' }
+        { sku: 'SYNTHETIC-NEXT-WINDOW' }
       ],
       { maxConcurrency: 4, maxAttempts: 1 }
     );
@@ -117,8 +117,32 @@ test('a global blocker prevents later queued tasks from starting', async () => {
           : { type: 'blocked', errorCode: 'PROFILE_INCOMPATIBLE' };
       }
     });
-    assert.deepEqual(calls, ['SYNTHETIC-FIRST', 'SYNTHETIC-BLOCK']);
-    assert.equal(state.tasks[2].status, 'pending');
+    assert.deepEqual(calls, ['SYNTHETIC-FIRST', 'SYNTHETIC-BLOCK', 'SYNTHETIC-LATER']);
+    assert.equal(state.tasks[2].status, 'blocked');
     assert.equal(state.tasks[3].status, 'pending');
+  });
+});
+
+test('successful windows execute at actual 1 to 2 to 4 concurrency', async () => {
+  await withCheckpoint(async (checkpointPath) => {
+    const state = createJobState(
+      Array.from({ length: 7 }, (_, index) => ({ sku: `SYNTHETIC-${index + 1}` })),
+      { maxConcurrency: 4, maxAttempts: 1 }
+    );
+    const activeCounts = [];
+    let active = 0;
+    await runJobs({
+      state,
+      checkpointPath,
+      processTask: async () => {
+        active += 1;
+        activeCounts.push(active);
+        await new Promise((resolve) => setImmediate(resolve));
+        active -= 1;
+        return { type: 'collected' };
+      }
+    });
+    assert.deepEqual(activeCounts, [1, 1, 2, 1, 2, 3, 4]);
+    assert.equal(state.concurrency, 4);
   });
 });
