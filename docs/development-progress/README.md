@@ -14,10 +14,23 @@
 本仓库当前采用 `AUTONOMOUS_DELIVERY_MODE`。Coordinator 可在已批准 Issue、允许路径和既定合同内自动派发独立 Developer、QA、Reviewer，执行测试、返工、CI 复验、PR、squash merge 与进度更新。
 
 - 每个生产 PR 仍必须保持 Developer、独立 QA、独立 Reviewer、merge executor 的角色分离；失败后回原 Developer，并使用新的 QA/Reviewer 复验。
+- 优先使用受 Coordinator 管理、完成后自动回传的子代理。若必须开独立 task/chat，该角色必须在停止前把统一结构化报告发布到对应 GitHub Issue 或 PR；Coordinator 通过 GitHub Issue、PR 与 CI 自动发现完成。
 - 同一问题连续两轮返工未解决时暂停并报告用户。
 - 设备/系统修改、真实 APK/账号/数据、风险或登录异常、合同变更、破坏性操作、费用和外部发布仍须暂停，获得单独授权。
 - 进度卡现在是证据清单而非每个 checkbox 的人工停点；Coordinator 必须在每个里程碑更新它。
 - 用户可随时要求暂停或切回 `LEARNING_MODE`。
+
+统一报告格式：
+
+```text
+ROLE: Developer | QA | Reviewer
+STATUS: READY_FOR_QA | PASS | FAIL | APPROVE | REQUEST_CHANGES | BLOCKED
+PR: <url>
+HEAD: <sha>
+TESTS: <commands and results>
+BLOCKERS: <none or details>
+NEXT_ACTION: <automatic next role>
+```
 
 ## 你需要保留哪些任务
 
