@@ -11,20 +11,20 @@
 
 ## 逐步清单
 
-- [ ] `J04.1` Coordinator 确认 #3 ready 和 contract 版本；停止。
-- [ ] `J04.2` 用户批准启动 MOD-04；停止。
-- [ ] `J04.3` 新建 Jobs Developer，只做输入/状态合同审计；停止。
-- [ ] `J04.4` 用户批准最小离线状态机切片；停止。
-- [ ] `J04.5` Developer 实现并做 fixture/self-check；停止。
-- [ ] `J04.6` 用户检查是否写死运行时业务数量、真实文件路径或默认并发；停止。
-- [ ] `J04.7` 用户授权 stage；停止。
-- [ ] `J04.8` 用户授权 commit；停止。
-- [ ] `J04.9` 用户授权 push；停止。
-- [ ] `J04.10` 用户授权 draft PR；停止。
-- [ ] `J04.11` 新建 Jobs QA，独立测试去重、失败、重试、崩溃恢复、全局阻塞；停止。
-- [ ] `J04.12` QA 分流。
-- [ ] `J04.13` 新建 Jobs Reviewer，只读审查状态转换和竞态；停止。
-- [ ] `J04.14` Review 分流。
-- [ ] `J04.15` Coordinator 判断 merge readiness；停止。
-- [ ] `J04.16` 用户授权 merge；停止。
-- [ ] `J04.17` Coordinator 验证 #3 done；用户批准后进入 `V05.1`。
+- [x] `J04.1` Coordinator 确认 #3 ready、#1 已合并且 contract v1 可用；停止。
+- [x] `J04.2` 用户批准启动 MOD-04；停止。
+- [x] `J04.3` 新建 Jobs Developer，完成输入/状态合同审计；停止。
+- [x] `J04.4` 用户预授权最小离线状态机切片；停止。
+- [x] `J04.5` Developer 实现并做 fixture/self-check；停止。
+- [x] `J04.6` 用户预授权路径/业务数量/默认并发安全检查；Developer 报告通过；停止。
+- [x] `J04.7` 用户预授权精确 stage；停止。
+- [x] `J04.8` 用户预授权 commit：`63890c8`；停止。
+- [x] `J04.9` 用户预授权 push：`agent/mod-04/3-jobs`；停止。
+- [x] `J04.10` 用户预授权 draft PR：[#20](https://github.com/Wmx-5Percent/dewu-price-check/pull/20)；停止。
+- [x] `J04.11` 新建独立 QA，复验 `73d7d76` 的实际窗口化 `1 → 2 → 4` 并发、blocker 边界与状态持久化：PASS。
+- [x] `J04.12` QA/Review 分流回原 Developer；两项 P1 修复、回归测试与 fresh QA 证据均已完成。
+- [x] `J04.13` 新建独立 Reviewer，只读复审 `73d7d76` 的并发 P1 返修、fresh QA 与 CI：APPROVE。（此前 `be716e1` 审查为 REQUEST_CHANGES 已返修。）
+- [x] `J04.14` 分流回原 Developer：实现可证明的窗口化实际 `1 → 2 → 4` 并发，同时保证 global blocker 后零后续 SKU 启动；回归测试已补并推送至 `73d7d76`。
+- [x] `J04.15` Coordinator 判断 merge readiness：通过；精确 head、两次独立 QA、最终 Reviewer、18 项 CI/Secret Guard、范围与 Issue 证据一致。
+- [x] `J04.16` 用户授权 merge；PR #20 Ready 后由 Coordinator squash merge 至远端 `main`：`9835b06`；停止。
+- [x] `J04.17` Coordinator 验证 #3 done：PR #20 merged、Issue #3 closed、`73d7d76` 可从远端 `main` 到达；等待用户单独授权 `V05.1`。

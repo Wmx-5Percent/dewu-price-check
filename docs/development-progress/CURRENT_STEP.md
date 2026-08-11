@@ -4,31 +4,30 @@
 
 | 字段 | 当前值 |
 | --- | --- |
-| 模式 | `LEARNING_MODE` |
-| 当前步骤 | `F00.1` |
-| 状态 | `WAITING_FOR_FOUNDATION_READINESS_AUDIT` |
-| 当前 Wave | W0 / MOD-00 Foundation 准备 |
-| 当前模块 | `MOD-00 Foundation`（尚未启动 Developer） |
+| 模式 | `AUTONOMOUS_DELIVERY_MODE` |
+| 当前步骤 | `V05.1` |
+| 状态 | `EXECUTING_COORDINATOR_READINESS_AUDIT` |
+| 当前 Wave | W1 / MOD-05 Evidence |
+| 当前模块 | `MOD-05 Evidence`（Issue #4） |
 | 当前角色 | Coordinator |
-| 当前打开任务 | 长期 Coordinator 任务；只执行 F00.1 基线与 Issue #1 就绪审计 |
-| 下一个任务 | 无；F00.1 完成前不得进入 `F00.2` |
+| 当前打开任务 | Coordinator 正在执行 V05.1 的 #4 ready/环境门禁只读审计 |
+| 下一个任务 | #4 通过审计后自动启动 MOD-05 Developer |
 | 允许写代码 | 否 |
 | 允许 commit/push/PR/merge | 否 |
 
 ## 你现在只做这一件事
 
-只读确认已合并治理基线 SHA、GitHub Issue #1 的 ready 状态、直接依赖和未解决门禁。不得启动 MOD-00 Developer。
+按 `AUTONOMOUS_DELIVERY_MODE` 对 Issue #4 做只读 readiness 审计：核验 #1 依赖、状态、开放 PR、失败 CI、允许路径、现有 contracts/imports/tests 与敏感操作门禁。通过后可自动启动 MOD-05 Developer；不得自行进行设备/系统或真实数据操作。
 
-本任务只读；不得修改文件、stage、commit、push、PR、Issue、merge、启动 MOD-00 Developer 或任何其他模块。
+本步骤只读；不得改生产代码、设备/系统、真实 APK/账号/数据或合同。治理同步、Issue 状态记录与下一角色任务由新模式授权，但必须先推送协调上下文。
 
 ## 这一小步完成的证据
 
-- 报告远端 `main` 的治理基线 SHA、Issue #1 的状态和依赖；
-- 不得在没有明确用户授权的情况下进入 `F00.2` 或启动 MOD-00 Developer；
-- 最后一行明确写“等待用户确认 F00.1 审计”。
+- 报告 Issue #4 状态、依赖、开放 PR、失败 CI、允许路径、直接依赖和敏感操作门禁；
+- 审计通过后发布 Coordinator handoff 并自动启动独立 MOD-05 Developer。
 
 ## 完成后怎么办
 
-Coordinator 给出审计证据后停止；只有用户明确授权后，才可进入 F00.2。
+完成审计后按新模式推进到 Developer，不得跳过角色分离或敏感操作门禁。
 
 实时快照日期：2026-08-09。GitHub 状态会变化，Coordinator 每次必须重新读取，不能只相信这份快照。

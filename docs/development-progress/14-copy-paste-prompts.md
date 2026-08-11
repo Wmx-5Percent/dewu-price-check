@@ -2,6 +2,23 @@
 
 把尖括号内容替换成当前模块信息。每条提示词只对应一个原子步骤。
 
+## 所有新任务必须附加的实时交接块
+
+把下列内容放在每个 Developer、QA、Reviewer 提示词的最前面，并替换尖括号。它解决新 worktree 从旧 `main` 基线读取到过期 `CURRENT_STEP.md` 的问题。
+
+```text
+Coordinator handoff snapshot（本任务内的当前操作事实）：
+- 步骤：<STEP_ID>
+- 角色：<ROLE>
+- Issue/PR/head：<ISSUE_PR_HEAD>
+- 允许动作：<ALLOWED_ACTIONS>
+- 禁止动作：<FORBIDDEN_ACTIONS>
+- 停止条件：<STOP_CONDITION>
+- Coordinator 实时文件：/Users/waywei/Desktop/developer/dewu-price-check/docs/development-progress/CURRENT_STEP.md
+
+先读取本 worktree 内的 AGENTS.md 和进度文件；若本地 `CURRENT_STEP.md` 比该 handoff snapshot 旧，只报告该快照差异，并以本 handoff snapshot 执行本任务。它不是 GitHub 依赖或 PR 状态冲突。不得修改本 worktree 的进度控制文档。
+```
+
 ## Coordinator：模块就绪检查
 
 ```text

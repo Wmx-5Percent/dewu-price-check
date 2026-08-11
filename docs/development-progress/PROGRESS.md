@@ -6,26 +6,26 @@
 
 | 项目 | 状态 |
 | --- | --- |
-| 学习模式 | `LEARNING_MODE` |
-| 当前步骤 | `F00.1` |
+| 学习模式 | `AUTONOMOUS_DELIVERY_MODE` |
+| 当前步骤 | `V05.1`（Coordinator readiness audit） |
 | 活跃生产 Developer | 0 |
 | 活跃 QA | 0 |
 | 活跃 Reviewer | 0 |
-| 长期 Coordinator | 执行 F00.1 基线与 Issue #1 就绪审计 |
-| 已合并模块 | 0 / 9 |
-| 当前可启动 GitHub Issue | #1，但必须先完成治理基线 |
+| 长期 Coordinator | J04 已完成；正在对 #4 执行只读 readiness 审计，随后自动派发 MOD-05 |
+| 已合并模块 | 3 / 9（MOD-00 / #1；MOD-01 / #2；MOD-04 / #3） |
+| 当前可启动 GitHub Issue | #4、#5、#6 为 ready；当前按依赖顺序处理 #4 |
 
 ## 阶段进度
 
 | 阶段 | Issue | 当前状态 | 用户是否体验 Developer→QA→Reviewer→Merge |
 | --- | ---: | --- | --- |
 | 治理基线 | 无 | G00.1–G00.15 已完成并已合并到远端 main | 不适用 |
-| W0 / MOD-00 Foundation | #1 | GitHub ready；当前 F00.1 只读审计，尚未启动 Developer | 否 |
-| W1 / MOD-01 Environment | #2 | blocked by #1 | 否 |
-| W1 / MOD-04 Jobs | #3 | blocked by #1 | 否 |
-| W1 / MOD-05 Evidence | #4 | blocked by #1 | 否 |
-| W1 / MOD-06 Export | #5 | blocked by #1 | 否 |
-| W2 / MOD-02 Protocol | #6 | blocked by #1, #2 | 否 |
+| W0 / MOD-00 Foundation | #1 | 已由 PR #13 squash merge；Issue closed | 是 |
+| W1 / MOD-01 Environment | #2 | PR #19 已 squash merge；Issue closed；Root/Frida smoke 已通过 | 是 |
+| W1 / MOD-04 Jobs | #3 | PR #20 已 squash merge 至 `main`；Issue closed | 是 |
+| W1 / MOD-05 Evidence | #4 | Coordinator 正在执行 V05.1 readiness audit | 否 |
+| W1 / MOD-06 Export | #5 | ready candidate；学习模式等待 MOD-01 完整流程 | 否 |
+| W2 / MOD-02 Protocol | #6 | ready；#1、#2 已合并，Root/Frida smoke 已通过；学习模式暂不启动 | 否 |
 | W3 / MOD-03 Frida Agent | #7 | blocked by #1, #2, #6 | 否 |
 | W4 / MOD-07 Integration | #8 | blocked by #3, #4, #5, #7 | 否 |
 | W5 / MOD-08 QA & Portability | #9 | blocked by #2–#8 | 否 |
