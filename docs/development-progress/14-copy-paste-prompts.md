@@ -4,6 +4,18 @@
 
 仍须暂停并交回 Coordinator 的情况只有：设备/系统修改、真实 APK/账号/数据、风险或登录异常、合同变更、破坏性操作、费用、外部发布，以及同一问题连续两轮返工未解决。
 
+优先使用 Coordinator-managed subagent，完成时自动把结果回传 Coordinator。独立 task/chat 只是必要时的回退：它必须在结束前把以下报告发布到模块 Issue 或 PR，Coordinator 通过 GitHub 自动发现并继续，绝不依赖用户复制聊天内容。
+
+```text
+ROLE: Developer | QA | Reviewer
+STATUS: READY_FOR_QA | PASS | FAIL | APPROVE | REQUEST_CHANGES | BLOCKED
+PR: <url>
+HEAD: <sha>
+TESTS: <commands and results>
+BLOCKERS: <none or details>
+NEXT_ACTION: <automatic next role>
+```
+
 ## 所有新任务必须附加的实时交接块
 
 把下列内容放在每个 Developer、QA、Reviewer 提示词最前面，并替换尖括号。
@@ -37,7 +49,7 @@ Coordinator handoff snapshot（本任务的远端操作事实）：
 
 开始时读取 AGENTS.md、handoff、Wave 文件、master plan、Issue、现有 imports/contracts/tests，并确认 git 状态。只改 <ALLOWED_PATHS>；遵守非目标与安全边界。以 Issue 格式发布开工和 Draft PR 证据。运行 <TEST_COMMANDS>，创建包含 Closes #<N>、变更路径、测试、证据、blockers 的 Draft PR。
 
-出现自治暂停条件或同一问题两轮未解时停止报告。否则交付后停止，等待 Coordinator 自动创建独立 QA。
+出现自治暂停条件或同一问题两轮未解时停止报告。否则将统一结构化 Developer 报告发布到模块 Issue/PR，交付后停止，Coordinator 自动创建独立 QA。
 ```
 
 ## QA：独立验证
@@ -45,7 +57,7 @@ Coordinator handoff snapshot（本任务的远端操作事实）：
 ```text
 你是独立 QA，不是本 PR 的 Developer、Reviewer、修复者或 merge executor。处于 AUTONOMOUS_DELIVERY_MODE：在隔离 worktree 精确检出 PR <URL> / head <SHA>，读取 AGENTS.md、handoff、Wave 文件、contract、Issue 和完整 diff。
 
-独立运行与风险相称的测试，包括失败路径、回归、安全、可移植性与验收要求；核对范围、CI 和 Developer 证据。QA 不修改生产实现。输出 PASS、FAIL 或 BLOCKED，包含精确命令、结果、head、复现和 P1/P2。将报告自动回传 Coordinator；FAIL 会自动回原 Developer，PASS 会自动进入新的独立 Reviewer。
+独立运行与风险相称的测试，包括失败路径、回归、安全、可移植性与验收要求；核对范围、CI 和 Developer 证据。QA 不修改生产实现。输出 PASS、FAIL 或 BLOCKED，包含精确命令、结果、head、复现和 P1/P2。将统一结构化 QA 报告发布到模块 Issue/PR；FAIL 会自动回原 Developer，PASS 会自动进入新的独立 Reviewer。
 ```
 
 ## Reviewer：独立只读审查
@@ -53,7 +65,7 @@ Coordinator handoff snapshot（本任务的远端操作事实）：
 ```text
 你是独立 Reviewer，不是 Developer、QA 或 merge executor。处于 AUTONOMOUS_DELIVERY_MODE：在隔离 worktree 对 PR <URL> / head <SHA> 做只读审查。
 
-读取 AGENTS.md Code Review Rules、handoff、contract、完整 diff、QA 证据、Issue 和 CI。检查正确性、安全、数据损失、模块边界、可移植性、敏感数据和验收证据。Reviewer 不改生产实现。输出 APPROVE、REQUEST_CHANGES 或 BLOCKED，问题标明文件/行及 P1/P2。报告自动回传 Coordinator：REQUEST_CHANGES 自动回原 Developer；APPROVE 自动进入 merge-readiness。
+读取 AGENTS.md Code Review Rules、handoff、contract、完整 diff、QA 证据、Issue 和 CI。检查正确性、安全、数据损失、模块边界、可移植性、敏感数据和验收证据。Reviewer 不改生产实现。输出 APPROVE、REQUEST_CHANGES 或 BLOCKED，问题标明文件/行及 P1/P2。将统一结构化 Reviewer 报告发布到模块 Issue/PR：REQUEST_CHANGES 自动回原 Developer；APPROVE 自动进入 merge-readiness。
 ```
 
 ## Coordinator：合并与后续模块

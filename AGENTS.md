@@ -49,10 +49,23 @@ The files under `docs/development-progress/` are the user-operation source of tr
 - Developer, QA, Reviewer, and merge executor remain separate roles for the same production change. A failed QA or Reviewer pass returns to the original Developer, then requires a fresh independent QA and Reviewer.
 - If the same issue remains unresolved after two consecutive repair rounds, stop and report to the user instead of continuing.
 - Pause for explicit user authorization before device/system modification, real APK/account/data use, risk or login anomaly handling, contract changes, destructive operations, costs, or external publication. Also pause for a material GitHub/progress conflict.
+- Prefer Coordinator-managed subagents whose completion automatically returns to the Coordinator. Do not create a role task that depends on the user copying a chat report back.
+- If an independent task/chat is necessary, it must publish its final structured report to the module Issue or PR before stopping. The Coordinator discovers completion from GitHub Issue/PR/CI state and continues automatically.
+- Every role report, whether returned by a subagent or published to GitHub, uses this exact form:
+
+  ```text
+  ROLE: Developer | QA | Reviewer
+  STATUS: READY_FOR_QA | PASS | FAIL | APPROVE | REQUEST_CHANGES | BLOCKED
+  PR: <url>
+  HEAD: <sha>
+  TESTS: <commands and results>
+  BLOCKERS: <none or details>
+  NEXT_ACTION: <automatic next role>
+  ```
 
 ### All modes
 
-- Keep one long-lived Coordinator task. Create a distinct task/chat for each module Developer, independent QA pass, and independent Reviewer pass. A same-PR fix returns to its original Developer.
+- Keep one long-lived Coordinator task. Use a distinct Coordinator-managed subagent for each module Developer, independent QA pass, and independent Reviewer pass; a same-PR fix returns to its original Developer. An independent task/chat is the fallback and must follow the GitHub structured-report rule above.
 - Before creating or dispatching a new Developer, QA, or Reviewer task, publish the task-relevant Coordinator context to the shared repository and name its remote SHA in the handoff.
 - Do not push directly to `main` or force-push shared branches. A Coordinator may use the authorized coordination branch/PR workflow.
 - If GitHub live state conflicts with progress records, resolve and record the mismatch before normal delivery continues.
