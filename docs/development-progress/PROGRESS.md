@@ -11,8 +11,8 @@
 | 活跃生产 Developer | 0 |
 | 活跃 QA | 0 |
 | 受管 QA 任务 | `/root/mod05_p1_retest_qa`（终态 PASS；Issue #4 已发布）；`/root/mod05_second_symlink_qa`（终态 PASS；Issue #4 已发布） |
-| 活跃 Reviewer | 1（待创建：`MOD-05` / second-repair fresh Reviewer） |
-| 受管 Reviewer 任务 | `/root/mod05_final_reviewer`（终态 REQUEST_CHANGES；Issue #4 已发布） |
+| 活跃 Reviewer | 1（`MOD-05` / second-repair fresh Reviewer） |
+| 受管 Reviewer 任务 | `/root/mod05_final_reviewer`（终态 REQUEST_CHANGES；Issue #4 已发布）；`/root/mod05_second_symlink_reviewer`（运行中） |
 | 长期 Coordinator | 第二轮 fresh QA 已 PASS `584ff07`；正在启动 fresh Reviewer；同一边界再失败即暂停 |
 | 已合并模块 | 3 / 9（MOD-00 / #1；MOD-01 / #2；MOD-04 / #3） |
 | 当前可启动 GitHub Issue | #4、#5、#6 为 ready；当前按依赖顺序处理 #4 |
