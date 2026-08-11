@@ -49,6 +49,19 @@
 
 如果 Agent 没有先声明，要求它停止并重新按 `AGENTS.md` 开工门执行。
 
+## Coordinator 实时快照与新 worktree
+
+`CURRENT_STEP.md`、`PROGRESS.md` 和当前 Wave 清单是 Coordinator 主 worktree 中的实时操作记录。它们通常不会包含在模块 PR 中；因此新建的 worktree 若从远端 `main` 开始，可能只看得到旧基线（例如 `F00.1`）。这不是 GitHub/模块依赖冲突，不能据此擅自停止已明确委派的当前步骤。
+
+每次新建 Developer、QA 或 Reviewer task 时，Coordinator 必须：
+
+1. 先检查主 worktree 的 `git status`；若未提交改动仅为进度控制文档，创建 task 时选择 **working-tree** 起点，使最新快照随新 worktree 复制。
+2. 在首条提示词顶部写入“Coordinator handoff snapshot”，包含步骤 ID、角色、PR/Issue、head SHA、允许动作、禁止动作、停止条件和主 worktree 的绝对 `CURRENT_STEP.md` 路径。
+3. 若主 worktree 还有不应复制的生产改动，则从干净 `main` 创建隔离 worktree，但 handoff snapshot 在该 task 内暂时优先于本地旧副本；Agent 必须报告旧副本的存在，但不得把它误报为 GitHub 状态冲突。
+4. Agent 只能修改其指定 worktree；进度控制文档只由 Coordinator 主 worktree 更新，除非用户明确批准其他位置的记录变更。
+
+这样既保留角色/worktree 隔离，又让每个新任务具有同一份当前操作事实。
+
 ## Learning Mode 的并发限制
 
 - Coordinator 可以保持空闲，不算生产并发。

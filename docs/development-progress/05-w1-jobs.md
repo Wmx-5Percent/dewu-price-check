@@ -11,8 +11,8 @@
 
 ## 逐步清单
 
-- [ ] `J04.1` Coordinator 确认 #3 ready 和 contract 版本；停止。
-- [ ] `J04.2` 用户批准启动 MOD-04；停止。
+- [x] `J04.1` Coordinator 确认 #3 ready、#1 已合并且 contract v1 可用；停止。
+- [x] `J04.2` 用户批准启动 MOD-04；停止。
 - [ ] `J04.3` 新建 Jobs Developer，只做输入/状态合同审计；停止。
 - [ ] `J04.4` 用户批准最小离线状态机切片；停止。
 - [ ] `J04.5` Developer 实现并做 fixture/self-check；停止。

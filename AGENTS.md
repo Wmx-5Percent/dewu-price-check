@@ -44,6 +44,7 @@ This repository is being developed by a beginner who must experience the softwar
 - Never combine modification, stage, commit, push, draft PR creation, ready-for-review, merge, branch deletion, system installation, device mutation, or progress advancement into one implied authorization. Each requires the explicit permission defined by the current progress card.
 - A request to “continue” means only the current atomic step, not the rest of a module or Wave. Fast-forwarding or parallelism requires the user to name the target steps explicitly.
 - If GitHub live state conflicts with the progress files, stop and have the Coordinator explain the mismatch. Do not silently rewrite either source.
+- **Coordinator cross-task synchronization.** Before creating or dispatching any new Developer, QA, or Reviewer task, the Coordinator must first commit and push every task-relevant Coordinator change (progress records, governance decisions, approved contracts, and handoff documents) to the shared repository. Never assume another worktree can see the Coordinator's uncommitted files or chat history. Do not push directly to `main`: use an authorized coordination branch/PR or an already merged commit. The new task must start from the named remote SHA and receive a concise handoff containing role, Issue, allowed paths, dependencies, evidence, and stop condition. If the required Coordinator change is not yet authorized for publication, stop and ask for that publication authorization rather than opening a task against stale state.
 - Emergency read-only diagnosis and actions needed to prevent immediate data loss may interrupt the sequence, but normal development must not continue until the user and Coordinator establish a new current step.
 
 ## Role Separation
@@ -119,6 +120,7 @@ Write the least code that safely runs and satisfies the current Issue.
 6. **Inspect before adding.** Check `package.json`, `package-lock.json`, existing imports, Node built-ins, and current contracts before adding a package or utility.
 7. **Make durable architecture decisions.** Reject “temporary now, replace later” paths that contradict the confirmed product boundary. When evidence changes, record an ADR/Issue and deliberately replace the old path.
 8. **Use validated patterns.** Consult primary documentation and established tools before inventing a protocol, persistence format, test harness, or security mechanism.
+9. **Publish task context before delegation.** A Coordinator's local workspace and chat are not shared state. Before delegating, publish the relevant Coordinator state to the repository and identify the remote SHA; every new task must be able to reconstruct its required context from that SHA, the assigned Issue/PR, and its written handoff.
 
 Do not retain dead code, commented-out alternatives, duplicate utilities, or “just in case” switches. Git history provides code rollback; explicit run-state backups provide data rollback.
 

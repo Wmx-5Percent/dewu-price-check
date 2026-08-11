@@ -39,6 +39,17 @@ flowchart LR
 - **Reviewer**：QA 通过后新建。只读审查，不一边审查一边修改。
 - **你**：决定是否接受步骤、是否授权 Git 操作、是否合并、是否切换到并行模式。
 
+## 新建任务前：先同步，不靠聊天记忆
+
+不同 task 的 worktree 不会自动看到 Coordinator 本地未提交的文件，也不会自动拥有之前聊天的上下文。因此每次新建 Developer、QA 或 Reviewer 前，Coordinator 必须：
+
+1. 把这次任务需要的进度、治理决定、合同或 handoff 文档先 `commit` 并 `push` 到共享仓库；不得只留在 Coordinator 工作区。
+2. 不直接 push 到 `main`：按已授权方式使用协调分支/PR，或确认这些变更已合并到远端 `main`。
+3. 记录新任务应从哪个远端 SHA 开始；新任务的第一段交接必须写明角色、Issue、允许路径、依赖、验收证据和停止条件。
+4. 如果同步所需的 commit/push/PR 尚未得到用户授权，先停在 Coordinator，不要带着过期状态新开窗口。
+
+这样 GitHub 仓库，而不是某个本地 worktree 或聊天记忆，才是每个新任务可复现的共同起点。
+
 ## 阅读顺序
 
 1. `CURRENT_STEP.md`：现在只看这一页。
