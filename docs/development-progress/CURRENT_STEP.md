@@ -11,7 +11,7 @@
 | 当前模块 | `MOD-05 Evidence`（Issue #4） |
 | 当前角色 | 独立 MOD-05 QA |
 | 当前打开任务 | 对 PR #23 `584ff07e812e178d359f992fca3e75cff9acaf22` 进行第二轮返修后的隔离复验 |
-| 受管任务 ID | 待 Coordinator 创建并记录；QA 完成后必须直接回传 Coordinator，并在 Issue #4 发布结构化报告 |
+| 受管任务 ID | `/root/mod05_second_symlink_qa`（QA 完成后必须直接回传 Coordinator，并在 Issue #4 发布结构化报告） |
 | 下一个任务 | QA PASS 自动 fresh Reviewer；同一 file-level symlink 边界再失败即暂停报告用户 |
 | 允许写代码 | 否；仅隔离测试、GitHub Issue #4 QA 证据发布 |
 | 允许 commit/push/PR/merge | 否 |

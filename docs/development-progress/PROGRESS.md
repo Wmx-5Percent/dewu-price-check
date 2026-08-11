@@ -10,7 +10,7 @@
 | 当前步骤 | `V05.11`（MOD-05 second-repair fresh QA） |
 | 活跃生产 Developer | 0 |
 | 活跃 QA | 1（待创建：`MOD-05` / second-repair fresh QA） |
-| 受管 QA 任务 | `/root/mod05_p1_retest_qa`（终态 PASS；Issue #4 已发布）；第二轮 fresh QA 待创建并记录 |
+| 受管 QA 任务 | `/root/mod05_p1_retest_qa`（终态 PASS；Issue #4 已发布）；`/root/mod05_second_symlink_qa`（运行中） |
 | 活跃 Reviewer | 0 |
 | 受管 Reviewer 任务 | `/root/mod05_final_reviewer`（终态 REQUEST_CHANGES；Issue #4 已发布） |
 | 长期 Coordinator | 第二轮 file-level symlink 修复已推送 `584ff07`；正在启动 fresh QA；同一边界再失败即暂停 |
