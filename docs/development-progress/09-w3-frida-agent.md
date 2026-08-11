@@ -11,9 +11,9 @@
 
 ## 逐步清单
 
-- [ ] `A03.1` Coordinator 核对 Profile、Frida 版本和 Issue #7 readiness；停止。
-- [ ] `A03.2` 用户批准启动 MOD-03；停止。
-- [ ] `A03.3` 新建 Frida Agent Developer，只做 RPC/contract 审计；停止。
+- [x] `A03.1` Coordinator 核对 Profile、Frida 版本和 Issue #7 readiness：#1/#2/#6 已 closed，main CI/Secret Guard 成功；合成 Protocol Profile 仍 fail-closed，不能充当 live 验证。
+- [x] `A03.2` 用户授权继续后续开发及本机小批真实 SKU 受控 pilot；真实库存/响应/结果不进入 GitHub。
+- [x] `A03.3` 新建受管 Frida Agent Developer：按 #7 仅做 fail-closed RPC/contract 切片，并直接回传 Coordinator。
 - [ ] `A03.4` 用户批准最小 `health`→单搜索→详情→报价切片；停止。
 - [ ] `A03.5` Developer 实现 RPC、分页、会话和版本守卫；停止。
 - [ ] `A03.6` 用户检查是否导出秘密、静默 fallback 或回退 UI；停止。
@@ -28,3 +28,10 @@
 - [ ] `A03.15` Coordinator 判断 merge readiness；停止。
 - [ ] `A03.16` 用户授权 merge；停止。
 - [ ] `A03.17` Coordinator 验证 #7 done 及 W4 全部上游；用户批准后进入 `I07.1`。
+
+## 本机真实库存 pilot 边界（2026-08-11）
+
+- 输入仅为用户提供的本机工作簿；Coordinator 已只读确认其有 12,318 条非空 SKU 记录和 2,978 个去重 SKU。
+- 不需要事先 Golden Sample 或人工同刻 UI 对照；成功后的六列 Excel 仅供用户本机人工检查。
+- pilot 只能在版本/Profile/session/schema 守卫通过后进行，且使用显式确认的登录 AVD；任何风险、登录异常、未知版本、hook/schema 不匹配均保存状态并停止。
+- 不得把真实 SKU、原始响应、Cookie、Token、签名、设备标识或结果工作簿提交、上传或写入 fixture/Issue/PR。
