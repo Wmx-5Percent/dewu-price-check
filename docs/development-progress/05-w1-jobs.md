@@ -21,7 +21,7 @@
 - [x] `J04.8` 用户预授权 commit：`63890c8`；停止。
 - [x] `J04.9` 用户预授权 push：`agent/mod-04/3-jobs`；停止。
 - [x] `J04.10` 用户预授权 draft PR：[#20](https://github.com/Wmx-5Percent/dewu-price-check/pull/20)；停止。
-- [x] `J04.11` 首次独立 Jobs QA：FAIL，P1 为同一并发窗口的全局 blocker 后仍启动后续任务；停止。
+- [x] `J04.11` 首次独立 QA 发现 P1 后，新独立 QA 在 `bc1aa33` 复验 PASS；同窗口 global blocker 修复已关闭。
 - [x] `J04.12` QA 分流回原 Developer；修复已推送至 PR #20 head `bc1aa33`，等待新的独立 QA 复验。
 - [ ] `J04.13` 新建 Jobs Reviewer，只读审查状态转换和竞态；停止。
 - [ ] `J04.14` Review 分流。
