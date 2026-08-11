@@ -69,6 +69,18 @@ test('version, session, sort, secret, schema, and pagination drift fail closed w
   const loopingBackend = { ...backend, async getQuotesPage() { return { correlationId: 'corr-quotes-loop', quotes: [], nextCursor: 'same' }; } };
   const loopSafeAgent = createFridaAgent({ profileState: readyProfile, runtime: readyRuntime, backend: loopingBackend });
   assert.deepEqual(await loopSafeAgent.getQuotes({ productId: 'product-1' }), { status: 'blocked', errorCode: 'SCHEMA_DRIFT', data: null });
+
+  let uniqueCursorCalls = 0;
+  const unboundedCursorBackend = {
+    ...backend,
+    async getQuotesPage() {
+      uniqueCursorCalls += 1;
+      return { correlationId: `corr-quotes-${uniqueCursorCalls}`, quotes: [], nextCursor: `cursor-${uniqueCursorCalls}` };
+    }
+  };
+  const boundedAgent = createFridaAgent({ profileState: readyProfile, runtime: readyRuntime, backend: unboundedCursorBackend });
+  assert.deepEqual(await boundedAgent.getQuotes({ productId: 'product-1' }), { status: 'blocked', errorCode: 'SCHEMA_DRIFT', data: null });
+  assert.equal(uniqueCursorCalls, 16);
 });
 
 test('the Frida entrypoint equivalent is permanently fail-closed until a validated backend exists', async () => {

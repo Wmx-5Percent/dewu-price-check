@@ -4,6 +4,7 @@ const EXPECTED_APP = Object.freeze({ packageName: 'com.shizhuang.duapp', version
 const SECRET_KEY = /(?:authorization|cookie|token|signature|device(?:id|secret)?|secret|password|credential|header|body)/i;
 const SECRET_VALUE = /(?:bearer\s+[a-z0-9._~+\-/]+=*|(?:cookie|authorization|token|signature|device(?:[_-]?(?:id|secret))?)\s*[:=])/i;
 const CORRELATION_ID = /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/;
+const MAX_QUOTE_PAGES = 16;
 
 const blocked = (errorCode) => Object.freeze({ status: 'blocked', errorCode, data: null });
 const ready = (data) => Object.freeze({ status: 'ready', errorCode: null, data: Object.freeze(data) });
@@ -136,8 +137,10 @@ export const createFridaAgent = ({ profileState, runtime, backend } = {}) => {
         const quotes = [...page.data.quotes];
         let cursor = page.data.nextCursor;
         let correlationId = page.data.correlationId;
+        let pageCount = 1;
         const seen = new Set();
         while (cursor !== null) {
+          if (pageCount >= MAX_QUOTE_PAGES) return blocked(ERROR_CODES.SCHEMA_DRIFT);
           if (seen.has(cursor)) return blocked(ERROR_CODES.SCHEMA_DRIFT);
           seen.add(cursor);
           const next = await invoke('getQuotesPage', { productId, cursor }, normalizeQuotesPage);
@@ -145,6 +148,7 @@ export const createFridaAgent = ({ profileState, runtime, backend } = {}) => {
           quotes.push(...next.data.quotes);
           cursor = next.data.nextCursor;
           correlationId = next.data.correlationId;
+          pageCount += 1;
         }
         return ready({ correlationId, quotes, pagination: { complete: true } });
       } catch {
