@@ -44,7 +44,8 @@ export const runCli = async ({ args, collection = runCollection, paths, agent } 
     checkpointPath: runtimePaths.checkpointPath,
     evidenceStore: runtimePaths.evidenceStore,
     outputPath: runtimePaths.outputPath,
-    agent
+    agent,
+    device: command.device
   });
   return Object.freeze({
     command,

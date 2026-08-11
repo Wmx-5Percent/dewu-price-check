@@ -1,4 +1,6 @@
 import { createFailClosedRpcExports } from '../../src/frida/index.mjs';
+import { mkdir } from 'node:fs/promises';
+import { dirname } from 'node:path';
 import { appendEvidenceLog, persistEvidence, scanForSecrets } from '../../src/evidence/index.mjs';
 import { createExceptionRow, writeExportWorkbook } from '../../src/export/index.mjs';
 import { createJobState, readExcelInput, runJobs } from '../../src/jobs/index.mjs';
@@ -99,15 +101,29 @@ const healthError = async (agent) => {
   }
 };
 
+const deviceBindingError = async (agent, device) => {
+  if (device === null || device === undefined) return null;
+  if (typeof agent?.bindDevice !== 'function') return ERROR_CODES.EMULATOR_UNAVAILABLE;
+  try {
+    const binding = await agent.bindDevice({ device });
+    return isReady(binding) ? null : errorCodeFor(binding);
+  } catch {
+    return ERROR_CODES.EMULATOR_UNAVAILABLE;
+  }
+};
+
 export const runCollection = async ({
   inputPath,
   checkpointPath,
   evidenceStore,
   outputPath,
   agent = failClosedAgent(),
+  device = null,
   maxConcurrency = 4,
   maxAttempts = 2
 }) => {
+  const bindingBlocker = await deviceBindingError(agent, device);
+  if (bindingBlocker) return Object.freeze({ status: 'blocked', errorCode: bindingBlocker, output: null, state: null });
   const earlyBlocker = await healthError(agent);
   if (earlyBlocker) return Object.freeze({ status: 'blocked', errorCode: earlyBlocker, output: null, state: null });
 
@@ -126,6 +142,7 @@ export const runCollection = async ({
   }
 
   const rows = state.tasks.flatMap((task) => rowsBySku.get(task.sku) ?? []);
+  await mkdir(dirname(outputPath), { recursive: true });
   const output = await writeExportWorkbook({ rows, outputPath });
   return Object.freeze({ status: 'ready', errorCode: null, output, state });
 };

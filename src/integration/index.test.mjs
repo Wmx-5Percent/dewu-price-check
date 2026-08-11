@@ -12,6 +12,7 @@ import { runCollection } from './index.mjs';
 const ready = (data) => ({ status: 'ready', errorCode: null, data });
 
 const fixtureAgent = {
+  async bindDevice({ device }) { return ready({ device }); },
   async health() { return ready({ status: 'ready', errorCode: null }); },
   async searchBySku({ sku, sort }) {
     assert.equal(sort, 'sales_desc');
@@ -69,6 +70,20 @@ test('pending Profile blocks before inventory input or Excel output is read or w
   });
 });
 
+test('a requested device must bind through the Agent or fail closed', async () => {
+  await withFixtureRun(async (paths) => {
+    const bindings = [];
+    const boundAgent = { ...fixtureAgent, async bindDevice({ device }) { bindings.push(device); return ready({ device }); } };
+    const bound = await runCollection({ ...paths, agent: boundAgent, device: 'emulator-synthetic' });
+    assert.equal(bound.status, 'ready');
+    assert.deepEqual(bindings, ['emulator-synthetic']);
+
+    const unboundAgent = { health: fixtureAgent.health, searchBySku: fixtureAgent.searchBySku, getProduct: fixtureAgent.getProduct, getQuotes: fixtureAgent.getQuotes };
+    const rejected = await runCollection({ ...paths, agent: unboundAgent, device: 'emulator-synthetic' });
+    assert.deepEqual(rejected, { status: 'blocked', errorCode: 'EMULATOR_UNAVAILABLE', output: null, state: null });
+  });
+});
+
 test('schema drift blocks the full run and does not emit a partial workbook', async () => {
   await withFixtureRun(async (paths) => {
     const driftAgent = { ...fixtureAgent, async getQuotes() { return ready({ correlationId: 'quotes-drift', quotes: [], pagination: { complete: false } }); } };
@@ -98,13 +113,27 @@ test('CLI accepts only the versioned collect fields and returns a sanitized summ
   assert.throws(() => createLocalRunPaths('../escape'), /CLI_RUN_ID_UNSAFE/);
   await withFixtureRun(async (paths) => {
     const result = await runCli({
-      args: ['collect', '--input', paths.inputPath, '--run-id', 'run-synthetic'],
+      args: ['collect', '--input', paths.inputPath, '--device', 'emulator-synthetic', '--run-id', 'run-synthetic'],
       paths,
       agent: fixtureAgent
     });
     assert.deepEqual(result, {
-      command: { command: 'collect', input: paths.inputPath, device: null, runId: 'run-synthetic' },
+      command: { command: 'collect', input: paths.inputPath, device: 'emulator-synthetic', runId: 'run-synthetic' },
       status: 'ready', errorCode: null, output: { rows: 4, worksheetName: '得物结果' }, baseline: 2
     });
+  });
+});
+
+test('default local CLI paths create the outputs directory before a successful workbook write', async () => {
+  await withFixtureRun(async (paths) => {
+    const originalDirectory = process.cwd();
+    process.chdir(paths.directory);
+    try {
+      const result = await runCli({ args: ['collect', '--input', paths.inputPath, '--run-id', 'default-output'], agent: fixtureAgent });
+      assert.equal(result.status, 'ready');
+      await access(join(paths.directory, 'outputs', 'dewu-default-output.xlsx'));
+    } finally {
+      process.chdir(originalDirectory);
+    }
   });
 });
