@@ -18,13 +18,14 @@
 - [x] `P02.3` 新建 Protocol Developer：pre-live audit BLOCKED，Java 17 未通过且无专用在线 serial；未触碰设备/APK/登录/真实数据。
 - [x] `P02.5` Java 17、专用 Root AVD、arm64 与 Frida 17.16.4 门禁通过；APK/版本/登录与专用 serial 门禁通过。Draft PR #28 已提供合成安全骨架。
 - [x] `P02.4` 用户确认单链路范围：不区分类别；搜索 SKU 时传 `sales_desc` 并选择响应项目 1。
+- [x] `P02.5` Developer 按单链路范围完成最小 Profile/fixture/test，Draft PR #28 更新为 `62f0315`。
 - [ ] `P02.5` Developer 在受控会话中建立最小发现工具和 Profile 草案；遇风险立即停止。
 - [ ] `P02.6` 用户检查脱敏前后字段、UI 同刻对照和字段证据；停止。
 - [ ] `P02.7` 用户授权只 stage 代码、Profile 和复核后的脱敏 fixture；停止。
 - [ ] `P02.8` 用户授权 commit；停止。
 - [ ] `P02.9` 用户授权 push；停止。
 - [ ] `P02.10` 用户授权 draft PR；停止。
-- [ ] `P02.11` 新建 Protocol QA，独立验证 SKU 搜索、`sales_desc`、响应项目 1、schema drift 和秘密扫描；停止。
+- [ ] `P02.11` 新建 Protocol QA，独立验证 SKU 搜索、`sales_desc`、响应项目 1、schema drift 和秘密扫描；进行中。
 - [ ] `P02.12` QA 分流。
 - [ ] `P02.13` 新建 Protocol Reviewer，只读审查 hook/profile/脱敏边界；停止。
 - [ ] `P02.14` Review 分流。
