@@ -5,27 +5,27 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `X06.3` |
-| 状态 | `AUTONOMOUS_EXPORT_DEVELOPER_AUDIT_AND_DELIVERY` |
+| 当前步骤 | `X06.11` |
+| 状态 | `AUTONOMOUS_EXPORT_FRESH_QA` |
 | 当前 Wave | W1 / MOD-06 Export |
 | 当前模块 | `MOD-06 Export`（Issue #5） |
-| 当前角色 | 独立 MOD-06 Developer |
-| 当前打开任务 | 对 #5 的六列合同、ExcelJS、现有 exports/tests 进行审计，然后在允许路径内交付最小 Excel 导出切片 |
-| 受管任务 ID | `/root/mod06_export_developer`（Developer 必须发布 Issue #5 structured report 并直接回传 Coordinator） |
-| 下一个任务 | Developer READY_FOR_QA 后自动 fresh QA → fresh Reviewer → CI → non-author squash merge |
-| 允许写代码 | 是，仅 `src/export/**` 与 export tests |
-| 允许 commit/push/PR/merge | 可精确 stage、commit、push `agent/mod-06/5-export` 并创建 Draft PR；不得自行 QA、Review 或 merge |
+| 当前角色 | 独立 MOD-06 QA |
+| 当前打开任务 | 对 Draft PR #27 `e55a38427ed0455c70e2fee63553729bb8f5ff36` 的六列 Excel 导出进行隔离复验 |
+| 受管任务 ID | 待 Coordinator 创建并记录；QA 必须发布 Issue #5 structured report 并直接回传 Coordinator |
+| 下一个任务 | QA PASS 后自动 fresh Reviewer → CI → non-author squash merge |
+| 允许写代码 | 否；仅隔离测试、GitHub Issue #5 QA 证据发布 |
+| 允许 commit/push/PR/merge | 否 |
 
 ## 你现在只做这一件事
 
-MOD-05 已由 PR #23 在 `b59ac5b9d6b1bd0fdd90065bba68607643a7b224` squash merge，Issue #4 已关闭。Issue #5 为 OPEN + `status:ready`，直接依赖 #1 已关闭、无 MOD-06 open PR；Developer 必须先审计严格六列 schema、ExcelJS 固定依赖、现有 export-contract 测试与所有 imports，再实现最小合成 Excel output/validation。
+MOD-06 Developer 已将严格六列 Export 切片推送至 Draft PR #27 `e55a38427ed0455c70e2fee63553729bb8f5ff36`。QA 必须在 detached 隔离检出中独立检查 headers/order、行粒度、Dewu size 文本保留、空报价/异常行、公式错误扫描、重开工作簿验证、合同污染、范围与实时 CI。
 
 不得改 contracts/dependencies、设备/系统、真实 APK/账号/数据、Android/Frida、Jobs、Evidence 或 Integration；不得扩展六列、库存尺码映射、内部 evidence 字段或公式推断。任何合同变化、真实秘密、破坏性操作或 Excel 格式不可验证必须停止报告 Coordinator。
 
 ## 这一小步完成的证据
 
-- #5 ready 审计：#1 已 closed、#5 OPEN + `status:ready`、无 MOD-06 PR、`origin/main` 已含 MOD-05 merge 且 CI/Secret Guard 成功；
-- Developer 完成合同/依赖审计、最小实现、自检、精确 commit/push/Draft PR，并在 Issue #5 留存 structured report。
+- 精确 head 的 fresh 独立 QA structured report 已发布到 Issue #5，并直接回传 Coordinator；
+- QA PASS 自动启动 fresh Reviewer。
 
 ## 完成后怎么办
 
