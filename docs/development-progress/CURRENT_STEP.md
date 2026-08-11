@@ -11,7 +11,7 @@
 | 当前模块 | `MOD-06 Export`（Issue #5） |
 | 当前角色 | 独立 MOD-06 Developer |
 | 当前打开任务 | 对 #5 的六列合同、ExcelJS、现有 exports/tests 进行审计，然后在允许路径内交付最小 Excel 导出切片 |
-| 受管任务 ID | 待 Coordinator 创建并记录；Developer 必须发布 Issue #5 structured report 并直接回传 Coordinator |
+| 受管任务 ID | `/root/mod06_export_developer`（Developer 必须发布 Issue #5 structured report 并直接回传 Coordinator） |
 | 下一个任务 | Developer READY_FOR_QA 后自动 fresh QA → fresh Reviewer → CI → non-author squash merge |
 | 允许写代码 | 是，仅 `src/export/**` 与 export tests |
 | 允许 commit/push/PR/merge | 可精确 stage、commit、push `agent/mod-06/5-export` 并创建 Draft PR；不得自行 QA、Review 或 merge |
