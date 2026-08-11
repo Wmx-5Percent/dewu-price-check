@@ -26,8 +26,7 @@
 - [x] `X06.11` 新建 P1 修复后的 fresh Export QA：有限价格修复通过，但 FAIL：PR 含四个未授权 progress docs 路径。
 - [x] `X06.12` QA 分流回原 Developer：已推送 `1464ac8`，PR 范围恢复为两条允许路径。
 - [x] `X06.11` 新建范围修复后的 fresh Export QA；PASS，`1464ac8`，Issue #5 已留存证据。
-- [ ] `X06.13` 新建 Export Reviewer，只读审查合同污染和格式推断；进行中。
-- [ ] `X06.14` Review 分流。
-- [ ] `X06.15` Coordinator 判断 merge readiness；停止。
-- [ ] `X06.16` 用户授权 merge；停止。
-- [ ] `X06.17` Coordinator 验证 #5 done，并检查 W1 全部结果；用户批准后进入 `P02.1`。
+- [x] `X06.13` 新建 Export Reviewer：APPROVE，`1464ac8`，Issue #5 已留存证据。
+- [x] `X06.15` Coordinator merge readiness：范围、QA、Reviewer 与 18 项 CI/Secret Guard 均通过。
+- [x] `X06.16` `AUTONOMOUS_DELIVERY_MODE` 预授权非作者 squash merge；PR #27 已合并为 `3d46348`。
+- [x] `X06.17` Coordinator 验证 #5 closed；进入 `P02.1`。

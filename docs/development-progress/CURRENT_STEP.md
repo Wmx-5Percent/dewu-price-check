@@ -5,15 +5,15 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `X06.13` |
-| 状态 | `AUTONOMOUS_EXPORT_FRESH_REVIEW` |
-| 当前 Wave | W1 / MOD-06 Export |
-| 当前模块 | `MOD-06 Export`（Issue #5） |
-| 当前角色 | 独立 MOD-06 Reviewer |
-| 当前打开任务 | 对 PR #27 `1464ac80f56111589435c59cf007ddfad1777dc6` 做最终只读审查 |
-| 受管任务 ID | 待 Coordinator 创建并记录 |
-| 下一个任务 | Reviewer APPROVE 且 CI 通过后自动 merge readiness 和 non-author squash merge |
-| 允许写代码 | 否；仅只读审查与 Issue #5 Reviewer 证据 |
+| 当前步骤 | `P02.1` |
+| 状态 | `AUTONOMOUS_PROTOCOL_READINESS_AUDIT` |
+| 当前 Wave | W2 / MOD-02 Protocol Discovery |
+| 当前模块 | `MOD-02 Protocol Discovery`（Issue #6） |
+| 当前角色 | Coordinator |
+| 当前打开任务 | 只读核对 #6 依赖、PR/CI 与受控设备门禁；不得启动 live discovery |
+| 受管任务 ID | 不适用（Coordinator 只读审计） |
+| 下一个任务 | live discovery 涉及设备、真实 APK/账号/数据，等待用户明确授权 |
+| 允许写代码 | 否 |
 | 允许 commit/push/PR/merge | 否 |
 
 ## 你现在只做这一件事
