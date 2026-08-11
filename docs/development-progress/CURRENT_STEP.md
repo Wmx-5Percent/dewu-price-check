@@ -3,15 +3,15 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `I07.11` |
-| 状态 | `MOD-07_FRESH_QA_AFTER_REPAIR` |
+| 当前步骤 | `I07.12` |
+| 状态 | `PAUSED_AFTER_SECOND_DEVICE_BINDING_REPAIR` |
 | 当前 Wave | W4 / MOD-07 Integration |
 | 当前模块 | `MOD-07 Integration`（Issue #8） |
-| 当前角色 | 新独立 MOD-07 QA（受 Coordinator 管理） |
-| 当前打开任务 | 对 PR #30 / `c051c7acb9ec0e07ac1d8189ab1ef4ded9642757` 复验两项 CLI P1 与 fail-closed 边界 |
-| 受管任务 ID | `/root/mod07_integration_repair_qa` |
-| 下一个任务 | QA PASS 后自动新建新的 Reviewer；QA FAIL 回原 Developer |
-| 允许写代码 | 否（可在临时隔离目录运行测试） |
+| 当前角色 | Coordinator |
+| 当前打开任务 | 报告并暂停同一 device-binding P1 的第二轮未闭合返工；不得自行开始第三轮 |
+| 受管任务 ID | `/root/mod07_integration_repair_qa`（终态 FAIL） |
+| 下一个任务 | 等待用户决定是否授权一次聚焦最终修复 |
+| 允许写代码 | 否 |
 | 允许 commit/push/PR/merge | 否 |
 
 ## 当前边界
@@ -26,4 +26,4 @@ MOD-03 已在 `7abbc2a391b650d2f7236c0c56de33bfe2e9582d` squash merge，Issue #7
 - 原 MOD-07 Developer 正确发现旧 Coordinator 分支 `c9811ab` 不含已合并的 MOD-03 文件；main-based handoff 已重建。Developer 已创建 Draft PR #30，head `0e663fee72a86a3754d2382f74cd1892de4abc03`。
 - 不得使用真实 SKU、设备或登录态来代替 fixture/contract 测试；任何 Profile/session/schema/risk/version 失败必须全局阻断并停止。
 
-独立 QA 在 PR #30 / `0e663fee` 发现 outputs 目录缺失与 `--device` serial 静默丢失两项 P1；原 Developer 第 1 轮受限返工。返工后必须 fresh QA → fresh Reviewer → CI → 非作者 squash merge。真实数据 pilot 必须在 Integration/Agent 守卫可用后执行，且只输出本机文件。
+第一轮 QA 发现 outputs 目录缺失与 `--device` serial 静默丢失，Developer 修复后新 QA 确认目录创建和 serial 透传，但发现 `bindDevice()` 返回 blocked 结果时没有归一为 `EMULATOR_UNAVAILABLE`。这属于同一 device-binding P1 的第二轮未闭合返工，按自治规则暂停，等待用户决定。真实数据 pilot 仍不得执行。

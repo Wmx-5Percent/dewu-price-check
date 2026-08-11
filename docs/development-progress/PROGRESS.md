@@ -7,10 +7,10 @@
 | 项目 | 状态 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `I07.12`（MOD-07 Integration P1 repair） |
-| 活跃生产 Developer | 1（原 MOD-07 Developer 返工第 1 轮） |
+| 当前步骤 | `I07.12`（MOD-07 device-binding P1 暂停） |
+| 活跃生产 Developer | 0 |
 | 活跃 QA / Reviewer | 0 / 0 |
-| 长期 Coordinator | MOD-07 QA 发现 outputs 目录与 `--device` serial P1；原 Developer 正在修复 PR #30 |
+| 长期 Coordinator | MOD-07 第二个 QA 发现 blocked bindDevice 结果未归一为 EMULATOR_UNAVAILABLE；同一 P1 第二轮未闭合，等待用户决定 |
 | 已合并模块 | 7 / 9（MOD-00 / #1；MOD-01 / #2；MOD-04 / #3；MOD-05 / #4；MOD-06 / #5；MOD-02 / #6；MOD-03 / #7） |
 | 当前可启动 GitHub Issue | #8（Integration）；真实库存 pilot 仅本机，需先通过 Agent/Profile/session/schema 守卫 |
 
@@ -25,7 +25,7 @@
 | W1 / MOD-06 Export | #5 | merged / closed | 是 |
 | W2 / MOD-02 Protocol | #6 | merged / closed；live Profile 仍 fail-closed | 是 |
 | W3 / MOD-03 Frida Agent | #7 | PR #29 merged / closed；live Profile 仍 fail-closed | 是 |
-| W4 / MOD-07 Integration | #8 | PR #30 第 1 轮 P1 返工；预先 Golden Sample 已免除，真实 pilot 仍 local-only | 进行中 |
+| W4 / MOD-07 Integration | #8 | device-binding P1 第二轮未闭合，按自治规则暂停；真实 pilot 未执行 | 暂停 |
 | W5 / MOD-08 QA & Portability | #9 | blocked by #2–#8 | 否 |
 | W6 / Full Run | #10 | blocked by #9 | 否 |
 
