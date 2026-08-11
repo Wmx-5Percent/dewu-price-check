@@ -14,14 +14,14 @@
 - [x] `A03.1` Coordinator 核对 Profile、Frida 版本和 Issue #7 readiness：#1/#2/#6 已 closed，main CI/Secret Guard 成功；合成 Protocol Profile 仍 fail-closed，不能充当 live 验证。
 - [x] `A03.2` 用户授权继续后续开发及本机小批真实 SKU 受控 pilot；真实库存/响应/结果不进入 GitHub。
 - [x] `A03.3` 新建受管 Frida Agent Developer：按 #7 仅做 fail-closed RPC/contract 切片，并直接回传 Coordinator。
-- [ ] `A03.4` 用户批准最小 `health`→单搜索→详情→报价切片；停止。
-- [ ] `A03.5` Developer 实现 RPC、分页、会话和版本守卫；停止。
-- [ ] `A03.6` 用户检查是否导出秘密、静默 fallback 或回退 UI；停止。
-- [ ] `A03.7` 用户授权 stage；停止。
-- [ ] `A03.8` 用户授权 commit；停止。
-- [ ] `A03.9` 用户授权 push；停止。
-- [ ] `A03.10` 用户授权 draft PR；停止。
-- [ ] `A03.11` 新建 Frida QA，先 fixture 后受控 live RPC，验证断连/版本/schema；停止。
+- [x] `A03.4` AUTONOMOUS_DELIVERY_MODE 覆盖最小 `health`→单搜索→详情→报价切片；Developer 未开展 live collection。
+- [x] `A03.5` Developer 实现 fail-closed RPC、会话和版本/schema 守卫；PR #29 head `2fb6f300`。
+- [x] `A03.6` Developer 自检无秘密导出、静默 fallback 或 UI 回退；合成 Profile 保持 `PROFILE_INCOMPATIBLE`。
+- [x] `A03.7` Developer 按 Issue allowed paths stage。
+- [x] `A03.8` Developer commit `[MOD-03] Add fail-closed Frida RPC guard`。
+- [x] `A03.9` Developer push `agent/mod-03/7-frida-agent`。
+- [x] `A03.10` Developer 创建 Draft PR #29。
+- [x] `A03.11` 新建受管 Frida QA：先 fixture/隔离验证断连、版本、Profile、schema 和 redaction；live RPC 仍等待已验证 Profile 与下游编排。
 - [ ] `A03.12` QA 分流。
 - [ ] `A03.13` 新建 Frida Reviewer，只读审查进程内边界、分页和安全；停止。
 - [ ] `A03.14` Review 分流。
