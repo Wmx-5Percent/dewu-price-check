@@ -7,13 +7,13 @@
 | 项目 | 状态 |
 | --- | --- |
 | 学习模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `V05.11`（MOD-05 second-repair fresh QA） |
+| 当前步骤 | `V05.13`（MOD-05 second-repair fresh Reviewer） |
 | 活跃生产 Developer | 0 |
-| 活跃 QA | 1（待创建：`MOD-05` / second-repair fresh QA） |
-| 受管 QA 任务 | `/root/mod05_p1_retest_qa`（终态 PASS；Issue #4 已发布）；`/root/mod05_second_symlink_qa`（运行中） |
-| 活跃 Reviewer | 0 |
+| 活跃 QA | 0 |
+| 受管 QA 任务 | `/root/mod05_p1_retest_qa`（终态 PASS；Issue #4 已发布）；`/root/mod05_second_symlink_qa`（终态 PASS；Issue #4 已发布） |
+| 活跃 Reviewer | 1（待创建：`MOD-05` / second-repair fresh Reviewer） |
 | 受管 Reviewer 任务 | `/root/mod05_final_reviewer`（终态 REQUEST_CHANGES；Issue #4 已发布） |
-| 长期 Coordinator | 第二轮 file-level symlink 修复已推送 `584ff07`；正在启动 fresh QA；同一边界再失败即暂停 |
+| 长期 Coordinator | 第二轮 fresh QA 已 PASS `584ff07`；正在启动 fresh Reviewer；同一边界再失败即暂停 |
 | 已合并模块 | 3 / 9（MOD-00 / #1；MOD-01 / #2；MOD-04 / #3） |
 | 当前可启动 GitHub Issue | #4、#5、#6 为 ready；当前按依赖顺序处理 #4 |
 
@@ -25,7 +25,7 @@
 | W0 / MOD-00 Foundation | #1 | 已由 PR #13 squash merge；Issue closed | 是 |
 | W1 / MOD-01 Environment | #2 | PR #19 已 squash merge；Issue closed；Root/Frida smoke 已通过 | 是 |
 | W1 / MOD-04 Jobs | #3 | PR #20 已 squash merge 至 `main`；Issue closed | 是 |
-| W1 / MOD-05 Evidence | #4 | 第二轮 file-level symlink 修复已推送；fresh QA 进行中 | 否 |
+| W1 / MOD-05 Evidence | #4 | 第二轮 file-level symlink 修复经 fresh QA 通过；fresh Reviewer 进行中 | 否 |
 | W1 / MOD-06 Export | #5 | ready candidate；学习模式等待 MOD-01 完整流程 | 否 |
 | W2 / MOD-02 Protocol | #6 | ready；#1、#2 已合并，Root/Frida smoke 已通过；学习模式暂不启动 | 否 |
 | W3 / MOD-03 Frida Agent | #7 | blocked by #1, #2, #6 | 否 |
