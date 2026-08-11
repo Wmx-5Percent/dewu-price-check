@@ -23,8 +23,8 @@
 - [x] `J04.10` 用户预授权 draft PR：[#20](https://github.com/Wmx-5Percent/dewu-price-check/pull/20)；停止。
 - [x] `J04.11` 首次独立 QA 发现 P1 后，新独立 QA 在 `bc1aa33` 复验 PASS；同窗口 global blocker 修复已关闭。
 - [x] `J04.12` QA 分流回原 Developer；修复已推送至 PR #20 head `bc1aa33`，等待新的独立 QA 复验。
-- [ ] `J04.13` 新建 Jobs Reviewer，只读审查状态转换和竞态；停止。
-- [ ] `J04.14` Review 分流。
+- [x] `J04.13` 独立 Reviewer：REQUEST_CHANGES；发现 batch 内 global blocker 与大小写去重两项 P1。
+- [ ] `J04.14` Review 分流回原 Developer；只修复两项 P1 并补回归测试，未获授权前不得 stage。
 - [ ] `J04.15` Coordinator 判断 merge readiness；停止。
 - [ ] `J04.16` 用户授权 merge；停止。
 - [ ] `J04.17` Coordinator 验证 #3 done；用户批准后进入 `V05.1`。

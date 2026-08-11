@@ -5,30 +5,30 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `LEARNING_MODE` |
-| 当前步骤 | `J04.13` |
-| 状态 | `WAITING_FOR_INDEPENDENT_JOBS_REVIEW` |
+| 当前步骤 | `J04.14` |
+| 状态 | `DEVELOPER_REMEDIATION_UNSTAGED` |
 | 当前 Wave | W1 / MOD-04 Jobs |
 | 当前模块 | `MOD-04 Jobs`（Issue #3） |
-| 当前角色 | 新建独立 MOD-04 Reviewer |
-| 当前打开任务 | 新的独立 Reviewer；只读审查 PR #20 head `bc1aa33` 的状态转换、竞态、P1 修复与 QA 证据 |
-| 下一个任务 | 无；Reviewer 报告和用户验收前不得进入 merge readiness |
-| 允许写代码 | 否 |
-| 允许 commit/push/PR/merge | 否 |
+| 当前角色 | 原 MOD-04 Developer |
+| 当前打开任务 | 原 Developer；只修复 PR #20 的 batch 内 global blocker 与大小写去重两项 P1，并补回归测试 |
+| 下一个任务 | 无；Developer 自检报告后等待单独 stage 授权 |
+| 允许写代码 | 是，仅 Issue #3 允许路径 |
+| 允许 commit/push/PR/merge | 禁止；本步骤只允许修复与开发自检，未获授权前不得 stage、commit、push、PR、ready 或 merge |
 
 ## 你现在只做这一件事
 
-在隔离 worktree 的 PR #20 head `bc1aa33b88a42aaf8a824975be83b4f99d92d4f0` 上只读审查状态转换、并发调度、全局 blocker、原子 checkpoint、恢复、失败路径、PR/Issue QA 证据、CI 和允许路径。
+在原 MOD-04 Developer worktree 的 PR #20 分支上，只修复两项 Reviewer P1：(1) batch 内先返回的 global blocker 必须阻止同一 batch 后续任务被调用；(2) SKU 去重必须统一大小写。补充窄回归测试并运行开发自检。
 
-不得修改生产代码、测试、文档、Git 或 GitHub；不得 stage、commit、push、PR、ready、merge 或删除分支；不得进行 Android/AVD/ADB/Frida 或真实业务数据操作。
+不得修改 Issue #3 允许路径以外的文件；不得触碰 Android/AVD/ADB/Frida、真实业务数据、合同或依赖；不得 stage、commit、push、创建/变更 PR、ready、merge 或删除分支。
 
 ## 这一小步完成的证据
 
-- 报告精确 head、QA/Issue/CI 证据、P1 是否关闭、P1/P2 发现及 merge-readiness 建议；
-- 明确说明未修改任何文件或 Git/GitHub 状态；
-- 最后一行明确写“等待用户验收 J04.13 并单独授权 J04.15 merge-readiness”。
+- 报告精确修改文件、两项 P1 的回归测试、自检结果、未暂存工作树状态和剩余风险；
+- 明确说明未 stage、commit、push 或变更 GitHub；
+- 最后一行明确写“等待用户对 J04.14 修复验收并单独授权 stage”。
 
 ## 完成后怎么办
 
-Reviewer 报告后停止；不得自行变更 PR 状态或 merge。
+Developer 报告后停止；修复推送后必须重新新建独立 QA 和 Reviewer。
 
 实时快照日期：2026-08-09。GitHub 状态会变化，Coordinator 每次必须重新读取，不能只相信这份快照。
