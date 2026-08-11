@@ -14,13 +14,13 @@
 - [x] `X06.1` Coordinator 确认 #5 ready：#1/#4 closed、#5 OPEN + `status:ready`、无 MOD-06 PR、main CI/Secret Guard 成功。
 - [x] `X06.2` `AUTONOMOUS_DELIVERY_MODE` 批准启动 MOD-06。
 - [x] `X06.3` 新建 Export Developer，审计六列合同/ExcelJS 后在允许路径内完成最小交付；Draft PR #27，`e55a384`。
-- [ ] `X06.4` 用户批准最小合成输入→Excel 切片；停止。
-- [ ] `X06.5` Developer 实现并自检列名、特殊尺码、空报价、异常行；停止。
-- [ ] `X06.6` 用户打开说明，确认没有库存尺码映射或内部字段；停止。
-- [ ] `X06.7` 用户授权 stage；停止。
-- [ ] `X06.8` 用户授权 commit；停止。
-- [ ] `X06.9` 用户授权 push；停止。
-- [ ] `X06.10` 用户授权 draft PR；停止。
+- [x] `X06.4` `AUTONOMOUS_DELIVERY_MODE` 批准最小合成输入→Excel 切片。
+- [x] `X06.5` Developer 实现并自检列名、特殊尺码、空报价、异常行；最终 5/5 Export、34/34 全量通过。
+- [x] `X06.6` 合同/QA/Reviewer 均确认：无库存尺码映射、内部字段或六列污染。
+- [x] `X06.7` Developer 精确 stage 允许的 Export 实现与测试路径。
+- [x] `X06.8` Developer commit 并完成有限价格与范围 P1 返工提交。
+- [x] `X06.9` Developer push `agent/mod-06/5-export`。
+- [x] `X06.10` Developer 创建 Draft PR [#27](https://github.com/Wmx-5Percent/dewu-price-check/pull/27)。
 - [x] `X06.11` 新建 Export QA：FAIL；发现 `NaN`/`Infinity`/`-Infinity` 价格未被 writer/verifier 拒绝。
 - [x] `X06.12` QA 分流回原 Developer：仅修复非有限价格拒绝并补回归测试；已推送 `4444254`。
 - [x] `X06.11` 新建 P1 修复后的 fresh Export QA：有限价格修复通过，但 FAIL：PR 含四个未授权 progress docs 路径。
