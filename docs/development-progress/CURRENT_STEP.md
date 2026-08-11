@@ -6,26 +6,26 @@
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
 | 当前步骤 | `P02.5` |
-| 状态 | `BLOCKED_LIVE_MAPPING_EVIDENCE_REQUIRED` |
+| 状态 | `AUTONOMOUS_SINGLE_SKU_DISCOVERY_SCOPE` |
 | 当前 Wave | W2 / MOD-02 Protocol Discovery |
 | 当前模块 | `MOD-02 Protocol Discovery`（Issue #6） |
 | 当前角色 | 独立 MOD-02 Developer |
-| 当前打开任务 | 等待可验证、redaction-first 的鞋/服装/配件 live 映射、分页与同刻 UI 对照证据 |
-| 受管任务 ID | `/root/mod02_protocol_developer`（终态 BLOCKED；Draft PR #28 与 Issue #6 已留存证据） |
-| 下一个任务 | 获得 live mapping evidence 后回原 Developer 补 Profile，再 fresh QA → fresh Reviewer → CI → merge |
-| 允许写代码 | 否，直到 live mapping evidence 可安全获得 |
+| 当前打开任务 | 回原 Developer：按货号搜索、强制服务端 `sales_desc` 并选择响应第一个项目的单链路 Profile/fixture 验收 |
+| 受管任务 ID | `/root/mod02_protocol_developer`（原 Developer 恢复） |
+| 下一个任务 | Developer READY_FOR_QA 后自动 fresh QA → fresh Reviewer → CI → merge |
+| 允许写代码 | 是，仅 `src/discovery/**`、`profiles/**` 与人工复核的脱敏 fixtures |
 | 允许 commit/push/PR/merge | 可精确 stage、commit、push `agent/mod-02/6-protocol-discovery` 并创建 Draft PR |
 
 ## 你现在只做这一件事
 
-Draft PR #28 `b1a98c2` 仅包含允许的 `src/discovery/**` 与 `profiles/**`：合成 fixtures、秘密/原始字段拒绝、`sales_desc` 强制及 fail-closed `PROFILE_INCOMPATIBLE`。但 Issue #6 必须由鞋/服装/配件的真实受控映射、分页及同刻 UI 对照证明精确路径/字段；当前执行环境不能安全完成此运行时证据，且不得猜测或伪造 Profile。
+用户已明确改为单链路验收：输入 SKU、使用已验证的服务端 `sales_desc`、并选择响应项目 1；不再区分鞋/服装/配件，也不以三类别分页/UI 对照为门槛。Draft PR #28 `b1a98c2` 已有合成 fixtures、秘密/原始字段拒绝、`sales_desc` 强制及 fail-closed `PROFILE_INCOMPATIBLE`；原 Developer 必须将 Profile/fixtures/tests 与这一范围精确对齐，且不得猜测字段。
 
 不得改 contracts/dependencies、Jobs、Evidence、Export 或 Integration；不得把 APK、Cookie、Token、签名资料、原始响应或真实业务数据提交到 Git。发现风险/登录异常、未知版本、hook/schema 不匹配或秘密泄露立即记录并停止。
 
 ## 这一小步完成的证据
 
-- 原 Developer 推送仅含允许 Export/测试路径的修复，并发布 Issue #5 structured report；
-- 修复后自动创建新的独立 QA，不能复用失败 QA。
+- 原 Developer 按单 SKU/sales_desc/first-item 范围完成 Profile/fixtures/tests、Draft PR 更新和 Issue #6 structured report；
+- 然后自动创建新的独立 QA，不能复用此前阻塞验收。
 
 ## 完成后怎么办
 
