@@ -195,7 +195,7 @@ Never claim a live AVD, Frida, login, same-time UI comparison, second-computer, 
 - Do not develop or push directly on `main`; do not force-push shared branches.
 - Prefer small, reviewable commits and squash merge after gates pass. The author never merges its own PR.
 - At start, blocker, draft PR, CI completion, and merge readiness, update the Issue with exactly: `Completed / Current / Blockers / Tests / Next`.
-- Commit, push, PR, merge, release, or external publication only when the user's authorization covers that action.
+- In `AUTONOMOUS_DELIVERY_MODE`, the user's persistent authorization covers commit, push, PR creation/update, CI rechecks, authorized Issue/PR status records, and Coordinator squash merge for the active approved Issue. Pause only for the autonomous-mode exceptions defined above; releases and other external publication remain explicit exceptions.
 
 ## Definition of Done
 
