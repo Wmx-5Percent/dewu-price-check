@@ -27,8 +27,8 @@
 - [ ] `P02.10` 用户授权 draft PR；停止。
 - [x] `P02.11` 新建 Protocol QA，独立验证 SKU 搜索、`sales_desc`、响应项目 1、schema drift 和秘密扫描；PASS，`62f0315`，Issue #6 已留存证据。
 - [ ] `P02.12` QA 分流。
-- [ ] `P02.13` 新建 Protocol Reviewer，只读审查 Profile/脱敏与单 SKU契约边界；进行中。
-- [ ] `P02.14` Review 分流。
+- [x] `P02.13` 新建 Protocol Reviewer：REQUEST_CHANGES；synthetic fixture 误标 verified 可解锁下游，pagination 字段语义与 QA 证据不一致。
+- [ ] `P02.14` Review 分流回原 Developer：保持 synthetic Profile fail-closed，并补闭世界字段测试；进行中。
 - [ ] `P02.15` Coordinator 核对 live evidence 和 merge readiness；停止。
 - [ ] `P02.16` 用户授权 merge；停止。
 - [ ] `P02.17` Coordinator 验证 #6 done、Profile 版本固定；用户批准后进入 `A03.1`。
