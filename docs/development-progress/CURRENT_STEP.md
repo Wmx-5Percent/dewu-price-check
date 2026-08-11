@@ -5,22 +5,22 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `P02.1` |
-| 状态 | `AUTONOMOUS_PROTOCOL_READINESS_AUDIT` |
+| 当前步骤 | `P02.3` |
+| 状态 | `AUTONOMOUS_PROTOCOL_DEVELOPER_DISCOVERY` |
 | 当前 Wave | W2 / MOD-02 Protocol Discovery |
 | 当前模块 | `MOD-02 Protocol Discovery`（Issue #6） |
-| 当前角色 | Coordinator |
-| 当前打开任务 | 只读核对 #6 依赖、PR/CI 与受控设备门禁；不得启动 live discovery |
-| 受管任务 ID | 不适用（Coordinator 只读审计） |
-| 下一个任务 | live discovery 涉及设备、真实 APK/账号/数据，等待用户明确授权 |
-| 允许写代码 | 否 |
-| 允许 commit/push/PR/merge | 否 |
+| 当前角色 | 独立 MOD-02 Developer |
+| 当前打开任务 | 协议发现方案、数据最小化设计与受控发现工具/Profile 草案 |
+| 受管任务 ID | 待 Coordinator 创建并记录 |
+| 下一个任务 | Developer READY_FOR_QA 后自动 fresh QA → fresh Reviewer → CI → squash merge |
+| 允许写代码 | 是，仅 `src/discovery/**`、`profiles/**` 与人工复核的脱敏 fixtures |
+| 允许 commit/push/PR/merge | 可精确 stage、commit、push `agent/mod-02/6-protocol-discovery` 并创建 Draft PR |
 
 ## 你现在只做这一件事
 
-有限价格 P1 已在 `44442549ca91780bba39cb367723edf1defa52c3` 修复并经 QA 验证。QA 随后发现 PR #27 的 diff 包含四个 `docs/development-progress/**` 未授权路径；原 Developer 必须仅将这些文档从模块分支恢复为 PR base，不能触及协调分支或丢失 Export 修复。
+P02.1 审计：#1/#2 已关闭，#6 OPEN + `status:ready`，无 MOD-02 PR，main CI/Secret Guard 成功。Coordinator shell 当前未在 `PATH` 发现 `adb`；Developer 必须先使用 MOD-01 可移植 SDK 发现逻辑定位工具，并在获得专用、显式 serial 前不得进行 live hook、登录或业务数据采集。
 
-不得改 contracts/dependencies、设备/系统、真实 APK/账号/数据、Android/Frida、Jobs、Evidence 或 Integration；不得扩展六列、库存尺码映射、内部 evidence 字段或公式推断。任何合同变化、真实秘密、破坏性操作或 Excel 格式不可验证必须停止报告 Coordinator。
+不得改 contracts/dependencies、Jobs、Evidence、Export 或 Integration；不得把 APK、Cookie、Token、签名资料、原始响应或真实业务数据提交到 Git。发现风险/登录异常、未知版本、hook/schema 不匹配或秘密泄露立即记录并停止。
 
 ## 这一小步完成的证据
 

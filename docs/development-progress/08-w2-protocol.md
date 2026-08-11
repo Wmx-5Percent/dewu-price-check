@@ -11,9 +11,9 @@
 
 ## 逐步清单
 
-- [ ] `P02.1` Coordinator 核对依赖和受控设备条件；停止。
-- [ ] `P02.2` 用户批准启动协议发现；停止。
-- [ ] `P02.3` 新建 Protocol Developer，只做发现方案和数据最小化设计；停止。
+- [x] `P02.1` Coordinator 核对依赖和受控设备条件：#1/#2 closed、#6 OPEN/ready、无 PR、main CI/Secret Guard 成功；Coordinator shell 未在 PATH 找到 adb，Developer 先走可移植 SDK 发现。
+- [x] `P02.2` 用户授权继续 MOD-02 受控开发。
+- [ ] `P02.3` 新建 Protocol Developer，完成发现方案/数据最小化设计与授权范围内的最小交付；进行中。
 - [ ] `P02.4` 用户批准鞋/服装/配件三个样本的人工发现范围；停止。
 - [ ] `P02.5` Developer 在受控会话中建立最小发现工具和 Profile 草案；遇风险立即停止。
 - [ ] `P02.6` 用户检查脱敏前后字段、UI 同刻对照和字段证据；停止。
