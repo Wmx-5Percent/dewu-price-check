@@ -10,7 +10,7 @@
 | 当前 Wave | W2 / MOD-02 Protocol Discovery |
 | 当前模块 | `MOD-02 Protocol Discovery`（Issue #6） |
 | 当前角色 | 独立 MOD-02 Developer |
-| 当前打开任务 | 专用 `emulator-5556` 已由用户手动登录；回原 Developer 用同一 serial 进行 redaction-first 受控发现 |
+| 当前打开任务 | 专用 `Dewu_Root_API35_arm64` 运行在动态 serial `emulator-5554`；回原 Developer 用该已验证 serial 进行 redaction-first 受控发现 |
 | 受管任务 ID | `/root/mod02_protocol_developer`（原 Developer 恢复） |
 | 下一个任务 | 完成 Profile/脱敏 fixtures/PR 后自动 fresh QA → fresh Reviewer → CI → non-author squash merge |
 | 允许写代码 | 是，仅 `src/discovery/**`、`profiles/**` 与人工复核的脱敏 fixtures |
@@ -18,7 +18,7 @@
 
 ## 你现在只做这一件事
 
-已从 `emulator-5554` 只读提取 base + 3 splits，并仅安装到专用 `emulator-5556`；版本已核验为得物 `5.95.1 / versionCode 1101`。用户确认已在 `emulator-5556` 手动登录。发现只能使用此 serial；所有持久化内容必须先脱敏，禁止提交真实账号、Cookie、Token、签名资料、原始响应或设备标识。
+只读 QEMU 进程与 AVD config 已确认：当前 `emulator-5554` 是专用 `Dewu_Root_API35_arm64`（Android 35/google_apis/arm64-v8a），不是 `Medium_Phone`（google_apis_playstore）。serial 动态分配，现正式将本次唯一目标设为 `emulator-5554`；所有持久化内容必须先脱敏，禁止提交真实账号、Cookie、Token、签名资料、原始响应或设备标识。
 
 不得改 contracts/dependencies、Jobs、Evidence、Export 或 Integration；不得把 APK、Cookie、Token、签名资料、原始响应或真实业务数据提交到 Git。发现风险/登录异常、未知版本、hook/schema 不匹配或秘密泄露立即记录并停止。
 
