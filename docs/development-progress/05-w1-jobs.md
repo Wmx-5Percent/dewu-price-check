@@ -13,14 +13,14 @@
 
 - [x] `J04.1` Coordinator 确认 #3 ready、#1 已合并且 contract v1 可用；停止。
 - [x] `J04.2` 用户批准启动 MOD-04；停止。
-- [ ] `J04.3` 新建 Jobs Developer，只做输入/状态合同审计；停止。
-- [ ] `J04.4` 用户批准最小离线状态机切片；停止。
-- [ ] `J04.5` Developer 实现并做 fixture/self-check；停止。
-- [ ] `J04.6` 用户检查是否写死运行时业务数量、真实文件路径或默认并发；停止。
-- [ ] `J04.7` 用户授权 stage；停止。
-- [ ] `J04.8` 用户授权 commit；停止。
-- [ ] `J04.9` 用户授权 push；停止。
-- [ ] `J04.10` 用户授权 draft PR；停止。
+- [x] `J04.3` 新建 Jobs Developer，完成输入/状态合同审计；停止。
+- [x] `J04.4` 用户预授权最小离线状态机切片；停止。
+- [x] `J04.5` Developer 实现并做 fixture/self-check；停止。
+- [x] `J04.6` 用户预授权路径/业务数量/默认并发安全检查；Developer 报告通过；停止。
+- [x] `J04.7` 用户预授权精确 stage；停止。
+- [x] `J04.8` 用户预授权 commit：`63890c8`；停止。
+- [x] `J04.9` 用户预授权 push：`agent/mod-04/3-jobs`；停止。
+- [x] `J04.10` 用户预授权 draft PR：[#20](https://github.com/Wmx-5Percent/dewu-price-check/pull/20)；停止。
 - [ ] `J04.11` 新建 Jobs QA，独立测试去重、失败、重试、崩溃恢复、全局阻塞；停止。
 - [ ] `J04.12` QA 分流。
 - [ ] `J04.13` 新建 Jobs Reviewer，只读审查状态转换和竞态；停止。
