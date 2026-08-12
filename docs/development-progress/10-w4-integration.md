@@ -31,6 +31,7 @@
 - [x] `I07.12` 用户明确授权最终聚焦修复：仅归一 blocked bindDevice 结果并补回归测试，随后 fresh QA/Reviewer。
 - [x] `I07.11` 最终修复后新建 fresh 独立 QA：核验 exact head `ca4c4a7` 的所有 blocked bindDevice 归一化与 fixture 边界。
 - [x] `I07.13` QA PASS 后新建 fresh 独立 Reviewer：审查 exact head `ca4c4a7` 的模块边界、serial 语义和 CI。
+- [x] `I07.14` Reviewer REQUEST_CHANGES：ready-but-wrong-device 的 serial identity 未验证，可能错误设备采集；超出 blocked-result 最终修复授权，暂停等待用户精确授权。
 - [ ] `I07.13` 新建 Integration Reviewer，只读检查模块边界和端到端证据；停止。
 - [ ] `I07.14` Review 分流。
 - [ ] `I07.15` Coordinator 判断 merge readiness；停止。

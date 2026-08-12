@@ -3,15 +3,15 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `I07.13` |
-| 状态 | `MOD-07_FINAL_INDEPENDENT_REVIEW_ACTIVE` |
+| 当前步骤 | `I07.14` |
+| 状态 | `PAUSED_FOR_DEVICE_IDENTITY_VALIDATION_AUTHORIZATION` |
 | 当前 Wave | W4 / MOD-07 Integration |
 | 当前模块 | `MOD-07 Integration`（Issue #8） |
-| 当前角色 | 新独立 MOD-07 Reviewer（受 Coordinator 管理） |
-| 当前打开任务 | 对 PR #30 / `ca4c4a7a3bf3821d904d83faadc99d3d52e993b4` 审查最终 device-binding 修复、模块边界和 CI |
-| 受管任务 ID | `/root/mod07_integration_final_reviewer` |
-| 下一个任务 | Reviewer APPROVE 且 CI 不变后，Coordinator 自动 merge readiness 和非作者 squash merge |
-| 允许写代码 | 否（只读隔离审查） |
+| 当前角色 | Coordinator |
+| 当前打开任务 | 报告并暂停 ready-but-wrong-device serial identity P1；不得扩大最终聚焦修复范围 |
+| 受管任务 ID | `/root/mod07_integration_final_reviewer`（终态 REQUEST_CHANGES） |
+| 下一个任务 | 等待用户授权精确 identity validation 修复 |
+| 允许写代码 | 否 |
 | 允许 commit/push/PR/merge | 否 |
 
 ## 当前边界
@@ -26,4 +26,4 @@ MOD-03 已在 `7abbc2a391b650d2f7236c0c56de33bfe2e9582d` squash merge，Issue #7
 - 原 MOD-07 Developer 正确发现旧 Coordinator 分支 `c9811ab` 不含已合并的 MOD-03 文件；main-based handoff 已重建。Developer 已创建 Draft PR #30，head `0e663fee72a86a3754d2382f74cd1892de4abc03`。
 - 不得使用真实 SKU、设备或登录态来代替 fixture/contract 测试；任何 Profile/session/schema/risk/version 失败必须全局阻断并停止。
 
-第一轮 QA 发现 outputs 目录缺失与 `--device` serial 静默丢失，Developer 修复后新 QA 确认目录创建和 serial 透传，但发现 `bindDevice()` 返回 blocked 结果时没有归一为 `EMULATOR_UNAVAILABLE`。用户已于 2026-08-12 明确授权一次最终聚焦修复；完成后必须 fresh QA 和 fresh Reviewer。真实数据 pilot 仍不得执行。
+QA 已验证目录创建和 blocked binding 归一化；最终 Reviewer 发现 ready 返回的 `data.device` 未与请求 `--device` 精确比对，可能静默使用错误 serial。该 P1 超出已授权的 blocked-result 聚焦修复，按规则暂停，等待用户授权精确 identity validation 修复。Reviewer 尝试发布 Issue 证据时遭遇 `gh` TLS 证书验证失败；受管直接回传仍保留。真实数据 pilot 仍不得执行。
