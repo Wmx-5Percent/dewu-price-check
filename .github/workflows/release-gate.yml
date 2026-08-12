@@ -1,0 +1,21 @@
+name: Release gate fixtures
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  release-fixtures:
+    name: release-fixtures (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: node --test test/release-gate.test.mjs
