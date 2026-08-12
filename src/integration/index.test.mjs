@@ -74,7 +74,7 @@ test('a requested device must bind through the Agent or fail closed', async () =
   await withFixtureRun(async (paths) => {
     const invalidBindings = [];
     const inputGuardAgent = { ...fixtureAgent, async bindDevice({ device }) { invalidBindings.push(device); return ready({ device }); } };
-    for (const invalidDevice of ['', '   ']) {
+    for (const invalidDevice of ['', '   ', ' emulator-5554', 'emulator-5554 ', 'emulator- 5554', '../emulator-5554', 'emulator-5554\n']) {
       const invalid = await runCollection({ ...paths, agent: inputGuardAgent, device: invalidDevice });
       assert.deepEqual(invalid, { status: 'blocked', errorCode: 'EMULATOR_UNAVAILABLE', output: null, state: null });
     }
@@ -82,24 +82,24 @@ test('a requested device must bind through the Agent or fail closed', async () =
 
     const bindings = [];
     const boundAgent = { ...fixtureAgent, async bindDevice({ device }) { bindings.push(device); return ready({ device }); } };
-    const bound = await runCollection({ ...paths, agent: boundAgent, device: 'emulator-synthetic' });
+    const bound = await runCollection({ ...paths, agent: boundAgent, device: 'emulator-5554' });
     assert.equal(bound.status, 'ready');
-    assert.deepEqual(bindings, ['emulator-synthetic']);
+    assert.deepEqual(bindings, ['emulator-5554']);
 
     const unboundAgent = { health: fixtureAgent.health, searchBySku: fixtureAgent.searchBySku, getProduct: fixtureAgent.getProduct, getQuotes: fixtureAgent.getQuotes };
-    const rejected = await runCollection({ ...paths, agent: unboundAgent, device: 'emulator-synthetic' });
+    const rejected = await runCollection({ ...paths, agent: unboundAgent, device: 'emulator-5554' });
     assert.deepEqual(rejected, { status: 'blocked', errorCode: 'EMULATOR_UNAVAILABLE', output: null, state: null });
 
     const failedBindingAgent = { ...fixtureAgent, async bindDevice() { return { status: 'blocked', errorCode: 'PROFILE_INCOMPATIBLE', data: null }; } };
-    const normalized = await runCollection({ ...paths, agent: failedBindingAgent, device: 'emulator-synthetic' });
+    const normalized = await runCollection({ ...paths, agent: failedBindingAgent, device: 'emulator-5554' });
     assert.deepEqual(normalized, { status: 'blocked', errorCode: 'EMULATOR_UNAVAILABLE', output: null, state: null });
 
-    const mismatchedBindingAgent = { ...fixtureAgent, async bindDevice() { return ready({ device: 'emulator-other' }); } };
-    const mismatched = await runCollection({ ...paths, agent: mismatchedBindingAgent, device: 'emulator-synthetic' });
+    const mismatchedBindingAgent = { ...fixtureAgent, async bindDevice() { return ready({ device: 'emulator-5556' }); } };
+    const mismatched = await runCollection({ ...paths, agent: mismatchedBindingAgent, device: 'emulator-5554' });
     assert.deepEqual(mismatched, { status: 'blocked', errorCode: 'EMULATOR_UNAVAILABLE', output: null, state: null });
 
     const malformedBindingAgent = { ...fixtureAgent, async bindDevice() { return ready({}); } };
-    const malformed = await runCollection({ ...paths, agent: malformedBindingAgent, device: 'emulator-synthetic' });
+    const malformed = await runCollection({ ...paths, agent: malformedBindingAgent, device: 'emulator-5554' });
     assert.deepEqual(malformed, { status: 'blocked', errorCode: 'EMULATOR_UNAVAILABLE', output: null, state: null });
   });
 });
@@ -126,19 +126,19 @@ test('an Agent exception becomes a checkpointed global blocker without partial o
 });
 
 test('CLI accepts only the versioned collect fields and returns a sanitized summary', async () => {
-  assert.deepEqual(parseCliArguments(['collect', '--input', 'synthetic.xlsx', '--device', 'emulator-synthetic', '--run-id', 'run-synthetic']), {
-    command: 'collect', input: 'synthetic.xlsx', device: 'emulator-synthetic', runId: 'run-synthetic'
+  assert.deepEqual(parseCliArguments(['collect', '--input', 'synthetic.xlsx', '--device', 'emulator-5554', '--run-id', 'run-synthetic']), {
+    command: 'collect', input: 'synthetic.xlsx', device: 'emulator-5554', runId: 'run-synthetic'
   });
   assert.throws(() => parseCliArguments(['collect', '--input', 'synthetic.xlsx', '--ui-click']), /Unknown option/);
   assert.throws(() => createLocalRunPaths('../escape'), /CLI_RUN_ID_UNSAFE/);
   await withFixtureRun(async (paths) => {
     const result = await runCli({
-      args: ['collect', '--input', paths.inputPath, '--device', 'emulator-synthetic', '--run-id', 'run-synthetic'],
+      args: ['collect', '--input', paths.inputPath, '--device', 'emulator-5554', '--run-id', 'run-synthetic'],
       paths,
       agent: fixtureAgent
     });
     assert.deepEqual(result, {
-      command: { command: 'collect', input: paths.inputPath, device: 'emulator-synthetic', runId: 'run-synthetic' },
+      command: { command: 'collect', input: paths.inputPath, device: 'emulator-5554', runId: 'run-synthetic' },
       status: 'ready', errorCode: null, output: { rows: 4, worksheetName: '得物结果' }, baseline: 2
     });
   });

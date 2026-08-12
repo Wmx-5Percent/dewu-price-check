@@ -7,6 +7,7 @@ import { createJobState, readExcelInput, runJobs } from '../../src/jobs/index.mj
 import { ERROR_CODES, GLOBAL_BLOCKER_CODES } from '../../shared/contracts/error-codes.mjs';
 
 const blocked = (errorCode) => ({ type: 'blocked', errorCode });
+const EMULATOR_SERIAL = /^emulator-[0-9]+$/;
 
 const failClosedAgent = () => {
   const rpc = createFailClosedRpcExports();
@@ -103,7 +104,7 @@ const healthError = async (agent) => {
 
 const deviceBindingError = async (agent, device) => {
   if (device === null || device === undefined) return null;
-  if (typeof device !== 'string' || device.trim().length === 0) return ERROR_CODES.EMULATOR_UNAVAILABLE;
+  if (typeof device !== 'string' || !EMULATOR_SERIAL.test(device)) return ERROR_CODES.EMULATOR_UNAVAILABLE;
   if (typeof agent?.bindDevice !== 'function') return ERROR_CODES.EMULATOR_UNAVAILABLE;
   try {
     const binding = await agent.bindDevice({ device });
