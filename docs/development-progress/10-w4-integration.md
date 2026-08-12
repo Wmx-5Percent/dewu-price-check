@@ -36,6 +36,7 @@
 - [x] `I07.11` serial identity 修复后新建 fresh 独立 QA：核验 exact head `6370b2d` 的一致性与所有 binding fail-closed 分支。
 - [x] `I07.13` serial identity QA PASS 后新建 fresh 独立 Reviewer：审查 exact head `6370b2d`。
 - [x] `I07.14` Reviewer REQUEST_CHANGES：空/全空格 `--device` 未在 bind/health/input 前阻断；按完整 device-binding 安全修复补齐后 fresh QA/Reviewer。
+- [x] `I07.11` empty/whitespace serial 修复后新建 fresh 独立 QA：核验 exact head `ba33315` 的所有 binding 输入/身份/错误边界。
 - [ ] `I07.13` 新建 Integration Reviewer，只读检查模块边界和端到端证据；停止。
 - [ ] `I07.14` Review 分流。
 - [ ] `I07.15` Coordinator 判断 merge readiness；停止。
