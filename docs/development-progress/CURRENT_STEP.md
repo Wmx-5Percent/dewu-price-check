@@ -3,16 +3,16 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `I07.13` |
-| 状态 | `MOD-07_SERIAL_IDENTITY_FRESH_REVIEW_ACTIVE` |
+| 当前步骤 | `I07.14` |
+| 状态 | `MOD-07_SERIAL_INPUT_VALIDATION_REPAIR_ACTIVE` |
 | 当前 Wave | W4 / MOD-07 Integration |
 | 当前模块 | `MOD-07 Integration`（Issue #8） |
-| 当前角色 | 新独立 MOD-07 Reviewer（受 Coordinator 管理） |
-| 当前打开任务 | 对 PR #30 / `6370b2dd18452d817f1b5bccd235e63f26e65812` 审查 serial identity 修复、模块边界和 CI |
-| 受管任务 ID | `/root/mod07_integration_identity_reviewer` |
-| 下一个任务 | Reviewer APPROVE 且 CI 不变后，Coordinator 自动 merge readiness 和非作者 squash merge |
-| 允许写代码 | 否（只读隔离审查） |
-| 允许 commit/push/PR/merge | 否 |
+| 当前角色 | 原 MOD-07 Developer（受 Coordinator 管理） |
+| 当前打开任务 | 完整 device-binding 安全修复的剩余边界：空/全空格 `--device` 在 bind/health/input 前 `EMULATOR_UNAVAILABLE` |
+| 受管任务 ID | `/root/mod07_integration_developer` |
+| 下一个任务 | Developer READY_FOR_QA 后自动 fresh QA → fresh Reviewer |
+| 允许写代码 | 是，仅 Issue #8 allowed paths |
+| 允许 commit/push/PR/merge | Developer 可 commit/push 更新 Draft PR；不可 QA/review/merge |
 
 ## 当前边界
 
