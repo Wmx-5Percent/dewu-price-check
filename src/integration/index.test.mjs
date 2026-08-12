@@ -53,7 +53,7 @@ const withFixtureRun = async (run) => {
 
 test('fixture integration composes public modules into safe six-column output', async () => {
   await withFixtureRun(async (paths) => {
-    const result = await runCollection({ ...paths, agent: fixtureAgent });
+    const result = await runCollection({ ...paths, agent: fixtureAgent, device: 'emulator-5554' });
     assert.equal(result.status, 'ready');
     assert.equal(result.state.baseline, 2);
     assert.deepEqual(result.output, { rows: 4, worksheetName: '得物结果' });
@@ -63,8 +63,8 @@ test('fixture integration composes public modules into safe six-column output', 
 
 test('pending Profile blocks before inventory input or Excel output is read or written', async () => {
   await withFixtureRun(async (paths) => {
-    const blockedAgent = { async health() { return ready({ status: 'blocked', errorCode: 'PROFILE_INCOMPATIBLE' }); } };
-    const result = await runCollection({ ...paths, agent: blockedAgent });
+    const blockedAgent = { async bindDevice({ device }) { return ready({ device }); }, async health() { return ready({ status: 'blocked', errorCode: 'PROFILE_INCOMPATIBLE' }); } };
+    const result = await runCollection({ ...paths, agent: blockedAgent, device: 'emulator-5554' });
     assert.deepEqual(result, { status: 'blocked', errorCode: 'PROFILE_INCOMPATIBLE', output: null, state: null });
     await assert.rejects(access(paths.outputPath));
   });
@@ -74,6 +74,10 @@ test('a requested device must bind through the Agent or fail closed', async () =
   await withFixtureRun(async (paths) => {
     const invalidBindings = [];
     const inputGuardAgent = { ...fixtureAgent, async bindDevice({ device }) { invalidBindings.push(device); return ready({ device }); } };
+    for (const missingDevice of [undefined, null]) {
+      const missing = await runCollection({ ...paths, agent: inputGuardAgent, device: missingDevice });
+      assert.deepEqual(missing, { status: 'blocked', errorCode: 'EMULATOR_UNAVAILABLE', output: null, state: null });
+    }
     for (const invalidDevice of ['', '   ', ' emulator-5554', 'emulator-5554 ', 'emulator- 5554', '../emulator-5554', 'emulator-5554\n']) {
       const invalid = await runCollection({ ...paths, agent: inputGuardAgent, device: invalidDevice });
       assert.deepEqual(invalid, { status: 'blocked', errorCode: 'EMULATOR_UNAVAILABLE', output: null, state: null });
@@ -107,7 +111,7 @@ test('a requested device must bind through the Agent or fail closed', async () =
 test('schema drift blocks the full run and does not emit a partial workbook', async () => {
   await withFixtureRun(async (paths) => {
     const driftAgent = { ...fixtureAgent, async getQuotes() { return ready({ correlationId: 'quotes-drift', quotes: [], pagination: { complete: false } }); } };
-    const result = await runCollection({ ...paths, agent: driftAgent });
+    const result = await runCollection({ ...paths, agent: driftAgent, device: 'emulator-5554' });
     assert.equal(result.status, 'blocked');
     assert.equal(result.errorCode, 'SCHEMA_DRIFT');
     await assert.rejects(access(paths.outputPath));
@@ -117,7 +121,7 @@ test('schema drift blocks the full run and does not emit a partial workbook', as
 test('an Agent exception becomes a checkpointed global blocker without partial output', async () => {
   await withFixtureRun(async (paths) => {
     const disconnectedAgent = { ...fixtureAgent, async getProduct() { throw new Error('transport lost'); } };
-    const result = await runCollection({ ...paths, agent: disconnectedAgent });
+    const result = await runCollection({ ...paths, agent: disconnectedAgent, device: 'emulator-5554' });
     assert.equal(result.status, 'blocked');
     assert.equal(result.errorCode, 'SCHEMA_DRIFT');
     assert.equal(result.state.blocked, true);
@@ -132,6 +136,16 @@ test('CLI accepts only the versioned collect fields and returns a sanitized summ
   assert.throws(() => parseCliArguments(['collect', '--input', 'synthetic.xlsx', '--ui-click']), /Unknown option/);
   assert.throws(() => createLocalRunPaths('../escape'), /CLI_RUN_ID_UNSAFE/);
   await withFixtureRun(async (paths) => {
+    const missingDevice = await runCli({
+      args: ['collect', '--input', paths.inputPath, '--run-id', 'run-missing-device'],
+      paths,
+      agent: fixtureAgent
+    });
+    assert.deepEqual(missingDevice, {
+      command: { command: 'collect', input: paths.inputPath, device: null, runId: 'run-missing-device' },
+      status: 'blocked', errorCode: 'EMULATOR_UNAVAILABLE', output: null, baseline: 0
+    });
+
     const result = await runCli({
       args: ['collect', '--input', paths.inputPath, '--device', 'emulator-5554', '--run-id', 'run-synthetic'],
       paths,
@@ -149,7 +163,7 @@ test('default local CLI paths create the outputs directory before a successful w
     const originalDirectory = process.cwd();
     process.chdir(paths.directory);
     try {
-      const result = await runCli({ args: ['collect', '--input', paths.inputPath, '--run-id', 'default-output'], agent: fixtureAgent });
+      const result = await runCli({ args: ['collect', '--input', paths.inputPath, '--device', 'emulator-5554', '--run-id', 'default-output'], agent: fixtureAgent });
       assert.equal(result.status, 'ready');
       await access(join(paths.directory, 'outputs', 'dewu-default-output.xlsx'));
     } finally {
