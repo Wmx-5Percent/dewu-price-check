@@ -25,3 +25,4 @@ MOD-08 只建立发布验证与可移植性证据，不能在 QA 层补写生产
 - fixture release gate 的 QA/Reviewer/CI 证据与 main `16ba6a0` 一致，且 Issue #9 没有 closing reference。
 - 仍需独立、可审计的 controlled live-device/account/real-data、live recovery/performance 和第二台兼容电脑证据；缺任何一项均不能将 #9 标 done 或启动 W6。
 - 运行前必须通过一个单独、经批准的 ProtocolProfile 验证工作解除 `pending-manual-redacted-evidence`；这会涉及既有 Profile/Discovery 合同，不能由 #9 或当前 QA 基础设施自行修改。还必须重新核对可用 ADB、目标 serial 和本机数据边界；任何失败全局阻断并停止。
+- 2026-08-12 只读 ADB 审计：SDK 中的 `adb` 可执行，但 `adb devices -l` 没有在线设备；用户指定的 `emulator-5556` 不存在。本次未对 App、账号、SKU、网络或设备状态执行写操作。
