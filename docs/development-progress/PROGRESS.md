@@ -12,7 +12,7 @@
 | 活跃 QA / Reviewer | 0 / 0 |
 | 长期 Coordinator | MOD-08 fixture release gate 已合并；记录真实发布门的未完成证据 |
 | 已合并模块 | 8 / 9（MOD-00 / #1；MOD-01 / #2；MOD-04 / #3；MOD-05 / #4；MOD-06 / #5；MOD-02 / #6；MOD-03 / #7；MOD-07 / #8） |
-| 当前可启动 GitHub Issue | #9（QA & Portability）；真实库存 pilot 仍需通过 Agent/Profile/session/schema 守卫 |
+| 当前可启动 GitHub Issue | #9（QA & Portability）；真实库存 pilot 被 synthetic Profile 的 `pending-manual-redacted-evidence` 阻断 |
 
 ## 阶段进度
 
@@ -26,7 +26,7 @@
 | W2 / MOD-02 Protocol | #6 | merged / closed；live Profile 仍 fail-closed | 是 |
 | W3 / MOD-03 Frida Agent | #7 | merged / closed；live Profile 仍 fail-closed | 是 |
 | W4 / MOD-07 Integration | #8 | merged / closed；真实 pilot 未执行 | 是 |
-| W5 / MOD-08 QA & Portability | #9 | PR #31 fixture release gate merged；controlled live 与第二台电脑证据 pending | 进行中 |
+| W5 / MOD-08 QA & Portability | #9 | PR #31 fixture release gate merged；Profile 验证、controlled live 与第二台电脑证据 pending | 进行中 |
 | W6 / Full Run | #10 | blocked by #9 | 否 |
 
 ## 更新规则

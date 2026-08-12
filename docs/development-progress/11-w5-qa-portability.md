@@ -22,4 +22,4 @@ MOD-08 的 Developer 编写测试基础设施，但不能自己给发布门 PASS
 - [x] `Q08.14` Review 分流无 P1/P2；发布 Issue 的剩余门不属于 fixture PR。
 - [x] `Q08.15` Coordinator 判断 fixture-infrastructure merge readiness：QA、Reviewer、CI/Secret Guard 成功，且 #9/W6 不会被错误解除。
 - [x] `Q08.16` 非作者 squash merge 已完成：main `16ba6a0`（PR #31）；#9 保持 OPEN。
-- [ ] `Q08.17` Coordinator 验证 #9 全部 release gate done 并生成候选 release SHA；当前阻塞为受控 live 与第二台电脑证据，不能进入 `R06.1`。
+- [ ] `Q08.17` Coordinator 验证 #9 全部 release gate done 并生成候选 release SHA；当前阻塞为 `profiles/5.95.1-1101.json` 的 `pending-manual-redacted-evidence`、受控 live/第二台电脑证据，不能进入 `R06.1`。

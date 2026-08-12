@@ -18,10 +18,10 @@
 
 MOD-07 已由非作者 squash merge 到 main：`d83ecc7fb03cd6bc89d9f9ec11000366c028e86c`；Issue #8 已关闭。MOD-08 的 fixture release gate 已由非作者 squash merge：`16ba6a0`（PR #31）。#9 仍为 OPEN，不能因 fixture 通过而解除 W6。
 
-MOD-08 只建立发布验证与可移植性证据，不能在 QA 层补写生产模块逻辑，也不能把合成 Profile 当成 live 验证。用户已免除预先 Golden Sample/12 条同刻 UI 对照；未来真实 SKU pilot 仍只能在 Agent/Profile/session/schema/risk 守卫全部通过后，在本机生成严格六列 Excel，且不得进入 Git、GitHub、CI 或 fixture。
+MOD-08 只建立发布验证与可移植性证据，不能在 QA 层补写生产模块逻辑，也不能把合成 Profile 当成 live 验证。当前 `profiles/5.95.1-1101.json` 的 `evidenceStatus` 为 `pending-manual-redacted-evidence`，默认集成 Agent 因此 fail-closed；真实 SKU pilot 不能启动。若未来完成经批准的 Profile 验证，结果只能生成本机严格六列 Excel，且不得进入 Git、GitHub、CI 或 fixture。
 
 ## 本步骤所需证据
 
 - fixture release gate 的 QA/Reviewer/CI 证据与 main `16ba6a0` 一致，且 Issue #9 没有 closing reference。
 - 仍需独立、可审计的 controlled live-device/account/real-data、live recovery/performance 和第二台兼容电脑证据；缺任何一项均不能将 #9 标 done 或启动 W6。
-- 运行前必须重新核对 Profile/session/schema/risk/version guards、目标 serial 和本机数据边界；任何失败全局阻断并停止。
+- 运行前必须通过一个单独、经批准的 ProtocolProfile 验证工作解除 `pending-manual-redacted-evidence`；这会涉及既有 Profile/Discovery 合同，不能由 #9 或当前 QA 基础设施自行修改。还必须重新核对可用 ADB、目标 serial 和本机数据边界；任何失败全局阻断并停止。
