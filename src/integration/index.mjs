@@ -106,7 +106,7 @@ const deviceBindingError = async (agent, device) => {
   if (typeof agent?.bindDevice !== 'function') return ERROR_CODES.EMULATOR_UNAVAILABLE;
   try {
     const binding = await agent.bindDevice({ device });
-    return isReady(binding) ? null : errorCodeFor(binding);
+    return isReady(binding) ? null : ERROR_CODES.EMULATOR_UNAVAILABLE;
   } catch {
     return ERROR_CODES.EMULATOR_UNAVAILABLE;
   }

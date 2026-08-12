@@ -81,6 +81,10 @@ test('a requested device must bind through the Agent or fail closed', async () =
     const unboundAgent = { health: fixtureAgent.health, searchBySku: fixtureAgent.searchBySku, getProduct: fixtureAgent.getProduct, getQuotes: fixtureAgent.getQuotes };
     const rejected = await runCollection({ ...paths, agent: unboundAgent, device: 'emulator-synthetic' });
     assert.deepEqual(rejected, { status: 'blocked', errorCode: 'EMULATOR_UNAVAILABLE', output: null, state: null });
+
+    const failedBindingAgent = { ...fixtureAgent, async bindDevice() { return { status: 'blocked', errorCode: 'PROFILE_INCOMPATIBLE', data: null }; } };
+    const normalized = await runCollection({ ...paths, agent: failedBindingAgent, device: 'emulator-synthetic' });
+    assert.deepEqual(normalized, { status: 'blocked', errorCode: 'EMULATOR_UNAVAILABLE', output: null, state: null });
   });
 });
 
