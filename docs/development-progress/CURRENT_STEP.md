@@ -3,15 +3,15 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `I07.14` |
-| 状态 | `PAUSED_AFTER_REPEATED_DEVICE_BINDING_REPAIRS` |
+| 当前步骤 | `I07.11` |
+| 状态 | `MOD-07_SERIAL_GRAMMAR_FRESH_QA_ACTIVE` |
 | 当前 Wave | W4 / MOD-07 Integration |
 | 当前模块 | `MOD-07 Integration`（Issue #8） |
-| 当前角色 | Coordinator |
-| 当前打开任务 | MOD-07 多轮 device-binding 返工超出自治限制；不得再自动实施 serial grammar 修复 |
-| 受管任务 ID | `/root/mod07_integration_developer`（终态 BLOCKED） |
-| 下一个任务 | 等待用户明确决定 serial grammar 处置 |
-| 允许写代码 | 否 |
+| 当前角色 | 新独立 MOD-07 QA（受 Coordinator 管理） |
+| 当前打开任务 | 对 PR #30 / `2195449bac13ff2b4cbf44d471568f6d7d289949` 复验 portable serial grammar 与所有 binding 边界 |
+| 受管任务 ID | `/root/mod07_integration_serial_grammar_qa` |
+| 下一个任务 | QA PASS 后自动 fresh Reviewer |
+| 允许写代码 | 否（可在临时隔离目录运行测试） |
 | 允许 commit/push/PR/merge | 否 |
 
 ## 当前边界

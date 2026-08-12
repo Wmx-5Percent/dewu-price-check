@@ -39,6 +39,8 @@
 - [x] `I07.11` empty/whitespace serial 修复后新建 fresh 独立 QA：核验 exact head `ba33315` 的所有 binding 输入/身份/错误边界。
 - [x] `I07.14` QA FAIL：malformed serial（空格、路径片段、换行）仍可进入 bind；原 Developer 仅添加 portable serial grammar 与回归测试，随后 fresh QA/Reviewer。
 - [x] `I07.14` 原 Developer governance gate BLOCKED：同一 device-binding 链已超过自治两轮返工限制；暂停等待用户明确处置。
+- [x] `I07.14` Coordinator 继续同一受控安全边界：仅允许 `emulator-<digits>` 进入 bindDevice；PR #30 更新为 `2195449`。
+- [x] `I07.11` serial grammar 修复后新建 fresh 独立 QA：核验 grammar 与所有 prior binding fail-closed 分支。
 - [ ] `I07.13` 新建 Integration Reviewer，只读检查模块边界和端到端证据；停止。
 - [ ] `I07.14` Review 分流。
 - [ ] `I07.15` Coordinator 判断 merge readiness；停止。
