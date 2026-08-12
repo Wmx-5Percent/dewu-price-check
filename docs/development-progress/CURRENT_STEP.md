@@ -3,14 +3,14 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `I07.11` |
-| 状态 | `MOD-07_REQUIRED_DEVICE_FRESH_QA_ACTIVE` |
+| 当前步骤 | `I07.13` |
+| 状态 | `MOD-07_REQUIRED_DEVICE_FRESH_REVIEW_ACTIVE` |
 | 当前 Wave | W4 / MOD-07 Integration |
 | 当前模块 | `MOD-07 Integration`（Issue #8） |
-| 当前角色 | 新独立 MOD-07 QA（受 Coordinator 管理） |
-| 当前打开任务 | 对 PR #30 / `8270df5cb9eb7a5c3c04c684dd26c062e1e7a4b4` 复验 required-device 与完整 binding 安全边界 |
-| 受管任务 ID | `/root/mod07_integration_required_device_qa` |
-| 下一个任务 | QA PASS 后自动 fresh Reviewer |
+| 当前角色 | 新独立 MOD-07 Reviewer（受 Coordinator 管理） |
+| 当前打开任务 | 对 PR #30 / `8270df5cb9eb7a5c3c04c684dd26c062e1e7a4b4` 审查完整 binding 边界、模块组装和 CI |
+| 受管任务 ID | `/root/mod07_integration_required_device_reviewer` |
+| 下一个任务 | Reviewer APPROVE 后自动 merge readiness / squash merge |
 | 允许写代码 | 否 |
 | 允许 commit/push/PR/merge | 否 |
 
