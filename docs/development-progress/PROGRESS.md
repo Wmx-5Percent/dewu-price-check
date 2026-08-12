@@ -1,41 +1,29 @@
 # 人工开发进度板
 
-> 这里记录“你已经体验并验收到哪里”，不是 Agent 自报完成表。GitHub 是代码状态事实来源；本表是用户学习进度来源。
-
-## 总状态
+> GitHub 是代码与依赖状态事实来源；此表为当前 Coordinator 状态快照。
 
 | 项目 | 状态 |
 | --- | --- |
-| 学习模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `V05.11`（MOD-05 fresh independent QA） |
-| 活跃生产 Developer | 0 |
-| 活跃 QA | 1（`MOD-05` / symlink and JSONL concurrency P1 retest） |
-| 受管 QA 任务 | `/root/mod05_p1_retest_qa`（等待终态自动回传） |
-| 活跃 Reviewer | 0 |
-| 长期 Coordinator | MOD-05 P1 修复已推送；fresh independent QA 正在复验，随后自动 Reviewer |
-| 已合并模块 | 3 / 9（MOD-00 / #1；MOD-01 / #2；MOD-04 / #3） |
-| 当前可启动 GitHub Issue | #4、#5、#6 为 ready；当前按依赖顺序处理 #4 |
+| 模式 | `AUTONOMOUS_DELIVERY_MODE` |
+| 当前步骤 | `G32.1`（authorized source architecture audit） |
+| 已合并模块 | 8 / 9（#1–#8） |
+| 当前 Issue | #32（MOD-00 架构/合同 go-no-go） |
+| W5 / #9 | fixture gate 已合并；live、恢复/性能与第二电脑证据未完成 |
+| W6 / #10 | blocked by #9；未开始任何真实库存运行 |
 
-## 阶段进度
+## 已完成模块
 
-| 阶段 | Issue | 当前状态 | 用户是否体验 Developer→QA→Reviewer→Merge |
-| --- | ---: | --- | --- |
-| 治理基线 | 无 | G00.1–G00.15 已完成并已合并到远端 main | 不适用 |
-| W0 / MOD-00 Foundation | #1 | 已由 PR #13 squash merge；Issue closed | 是 |
-| W1 / MOD-01 Environment | #2 | PR #19 已 squash merge；Issue closed；Root/Frida smoke 已通过 | 是 |
-| W1 / MOD-04 Jobs | #3 | PR #20 已 squash merge 至 `main`；Issue closed | 是 |
-| W1 / MOD-05 Evidence | #4 | P1 修复已推送至 PR #23；fresh independent QA 正在复验 | 否 |
-| W1 / MOD-06 Export | #5 | ready candidate；学习模式等待 MOD-01 完整流程 | 否 |
-| W2 / MOD-02 Protocol | #6 | ready；#1、#2 已合并，Root/Frida smoke 已通过；学习模式暂不启动 | 否 |
-| W3 / MOD-03 Frida Agent | #7 | blocked by #1, #2, #6 | 否 |
-| W4 / MOD-07 Integration | #8 | blocked by #3, #4, #5, #7 | 否 |
-| W5 / MOD-08 QA & Portability | #9 | blocked by #2–#8 | 否 |
-| W6 / Full Run | #10 | blocked by #9 | 否 |
+| Module | Issue | 状态 |
+| --- | ---: | --- |
+| MOD-00 Foundation | #1 | merged / closed |
+| MOD-01 Environment | #2 | merged / closed |
+| MOD-04 Jobs | #3 | merged / closed |
+| MOD-05 Evidence | #4 | merged / closed |
+| MOD-06 Export | #5 | merged / closed |
+| MOD-02 Protocol | #6 | merged / closed；Profile 仍 fail-closed |
+| MOD-03 Frida guard | #7 | merged / closed；不是 live Agent |
+| MOD-07 Integration | #8 | merged / closed；真实 pilot 未执行 |
 
-## 更新规则
+## 当前架构边界
 
-- 只有用户明确同意后，Coordinator 才能修改本表。
-- 每次最多修改一行状态和一个当前步骤。
-- “Developer 完成”不能写成“模块完成”；模块必须等独立 QA、Reviewer、CI 和 merge。
-- 返工时状态退回前一步，不删除历史证据。
-- GitHub 状态与本表不一致时先暂停，由 Coordinator解释差异。
+Frida/App 内通道不再作为 v1 生产数据路径：受控 attach 会导致目标 App `EXIT_SELF`。不得规避保护。Issue #32 先确定合规数据源能否满足字段与许可；未满足时，自动化大批量采集仍不可用。

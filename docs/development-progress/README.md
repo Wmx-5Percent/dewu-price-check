@@ -93,6 +93,7 @@ flowchart LR
 | `12-w6-full-run.md` | Issue #10 / 正式全量运行 |
 | `13-rollback-and-recovery.md` | 失败、返工、回滚和紧急停止 |
 | `14-copy-paste-prompts.md` | 各角色开场提示词 |
+| `15-authorized-source-contract.md` | Issue #32 / Frida 通道替代架构决策 |
 
 ## 如何前进一步
 
