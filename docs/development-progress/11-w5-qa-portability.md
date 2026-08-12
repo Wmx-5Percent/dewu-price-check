@@ -13,20 +13,13 @@ MOD-08 的 Developer 编写测试基础设施，但不能自己给发布门 PASS
 
 ## 逐步清单
 
-- [x] `Q08.1` Coordinator 核对 #2–#8 均为 closed；发布基线为 main `d83ecc7fb03cd6bc89d9f9ec11000366c028e86c`。Issue #9 已从 `status:blocked` 同步为 `status:ready`。
-- [ ] `Q08.2` 用户批准启动 MOD-08 测试基础设施；停止。
-- [ ] `Q08.3` 新建 QA Infrastructure Developer，只做测试矩阵审计；停止。
-- [ ] `Q08.4` 用户批准故障、恢复、秘密、性能、第二台电脑最小测试清单；停止。
-- [ ] `Q08.5` Developer 实现测试/CI/文档，自检后停止。
-- [ ] `Q08.6` 用户检查测试是否真的能失败、是否伪造 live evidence；停止。
-- [ ] `Q08.7` 用户授权 stage；停止。
-- [ ] `Q08.8` 用户授权 commit；停止。
-- [ ] `Q08.9` 用户授权 push；停止。
-- [ ] `Q08.10` 用户授权 draft PR；停止。
-- [ ] `Q08.11` 新建 Release QA，在独立环境执行发布矩阵并出具证据；停止。
-- [ ] `Q08.12` QA 分流，任何缺少的第二台电脑/live test 均为 BLOCKED。
-- [ ] `Q08.13` 新建 Release Reviewer，只读审查测试质量和证据链；停止。
-- [ ] `Q08.14` Review 分流。
-- [ ] `Q08.15` Coordinator 判断 release-gate merge readiness；停止。
-- [ ] `Q08.16` 用户授权 merge；停止。
-- [ ] `Q08.17` Coordinator 验证 #9 done 并生成候选 release SHA；用户批准后进入 `R06.1`。
+- [x] `Q08.1` Coordinator 核对 #2–#8 均为 closed；初始基线 `d83ecc7`，Issue #9 已同步为 `status:ready`。
+- [x] `Q08.2`–`Q08.5` AUTONOMOUS_DELIVERY_MODE 覆盖启动受管 MOD-08 Developer、发布矩阵审计、最小故障/恢复/秘密/性能/可移植性 fixture 清单及实现。
+- [x] `Q08.6`–`Q08.10` 独立 QA 证明首版 PR 的错误 `Closes #9` 与伪 restart/resume 证据会失败；Developer 修复、commit、push 并更新 Draft PR #31。
+- [x] `Q08.11` fresh Release QA 在 exact head `4b35fa6` 验证 release gate 3/3、全套 41/41、恢复/秘密/性能 fixture 与 CI/Secret Guard；没有伪造 live/第二台电脑 PASS。
+- [x] `Q08.12` QA 分流已闭合：fixture PR 可通过；受控 live/device/account/real-data、live recovery/performance 与第二台电脑门仍为 pending，不能关闭 #9。
+- [x] `Q08.13` fresh Release Reviewer APPROVE：允许合并 test infrastructure，且确认 PR 无 closing issue reference。
+- [x] `Q08.14` Review 分流无 P1/P2；发布 Issue 的剩余门不属于 fixture PR。
+- [x] `Q08.15` Coordinator 判断 fixture-infrastructure merge readiness：QA、Reviewer、CI/Secret Guard 成功，且 #9/W6 不会被错误解除。
+- [x] `Q08.16` 非作者 squash merge 已完成：main `16ba6a0`（PR #31）；#9 保持 OPEN。
+- [ ] `Q08.17` Coordinator 验证 #9 全部 release gate done 并生成候选 release SHA；当前阻塞为受控 live 与第二台电脑证据，不能进入 `R06.1`。
