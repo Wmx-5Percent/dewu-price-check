@@ -7,7 +7,6 @@ import test from 'node:test';
 import ExcelJS from 'exceljs';
 import { createEvidenceStore } from '../src/evidence/index.mjs';
 import { verifyExportWorkbook } from '../src/export/index.mjs';
-import { createJobState, readCheckpoint, runJobs } from '../src/jobs/index.mjs';
 import { runCollection } from '../src/integration/index.mjs';
 
 const ready = (data) => ({ status: 'ready', errorCode: null, data });
@@ -102,23 +101,30 @@ test('secret-shaped fixture response is a global blocker and never emits a workb
   });
 });
 
-test('retryable checkpoint resumes only the unfinished synthetic SKU and retains completed work', async () => {
+test('a fresh jobs-module instance resumes a persisted checkpoint without repeating completed synthetic work', async () => {
   await withTemporaryDirectory(async (directory) => {
     const checkpointPath = join(directory, 'state', 'checkpoint.json');
-    const state = createJobState([{ sku: 'SYNTHETIC-DONE' }, { sku: 'SYNTHETIC-RETRY' }], { maxConcurrency: 1, maxAttempts: 2 });
+    const moduleUrl = new URL('../src/jobs/index.mjs', import.meta.url);
+    const firstProcess = await import(`${moduleUrl.href}?release-gate-first=${Date.now()}`);
+    const state = firstProcess.createJobState([{ sku: 'SYNTHETIC-DONE' }, { sku: 'SYNTHETIC-RETRY' }], { maxConcurrency: 1, maxAttempts: 2 });
+    firstProcess.applyTaskResult(state, 'SYNTHETIC-DONE', { type: 'collected' });
+    firstProcess.applyTaskResult(state, 'SYNTHETIC-RETRY', { type: 'retryable', errorCode: 'FRIDA_DISCONNECTED' });
+    await firstProcess.writeCheckpoint(checkpointPath, state);
+
+    const restartedProcess = await import(`${moduleUrl.href}?release-gate-restart=${Date.now()}`);
+    const resumedState = await restartedProcess.readCheckpoint(checkpointPath);
     const calls = [];
-    await runJobs({
-      state,
+    await restartedProcess.runJobs({
+      state: resumedState,
       checkpointPath,
       processTask: async (sku, attempt) => {
         calls.push(`${sku}:${attempt}`);
-        if (sku === 'SYNTHETIC-RETRY' && attempt === 1) return { type: 'retryable', errorCode: 'FRIDA_DISCONNECTED' };
         return { type: 'collected' };
       }
     });
 
-    assert.deepEqual(calls, ['SYNTHETIC-DONE:1', 'SYNTHETIC-RETRY:1', 'SYNTHETIC-RETRY:2']);
-    assert.deepEqual((await readCheckpoint(checkpointPath)).tasks.map(({ sku, status, attempts }) => ({ sku, status, attempts })), [
+    assert.deepEqual(calls, ['SYNTHETIC-RETRY:2']);
+    assert.deepEqual((await restartedProcess.readCheckpoint(checkpointPath)).tasks.map(({ sku, status, attempts }) => ({ sku, status, attempts })), [
       { sku: 'SYNTHETIC-DONE', status: 'collected', attempts: 1 },
       { sku: 'SYNTHETIC-RETRY', status: 'collected', attempts: 2 }
     ]);
