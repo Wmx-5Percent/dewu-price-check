@@ -72,6 +72,14 @@ test('pending Profile blocks before inventory input or Excel output is read or w
 
 test('a requested device must bind through the Agent or fail closed', async () => {
   await withFixtureRun(async (paths) => {
+    const invalidBindings = [];
+    const inputGuardAgent = { ...fixtureAgent, async bindDevice({ device }) { invalidBindings.push(device); return ready({ device }); } };
+    for (const invalidDevice of ['', '   ']) {
+      const invalid = await runCollection({ ...paths, agent: inputGuardAgent, device: invalidDevice });
+      assert.deepEqual(invalid, { status: 'blocked', errorCode: 'EMULATOR_UNAVAILABLE', output: null, state: null });
+    }
+    assert.deepEqual(invalidBindings, []);
+
     const bindings = [];
     const boundAgent = { ...fixtureAgent, async bindDevice({ device }) { bindings.push(device); return ready({ device }); } };
     const bound = await runCollection({ ...paths, agent: boundAgent, device: 'emulator-synthetic' });

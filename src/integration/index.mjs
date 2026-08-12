@@ -103,6 +103,7 @@ const healthError = async (agent) => {
 
 const deviceBindingError = async (agent, device) => {
   if (device === null || device === undefined) return null;
+  if (typeof device !== 'string' || device.trim().length === 0) return ERROR_CODES.EMULATOR_UNAVAILABLE;
   if (typeof agent?.bindDevice !== 'function') return ERROR_CODES.EMULATOR_UNAVAILABLE;
   try {
     const binding = await agent.bindDevice({ device });
