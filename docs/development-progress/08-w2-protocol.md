@@ -11,20 +11,17 @@
 
 ## 逐步清单
 
-- [ ] `P02.1` Coordinator 核对依赖和受控设备条件；停止。
-- [ ] `P02.2` 用户批准启动协议发现；停止。
-- [ ] `P02.3` 新建 Protocol Developer，只做发现方案和数据最小化设计；停止。
-- [ ] `P02.4` 用户批准鞋/服装/配件三个样本的人工发现范围；停止。
-- [ ] `P02.5` Developer 在受控会话中建立最小发现工具和 Profile 草案；遇风险立即停止。
-- [ ] `P02.6` 用户检查脱敏前后字段、UI 同刻对照和字段证据；停止。
-- [ ] `P02.7` 用户授权只 stage 代码、Profile 和复核后的脱敏 fixture；停止。
-- [ ] `P02.8` 用户授权 commit；停止。
-- [ ] `P02.9` 用户授权 push；停止。
-- [ ] `P02.10` 用户授权 draft PR；停止。
-- [ ] `P02.11` 新建 Protocol QA，独立验证三个类别、排序参数、schema drift 和秘密扫描；停止。
-- [ ] `P02.12` QA 分流。
-- [ ] `P02.13` 新建 Protocol Reviewer，只读审查 hook/profile/脱敏边界；停止。
-- [ ] `P02.14` Review 分流。
-- [ ] `P02.15` Coordinator 核对 live evidence 和 merge readiness；停止。
-- [ ] `P02.16` 用户授权 merge；停止。
-- [ ] `P02.17` Coordinator 验证 #6 done、Profile 版本固定；用户批准后进入 `A03.1`。
+- [x] `P02.1` Coordinator 核对 #1/#2 closed、Root/Frida smoke 通过、#6 ready。
+- [x] `P02.2` AUTONOMOUS_DELIVERY_MODE 授权启动 MOD-02。
+- [x] `P02.3` Protocol Developer 完成最小安全 discovery/profile guard 审计。
+- [x] `P02.4` 用户确认单链路：不区分类别，SKU 搜索必须传服务端 `sales_desc` 并选响应项目 1。
+- [x] `P02.5` Developer 实现合成、fail-closed Profile/fixture/test；未将其宣称为 live 验证。
+- [x] `P02.6` 脱敏/秘密边界以合成 fixture 审查；预先 UI Golden Sample 后由用户明确免除。
+- [x] `P02.7`–`P02.10` Developer 按允许路径 stage、commit、push 并创建 Draft PR #28。
+- [x] `P02.11` 独立 QA：首轮 PASS；P1/P2 修复后 fresh QA PASS，版本/profile/schema/秘密失败均 fail-closed。
+- [x] `P02.12` QA 分流：synthetic fixture 不得解锁 downstream；未知 pagination 字段三层拒绝。
+- [x] `P02.13` Reviewer 首轮 REQUEST_CHANGES；修复后 fresh Reviewer APPROVE。
+- [x] `P02.14` Review 分流回原 Developer：synthetic Profile 始终 `PROFILE_INCOMPATIBLE`。
+- [x] `P02.15` Coordinator merge readiness：QA、Reviewer、范围和 CI/Secret Guard 通过。
+- [x] `P02.16` AUTONOMOUS_DELIVERY_MODE 覆盖非作者 squash merge；PR #28 已合并为 `11f8a9b`。
+- [x] `P02.17` Coordinator 验证 #6 closed；进入 `A03.1`。注意：已合并的是安全 fail-closed guard，非 live-validated Profile。

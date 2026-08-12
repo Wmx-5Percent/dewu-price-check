@@ -23,8 +23,8 @@
 - [x] `V05.10` Developer 创建 Draft PR [#23](https://github.com/Wmx-5Percent/dewu-price-check/pull/23)。
 - [x] `V05.11` 新建 Evidence QA：FAIL；发现 records 中间目录 symlink 逃逸与 concurrent JSONL append 丢记录两项 P1。
 - [x] `V05.12` QA 分流回原 Developer 修复两项 P1，并补合成 symlink/concurrency 回归测试；修复已推送至 `db35f6f`。
-- [ ] `V05.13` 新建 Evidence Reviewer，只读安全审查；停止。
-- [ ] `V05.14` Review 分流。
-- [ ] `V05.15` Coordinator 判断 merge readiness；停止。
-- [ ] `V05.16` 用户授权 merge；停止。
-- [ ] `V05.17` Coordinator 验证 #4 done；用户批准后进入 `X06.1`。
+- [x] `V05.13` 新建 Evidence Reviewer：第一次 REQUEST_CHANGES，补齐 records 文件级 symlink containment；第二次 fresh Reviewer APPROVE。
+- [x] `V05.14` Review 分流回原 Developer：拒绝 records 目录及文件级 symlink，读取使用 `O_NOFOLLOW`；fresh QA 复验通过。
+- [x] `V05.15` Coordinator merge readiness：final QA、Reviewer、范围和 CI/Secret Guard 通过。
+- [x] `V05.16` AUTONOMOUS_DELIVERY_MODE 覆盖非作者 squash merge；PR #23 已合并为 `b59ac5b`。
+- [x] `V05.17` Coordinator 验证 #4 closed；进入 `X06.1`。

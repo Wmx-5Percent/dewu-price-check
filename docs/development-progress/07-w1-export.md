@@ -11,20 +11,17 @@
 
 ## 逐步清单
 
-- [ ] `X06.1` Coordinator 确认 #5 ready；停止。
-- [ ] `X06.2` 用户批准启动 MOD-06；停止。
-- [ ] `X06.3` 新建 Export Developer，只做 6 列合同和 Excel 库审计；停止。
-- [ ] `X06.4` 用户批准最小合成输入→Excel 切片；停止。
-- [ ] `X06.5` Developer 实现并自检列名、特殊尺码、空报价、异常行；停止。
-- [ ] `X06.6` 用户打开说明，确认没有库存尺码映射或内部字段；停止。
-- [ ] `X06.7` 用户授权 stage；停止。
-- [ ] `X06.8` 用户授权 commit；停止。
-- [ ] `X06.9` 用户授权 push；停止。
-- [ ] `X06.10` 用户授权 draft PR；停止。
-- [ ] `X06.11` 新建 Export QA，独立检查 6 列、行粒度、公式错误和跨平台打开；停止。
-- [ ] `X06.12` QA 分流。
-- [ ] `X06.13` 新建 Export Reviewer，只读审查合同污染和格式推断；停止。
-- [ ] `X06.14` Review 分流。
-- [ ] `X06.15` Coordinator 判断 merge readiness；停止。
-- [ ] `X06.16` 用户授权 merge；停止。
-- [ ] `X06.17` Coordinator 验证 #5 done，并检查 W1 全部结果；用户批准后进入 `P02.1`。
+- [x] `X06.1` Coordinator 确认 #5 ready；#1 已 closed，main CI/Secret Guard 成功。
+- [x] `X06.2` AUTONOMOUS_DELIVERY_MODE 授权启动 MOD-06。
+- [x] `X06.3` 新建受管 Export Developer，完成 6 列合同与 Excel 处理审计。
+- [x] `X06.4` 批准最小合成输入→Excel 切片。
+- [x] `X06.5` Developer 实现并自检列名、尺码文本、空报价、公式/非有限值异常行。
+- [x] `X06.6` 自检确认无库存尺码映射或内部字段。
+- [x] `X06.7`–`X06.10` Developer 按允许路径 stage、commit、push 并创建 Draft PR #27。
+- [x] `X06.11` 独立 Export QA：严格六列、单 sheet、重开 XLSX 和错误路径均通过。
+- [x] `X06.12` QA PASS；无分流。
+- [x] `X06.13` 新建独立 Export Reviewer：APPROVE。
+- [x] `X06.14` Review 无分流。
+- [x] `X06.15` Coordinator merge readiness：QA、Reviewer、CI/Secret Guard 通过。
+- [x] `X06.16` AUTONOMOUS_DELIVERY_MODE 覆盖非作者 squash merge；PR #27 已合并为 `3d46348`。
+- [x] `X06.17` Coordinator 验证 #5 closed、W1 模块完成；进入 `P02.1`。
