@@ -33,6 +33,7 @@
 - [x] `I07.13` QA PASS 后新建 fresh 独立 Reviewer：审查 exact head `ca4c4a7` 的模块边界、serial 语义和 CI。
 - [x] `I07.14` Reviewer REQUEST_CHANGES：ready-but-wrong-device 的 serial identity 未验证，可能错误设备采集；超出 blocked-result 最终修复授权，暂停等待用户精确授权。
 - [x] `I07.14` 最终 device-binding 安全修复继续：ready 返回必须与请求 serial 完全匹配，否则 fail-closed `EMULATOR_UNAVAILABLE`；随后 fresh QA/Reviewer。
+- [x] `I07.11` serial identity 修复后新建 fresh 独立 QA：核验 exact head `6370b2d` 的一致性与所有 binding fail-closed 分支。
 - [ ] `I07.13` 新建 Integration Reviewer，只读检查模块边界和端到端证据；停止。
 - [ ] `I07.14` Review 分流。
 - [ ] `I07.15` Coordinator 判断 merge readiness；停止。

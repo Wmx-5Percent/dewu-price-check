@@ -3,16 +3,16 @@
 | 字段 | 当前值 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `I07.14` |
-| 状态 | `MOD-07_DEVICE_IDENTITY_REPAIR_ACTIVE` |
+| 当前步骤 | `I07.11` |
+| 状态 | `MOD-07_SERIAL_IDENTITY_FRESH_QA_ACTIVE` |
 | 当前 Wave | W4 / MOD-07 Integration |
 | 当前模块 | `MOD-07 Integration`（Issue #8） |
-| 当前角色 | 原 MOD-07 Developer（受 Coordinator 管理） |
-| 当前打开任务 | 最终 device-binding 安全修复：ready 返回必须精确匹配请求 `--device`，否则 `EMULATOR_UNAVAILABLE` |
-| 受管任务 ID | `/root/mod07_integration_developer` |
-| 下一个任务 | Developer READY_FOR_QA 后自动 fresh QA → fresh Reviewer |
-| 允许写代码 | 是，仅 Issue #8 allowed paths |
-| 允许 commit/push/PR/merge | Developer 可 commit/push 更新 Draft PR；不可 QA/review/merge |
+| 当前角色 | 新独立 MOD-07 QA（受 Coordinator 管理） |
+| 当前打开任务 | 对 PR #30 / `6370b2dd18452d817f1b5bccd235e63f26e65812` 复验 exact serial identity 与全链路 fixture 边界 |
+| 受管任务 ID | `/root/mod07_integration_identity_qa` |
+| 下一个任务 | QA PASS 后自动 fresh Reviewer；QA FAIL 停止报告用户 |
+| 允许写代码 | 否（可在临时隔离目录运行测试） |
+| 允许 commit/push/PR/merge | 否 |
 
 ## 当前边界
 
