@@ -13,7 +13,7 @@ MOD-08 的 Developer 编写测试基础设施，但不能自己给发布门 PASS
 
 ## 逐步清单
 
-- [x] `Q08.1` Coordinator 核对 #2–#8 均为 closed；发布基线为 main `d83ecc7fb03cd6bc89d9f9ec11000366c028e86c`。Issue #9 的状态标签待同步为 ready。
+- [x] `Q08.1` Coordinator 核对 #2–#8 均为 closed；发布基线为 main `d83ecc7fb03cd6bc89d9f9ec11000366c028e86c`。Issue #9 已从 `status:blocked` 同步为 `status:ready`。
 - [ ] `Q08.2` 用户批准启动 MOD-08 测试基础设施；停止。
 - [ ] `Q08.3` 新建 QA Infrastructure Developer，只做测试矩阵审计；停止。
 - [ ] `Q08.4` 用户批准故障、恢复、秘密、性能、第二台电脑最小测试清单；停止。
