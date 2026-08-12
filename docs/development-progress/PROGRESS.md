@@ -5,9 +5,9 @@
 | 项目 | 状态 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `G32.1`（authorized source architecture audit） |
+| 当前步骤 | `G32.2`（authorized source audit: NO-GO） |
 | 已合并模块 | 8 / 9（#1–#8） |
-| 当前 Issue | #32（MOD-00 架构/合同 go-no-go） |
+| 当前 Issue | #32（MOD-00 架构/合同 go-no-go：blocked） |
 | W5 / #9 | fixture gate 已合并；live、恢复/性能与第二电脑证据未完成 |
 | W6 / #10 | blocked by #9；未开始任何真实库存运行 |
 
@@ -26,4 +26,4 @@
 
 ## 当前架构边界
 
-Frida/App 内通道不再作为 v1 生产数据路径：受控 attach 会导致目标 App `EXIT_SELF`。不得规避保护。Issue #32 先确定合规数据源能否满足字段与许可；未满足时，自动化大批量采集仍不可用。
+Frida/App 内通道不再作为 v1 生产数据路径：受控 attach 会导致目标 App `EXIT_SELF`。不得规避保护。Issue #32 的官方来源审计为 NO-GO：公开文档不能证明所需字段与授权范围。因此自动化大批量采集在现有边界下不可用；#9/#10 保持 blocked，等待提供商的明确授权和字段文档。

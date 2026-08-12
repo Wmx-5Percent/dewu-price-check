@@ -9,6 +9,6 @@
 ## 阶段
 
 - [x] `G32.0` 用户批准创建架构/合同 Issue #32；Frida production channel 停止。
-- [ ] `G32.1` Coordinator / Architecture Auditor 只读审计官方数据源的公开字段与授权要求。
-- [ ] `G32.2` Coordinator 记录 go/no-go：必须同时覆盖 SKU 搜索、服务端销量降序、商品名、各尺码卖价和总销量。
-- [ ] `G32.3` 若 go，用户批准 v2 contract 与新的 adapter Module；若 no-go，#9/#10 保持 blocked 并进入用户选择的手动或许可来源方案。
+- [x] `G32.1` Coordinator / Architecture Auditor 完成官方数据源公开字段与授权要求的只读审计。
+- [x] `G32.2` Coordinator 记录 NO-GO：官方开放平台与官方域名资料不能直接证明 SKU 搜索、服务端销量降序、商品名、各尺码卖价、总销量或权限范围。
+- [x] `G32.3` no-go 处置：不创建 v2 contract 或 adapter；Issue #32、#9、#10 保持 blocked。只有提供商明确授权并提供五项字段覆盖的官方文档后才能重新审计。
