@@ -38,6 +38,7 @@
 - [x] `I07.14` Reviewer REQUEST_CHANGES：空/全空格 `--device` 未在 bind/health/input 前阻断；按完整 device-binding 安全修复补齐后 fresh QA/Reviewer。
 - [x] `I07.11` empty/whitespace serial 修复后新建 fresh 独立 QA：核验 exact head `ba33315` 的所有 binding 输入/身份/错误边界。
 - [x] `I07.14` QA FAIL：malformed serial（空格、路径片段、换行）仍可进入 bind；原 Developer 仅添加 portable serial grammar 与回归测试，随后 fresh QA/Reviewer。
+- [x] `I07.14` 原 Developer governance gate BLOCKED：同一 device-binding 链已超过自治两轮返工限制；暂停等待用户明确处置。
 - [ ] `I07.13` 新建 Integration Reviewer，只读检查模块边界和端到端证据；停止。
 - [ ] `I07.14` Review 分流。
 - [ ] `I07.15` Coordinator 判断 merge readiness；停止。

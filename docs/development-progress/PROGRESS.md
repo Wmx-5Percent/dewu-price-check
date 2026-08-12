@@ -7,10 +7,10 @@
 | 项目 | 状态 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `I07.14`（MOD-07 serial grammar repair） |
-| 活跃生产 Developer | 1（原 MOD-07 Developer 拒绝 malformed serial） |
+| 当前步骤 | `I07.14`（MOD-07 device-binding 返工暂停） |
+| 活跃生产 Developer | 0 |
 | 活跃 QA / Reviewer | 0 / 0 |
-| 长期 Coordinator | QA 发现 malformed serial 可进入 bind；只增加 portable grammar 后 fresh QA/Reviewer |
+| 长期 Coordinator | MOD-07 serial grammar P1 触发多轮 device-binding 返工限制；等待用户明确处置 |
 | 已合并模块 | 7 / 9（MOD-00 / #1；MOD-01 / #2；MOD-04 / #3；MOD-05 / #4；MOD-06 / #5；MOD-02 / #6；MOD-03 / #7） |
 | 当前可启动 GitHub Issue | #8（Integration）；真实库存 pilot 仅本机，需先通过 Agent/Profile/session/schema 守卫 |
 

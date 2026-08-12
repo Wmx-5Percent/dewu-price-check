@@ -4,15 +4,15 @@
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
 | 当前步骤 | `I07.14` |
-| 状态 | `MOD-07_SERIAL_GRAMMAR_REPAIR_ACTIVE` |
+| 状态 | `PAUSED_AFTER_REPEATED_DEVICE_BINDING_REPAIRS` |
 | 当前 Wave | W4 / MOD-07 Integration |
 | 当前模块 | `MOD-07 Integration`（Issue #8） |
-| 当前角色 | 原 MOD-07 Developer（受 Coordinator 管理） |
-| 当前打开任务 | 仅增加安全、可移植的 serial grammar；malformed serial 在 bind 前 `EMULATOR_UNAVAILABLE` |
-| 受管任务 ID | `/root/mod07_integration_developer` |
-| 下一个任务 | Developer READY_FOR_QA 后自动 fresh QA → fresh Reviewer |
-| 允许写代码 | 是，仅 Issue #8 allowed paths |
-| 允许 commit/push/PR/merge | Developer 可 commit/push 更新 Draft PR；不可 QA/review/merge |
+| 当前角色 | Coordinator |
+| 当前打开任务 | MOD-07 多轮 device-binding 返工超出自治限制；不得再自动实施 serial grammar 修复 |
+| 受管任务 ID | `/root/mod07_integration_developer`（终态 BLOCKED） |
+| 下一个任务 | 等待用户明确决定 serial grammar 处置 |
+| 允许写代码 | 否 |
+| 允许 commit/push/PR/merge | 否 |
 
 ## 当前边界
 
