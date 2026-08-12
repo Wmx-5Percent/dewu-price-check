@@ -4,15 +4,15 @@
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
 | 当前步骤 | `I07.14` |
-| 状态 | `PAUSED_FOR_DEVICE_IDENTITY_VALIDATION_AUTHORIZATION` |
+| 状态 | `MOD-07_DEVICE_IDENTITY_REPAIR_ACTIVE` |
 | 当前 Wave | W4 / MOD-07 Integration |
 | 当前模块 | `MOD-07 Integration`（Issue #8） |
-| 当前角色 | Coordinator |
-| 当前打开任务 | 报告并暂停 ready-but-wrong-device serial identity P1；不得扩大最终聚焦修复范围 |
-| 受管任务 ID | `/root/mod07_integration_final_reviewer`（终态 REQUEST_CHANGES） |
-| 下一个任务 | 等待用户授权精确 identity validation 修复 |
-| 允许写代码 | 否 |
-| 允许 commit/push/PR/merge | 否 |
+| 当前角色 | 原 MOD-07 Developer（受 Coordinator 管理） |
+| 当前打开任务 | 最终 device-binding 安全修复：ready 返回必须精确匹配请求 `--device`，否则 `EMULATOR_UNAVAILABLE` |
+| 受管任务 ID | `/root/mod07_integration_developer` |
+| 下一个任务 | Developer READY_FOR_QA 后自动 fresh QA → fresh Reviewer |
+| 允许写代码 | 是，仅 Issue #8 allowed paths |
+| 允许 commit/push/PR/merge | Developer 可 commit/push 更新 Draft PR；不可 QA/review/merge |
 
 ## 当前边界
 
@@ -26,4 +26,4 @@ MOD-03 已在 `7abbc2a391b650d2f7236c0c56de33bfe2e9582d` squash merge，Issue #7
 - 原 MOD-07 Developer 正确发现旧 Coordinator 分支 `c9811ab` 不含已合并的 MOD-03 文件；main-based handoff 已重建。Developer 已创建 Draft PR #30，head `0e663fee72a86a3754d2382f74cd1892de4abc03`。
 - 不得使用真实 SKU、设备或登录态来代替 fixture/contract 测试；任何 Profile/session/schema/risk/version 失败必须全局阻断并停止。
 
-QA 已验证目录创建和 blocked binding 归一化；最终 Reviewer 发现 ready 返回的 `data.device` 未与请求 `--device` 精确比对，可能静默使用错误 serial。该 P1 超出已授权的 blocked-result 聚焦修复，按规则暂停，等待用户授权精确 identity validation 修复。Reviewer 尝试发布 Issue 证据时遭遇 `gh` TLS 证书验证失败；受管直接回传仍保留。真实数据 pilot 仍不得执行。
+QA 已验证目录创建和 blocked binding 归一化；最终 Reviewer 发现 ready 返回的 `data.device` 未与请求 `--device` 精确比对，可能静默使用错误 serial。最终聚焦修复覆盖完整 device-binding 安全语义：Developer 必须精确比对 serial，不一致则在采集前返回 `EMULATOR_UNAVAILABLE`，随后 fresh QA/Reviewer。真实数据 pilot 仍不得执行。

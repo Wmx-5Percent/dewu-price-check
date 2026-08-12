@@ -7,10 +7,10 @@
 | 项目 | 状态 |
 | --- | --- |
 | 模式 | `AUTONOMOUS_DELIVERY_MODE` |
-| 当前步骤 | `I07.14`（MOD-07 serial identity P1 暂停） |
-| 活跃生产 Developer | 0（PR #30 已更新为 `ca4c4a7`） |
+| 当前步骤 | `I07.14`（MOD-07 serial identity P1 repair） |
+| 活跃生产 Developer | 1（原 MOD-07 Developer 修复 exact serial identity） |
 | 活跃 QA / Reviewer | 0 / 0 |
-| 长期 Coordinator | Reviewer 发现 ready-but-wrong-device serial identity P1；等待用户精确授权，真实 pilot 未执行 |
+| 长期 Coordinator | Reviewer 发现 ready-but-wrong-device serial identity P1；最终 device-binding 安全修复 active |
 | 已合并模块 | 7 / 9（MOD-00 / #1；MOD-01 / #2；MOD-04 / #3；MOD-05 / #4；MOD-06 / #5；MOD-02 / #6；MOD-03 / #7） |
 | 当前可启动 GitHub Issue | #8（Integration）；真实库存 pilot 仅本机，需先通过 Agent/Profile/session/schema 守卫 |
 
@@ -25,7 +25,7 @@
 | W1 / MOD-06 Export | #5 | merged / closed | 是 |
 | W2 / MOD-02 Protocol | #6 | merged / closed；live Profile 仍 fail-closed | 是 |
 | W3 / MOD-03 Frida Agent | #7 | PR #29 merged / closed；live Profile 仍 fail-closed | 是 |
-| W4 / MOD-07 Integration | #8 | ready-but-wrong-device serial identity P1，等待用户授权；真实 pilot 未执行 | 暂停 |
+| W4 / MOD-07 Integration | #8 | ready-but-wrong-device serial identity P1 修复 active；真实 pilot 未执行 | 进行中 |
 | W5 / MOD-08 QA & Portability | #9 | blocked by #2–#8 | 否 |
 | W6 / Full Run | #10 | blocked by #9 | 否 |
 
